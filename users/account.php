@@ -38,27 +38,22 @@ $conexion= conexion($bd_config); //Fetch user details
 ?>
 
 <div id="page-wrapper">
-<div class="container">
-<div class="well">
-<div class="row">
-	<!-- <div class="col-xs-12 col-md-3">
-		<p><img src="<?=$grav; ?>" class="img-thumbnail" alt="Generic placeholder thumbnail"></p>
-		<p><a href="user_settings.php" class="btn btn-primary">Editar información de la cuenta</a></p>
-		<p><a class="btn btn-primary " href="profile.php?id=<?=$get_info_id;?>" role="button">Perfil público</a></p>
-
-	</div> -->
-	<div class="col-xs-12 col-md-9">
-		<h1><?=ucfirst($user->data()->username)?></h1>
-		<p><?=ucfirst($user->data()->fname)." ".ucfirst($user->data()->lname)?></p>
-		<p>Miembro desde: <?=$signupdate?></p>
-		<!-- <p>Número de ingresos: <?=$user->data()->logins?></p> -->
-		<p>Créditos disponibles: <?php echo getCreditos($conexion, $user->data()->id) ?></p>
-	</div>
-</div>
-</div>
-
-</div> <!-- /container -->
-
+	<div class="container">
+		<div class="well">
+			<div class="row">
+				<div class="col-xs-12 col-md-3">
+					<h1><?=ucfirst($user->data()->username)?></h1>
+					<p><?=ucfirst($user->data()->fname)." ".ucfirst($user->data()->lname)?></p>
+					<p>Miembro desde: <?=$signupdate?></p>
+					<!-- <p>Número de ingresos: <?=$user->data()->logins?></p> -->
+					<p>Créditos disponibles: <?php echo getCreditos($conexion, $user->data()->id) ?></p>
+					<!-- <p><img src="<?=$grav; ?>" class="img-thumbnail" alt="Generic placeholder thumbnail"></p> -->
+					<p><a href="user_settings.php" class="btn btn-primary">Modificar Perfil</a></p>
+					<!-- <p><a class="btn btn-primary" href="profile.php?id=<?=$get_info_id;?>" role="button">Perfil público</a></p> -->
+				</div>
+			</div>
+		</div>
+	</div> <!-- /container -->
 </div> <!-- /#page-wrapper -->
 
 

@@ -18,10 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <?php require_once 'init.php'; ?>
 <?php require_once $abs_us_root.$us_url_root.'users/includes/header.php'; ?>
 <?php require_once $abs_us_root.$us_url_root.'users/includes/navigation.php'; ?>
- 
+
 <?php
 if (!securePage($_SERVER['PHP_SELF'])){die();}?>
- 
+
 <?php
 $emailQ = $db->query("SELECT * FROM email");
 $emailR = $emailQ->first();
@@ -197,19 +197,19 @@ if(!empty($_POST)) {
 ?>
 <div id="page-wrapper">
     <div class="container">
-        <div class="well">
+        <div class="">
             <div class="row">
-                <div class="col-xs-12 col-md-2">
+                <!-- <div class="col-xs-12 col-md-2">
                     <p><img src="<?=$grav; ?>" class="img-thumbnail" alt="Generic placeholder thumbnail"></p>
-                </div>
+                </div> -->
                 <div class="col-xs-12 col-md-10">
                     <h1>Actualización de datos de usuario</h1>
-                    <strong>Queres cambiar tu foto de perfil? </strong><br> Visite <a href="https://en.gravatar.com/">https://en.gravatar.com/</a> y configure una cuenta con el email <?=$email?>!<br>
+                    <!-- <strong>Queres cambiar tu foto de perfil? </strong><br> Visite <a href="https://en.gravatar.com/">https://en.gravatar.com/</a> y configure una cuenta con el email <?=$email?>!<br> -->
                     <span class="bg-danger"><?=display_errors($errors);?></span>
                     <span><?=display_successes($successes);?></span>
- 
+
                     <form name='updateAccount' action='user_settings.php' method='post'>
- 
+
                         <div class="form-group">
                             <label>Nombre de usuario</label>
                             <?php if (($settings->change_un == 0) || (($settings->change_un == 2) && ($user->data()->un_changed == 1)) ) {
@@ -219,42 +219,42 @@ if(!empty($_POST)) {
                             }
                             ?>
                         </div>
- 
+
                         <div class="form-group">
                             <label>Nombre</label>
                             <input  class='form-control' type='text' name='fname' value='<?=$fname?>' />
                         </div>
- 
+
                         <div class="form-group">
                             <label>Apellido</label>
                             <input  class='form-control' type='text' name='lname' value='<?=$lname?>' />
                         </div>
- 
+
                         <div class="form-group">
                             <label>Email</label>
                             <input class='form-control' type='text' name='email' value='<?=$email?>' />
                         </div>
- 
+
                         <div class="form-group">
                             <label>Contraseña anterior</label>
                             <input class='form-control' type='password' name='old' />
                         </div>
- 
+
                         <div class="form-group">
                             <label>Contraseña nueva (<?=$settings->min_pw?> char min, <?=$settings->max_pw?> max.)</label>
                             <input class='form-control' type='password' name='password' />
                         </div>
- 
+
                         <div class="form-group">
                             <label>Confirmar contraseña</label>
                             <input class='form-control' type='password' name='confirm' />
                         </div>
- 
+
                         <input type="hidden" name="csrf" value="<?=Token::generate();?>" />
- 
-                        <p><input class='btn btn-primary' type='submit' value='Actualizar' class='submit' /></p>
-                        <p><a class="btn btn-info" href="account.php">Cancelar</a></p>
- 
+
+                        <input class='btn btn-primary' type='submit' value='Actualizar' class='submit' />
+                        <a class="btn btn-primary" href="account.php">Cancelar</a>
+
                     </form>
                     <?php
                     if(isset($user->data()->oauth_provider) && $user->data()->oauth_provider != null){
@@ -264,16 +264,16 @@ if(!empty($_POST)) {
                 </div>
             </div>
         </div>
- 
- 
+
+
     </div> <!-- /container -->
- 
+
 </div> <!-- /#page-wrapper -->
- 
- 
+
+
 <!-- footers -->
 <?php require_once $abs_us_root.$us_url_root.'users/includes/page_footer.php'; // the final html footer copyright row + the external js calls ?>
- 
+
 <!-- Place any per-page javascript here -->
- 
+
 <?php require_once $abs_us_root.$us_url_root.'users/includes/html_footer.php'; // currently just the closing /body and /html ?>
