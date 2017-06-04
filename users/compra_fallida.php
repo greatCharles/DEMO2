@@ -8,7 +8,7 @@
   <div class="col-xs-12">
   	<div class="jumbotron text-center">
   		<h1>Ooops! Parece que no tienes créditos suficientes</h1>
-      <h2>Necesitas al menos 5 créditos para poder publicar una gauchada...</h2><br><br>
+      <h2>Necesitas al menos 1 crédito para poder publicar una gauchada...</h2><br><br>
       <a class="btn btn-primary btn-lg" href="comprar_creditos.php">Comprar creditos</a>
       </div>
   </div>
