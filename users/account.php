@@ -37,22 +37,29 @@ $userdetails = fetchUserDetails(NULL, NULL, $get_info_id);
 $conexion= conexion($bd_config); //Fetch user details
 ?>
 
+
 <div id="page-wrapper">
 	<div class="container">
-		<div class="well">
-			<div class="row">
-				<div class="col-xs-12 col-md-3">
-					<h1><?=ucfirst($user->data()->username)?></h1>
-					<p><?=ucfirst($user->data()->fname)." ".ucfirst($user->data()->lname)?></p>
-					<p>Miembro desde: <?=$signupdate?></p>
-					<!-- <p>Número de ingresos: <?=$user->data()->logins?></p> -->
-					<p>Créditos disponibles: <?php echo getCreditos($conexion, $user->data()->id) ?></p>
-					<!-- <p><img src="<?=$grav; ?>" class="img-thumbnail" alt="Generic placeholder thumbnail"></p> -->
-					<p><a href="user_settings.php" class="btn btn-primary">Modificar Perfil</a></p>
-					<!-- <p><a class="btn btn-primary" href="profile.php?id=<?=$get_info_id;?>" role="button">Perfil público</a></p> -->
-				</div>
-			</div>
-		</div>
+			    <ul class="nav nav-tabs">
+			        <li class="nav active"><a href="#A" data-toggle="tab">Perfil</a></li>
+			        <li class="nav"><a href="#B" data-toggle="tab">Mis gauchadas</a></li>
+			        <li class="nav"><a href="#C" data-toggle="tab">Sarasa</a></li>
+			    </ul>
+			    <!-- Tab panes -->
+			    <div class="tab-content">
+			        <div class="tab-pane fade in active" id="A">
+										<h1><?=ucfirst($user->data()->username)?></h1>
+										<p><?=ucfirst($user->data()->fname)." ".ucfirst($user->data()->lname)?></p>
+										<p>Miembro desde: <?=$signupdate?></p>
+										<!-- <p>Número de ingresos: <?=$user->data()->logins?></p> -->
+										<p>Créditos disponibles: <?php echo getCreditos($conexion, $user->data()->id) ?></p>
+										<!-- <p><img src="<?=$grav; ?>" class="img-thumbnail" alt="Generic placeholder thumbnail"></p> -->
+										<p><a href="user_settings.php" class="btn btn-primary">Modificar Perfil</a></p>
+										<!-- <p><a class="btn btn-primary" href="profile.php?id=<?=$get_info_id;?>" role="button">Perfil público</a></p> -->
+							</div>
+			        <div class="tab-pane fade" id="B">Content inside tab B</div>
+			        <div class="tab-pane fade" id="C">Content inside tab C</div>
+			    </div>
 	</div> <!-- /container -->
 </div> <!-- /#page-wrapper -->
 
