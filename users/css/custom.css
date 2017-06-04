@@ -1,0 +1,57 @@
+.navbar{
+	color: #494543;
+	background-color: #f9c236;
+}
+
+.btn-primary{
+  background-color: #f9c236;
+  border-color: #f9c236;
+  width: 300px;
+  color: black;
+}
+
+.form-control{
+	width: 650px;
+}
+
+.input-medium {
+ 	width: 200px;
+ 	height: 40px;
+}
+
+.pagination > li > a{
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #494941;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.pagination > li > a:hover,
+.pagination > li > a:focus{
+  z-index: 2;
+  color: #494941;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus{
+  z-index: 3;
+  color: #fff;
+  cursor: default;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus{
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
+}
