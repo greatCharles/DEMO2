@@ -1,4 +1,4 @@
-
+<?php $id_gau =  $gauchada[0];?>
 <div class="col-md-6">
   <img class="img-thumbnail" src="<?php echo 'img_gauchadas/'.$gauchada['10']; ?>"  >
   <h2 >
@@ -22,7 +22,7 @@
         <div class="btn btn-danger btn-lg btn-block" role="button">Quiero Postularme</div><br>
         <div class="btn btn-success btn-lg btn-block" role="button">Enviar un comentario</div>
       <?php else: ?>
-        <div class="btn btn-danger btn-lg btn-block" role="button">Dar de baja la publicación</div><br>
+        <div class="btn btn-danger btn-lg btn-block" role="button" onClick="window.location = 'baja_publicacion.php?id_gau=<?php echo $id_gau ?>'">Dar de baja la publicación</div><br>
       <?php endif; ?>
     <?php endif; ?>
     </p>
