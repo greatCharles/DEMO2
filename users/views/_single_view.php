@@ -24,6 +24,9 @@
       <?php else: ?>
         <div class="btn btn-danger btn-lg btn-block" role="button" onClick="window.location = 'baja_publicacion.php?id_gau=<?php echo $id_gau ?>'">Dar de baja la publicación</div><br>
       <?php endif; ?>
+    <?php else: ?>
+        <p>Quieres postularte para realizar esta gauchada?</p><br>
+        <a class="btn btn-primary" href="#">Inicia sesión</a>
     <?php endif; ?>
     </p>
   </div>
