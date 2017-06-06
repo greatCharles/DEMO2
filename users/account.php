@@ -64,7 +64,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<div class="row">
 													<?php foreach($mis_gauchadas as $gauchada): ?>
 														<div class="col-md-12">
-															<br><br><div class="col-md-3">
+															<hr><div class="col-md-3">
 																	<a href="single_view.php?id=<?php echo $gauchada['0']?>">
 																			<img class="img-responsive" src="<?php echo 'img_gauchadas/'. $gauchada['10']; ?>">
 																	</a>
