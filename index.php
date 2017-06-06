@@ -26,6 +26,7 @@ if($user->isLoggedIn()){
     $publica="users/login.php";
 }
 
+$cant_gau= 0;
 ?>
 
 <div id="page-wrapper">
@@ -47,15 +48,14 @@ if($user->isLoggedIn()){
 			</p>
 		</div>
 		<div class="text-center">
-			<h1>Publicaciones</h4>
-		</div><br><br>
+			<h1>Publicaciones</h4><hr>
+		</div>
 
 		<!-- Projects Row -->
 		<div class="container-fluid">
-				<div class="row">
 					<div class="col-md-12">
-						<div class="row">
 								<?php foreach($gauchadas as $gauchada): ?>
+									<?php $cant_gau++; ?>
 									<div class="col-md-4">
 										<div class="thumbnail">
 											<a href="users/single_view.php?id=<?php echo $gauchada['0']?>">
@@ -70,10 +70,11 @@ if($user->isLoggedIn()){
 										  </div>
 										</div>
 									</div>
+									<?php if($cant_gau==3):?>
+										<div class="col-md-12"></div>
+									<?php endif; ?>
 								<?php endforeach; ?>
-						</div>
 					</div>
-				</div>
 		</div>
 
 <?php require $abs_us_root.$us_url_root.'paginacion.php';?>
