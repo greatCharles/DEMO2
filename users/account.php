@@ -35,6 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	$signupdate = $raw['month']."/".$raw['day']."/".$raw['year'];
 	$userdetails = fetchUserDetails(NULL, NULL, $get_info_id);
 	$conexion= conexion($bd_config); //Fetch user details
+	$mis_gauchadas= getMisGauchadas($conexion, $user->data()->id);
 ?>
 
 
@@ -43,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			    <ul class="nav nav-tabs">
 			        <li class="nav active"><a href="#A" data-toggle="tab">Perfil</a></li>
 			        <li class="nav"><a href="#B" data-toggle="tab">Mis gauchadas</a></li>
-			        <li class="nav"><a href="#C" data-toggle="tab">Sarasa</a></li>
+			        <li class="nav"><a href="#C" data-toggle="tab">Gauchadas en las que participé</a></li>
 			    </ul>
 			    <!-- Tab panes -->
 			    <div class="tab-content">
@@ -57,9 +58,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<p><a href="user_settings.php" class="btn btn-primary">Modificar Perfil</a></p>
 										<!-- <p><a class="btn btn-primary" href="profile.php?id=<?=$get_info_id;?>" role="button">Perfil público</a></p> -->
 							</div>
-			        <div class="tab-pane fade" id="B">Content inside tab B</div>
-			        <div class="tab-pane fade" id="C">Content inside tab C</div>
-			    </div>
+							<!--Contenido de Mis Gauchadas-->
+			        <div class="tab-pane fade" id="B">
+								<div class="container-fluid">
+										<div class="row">
+													<?php foreach($mis_gauchadas as $gauchada): ?>
+														<div class="col-md-12">
+															<br><br><div class="col-md-3">
+																	<a href="single_view.php?id=<?php echo $gauchada['0']?>">
+																			<img class="img-responsive" src="<?php echo 'img_gauchadas/'. $gauchada['10']; ?>">
+																	</a>
+															</div>
+															<div class="col-md-7">
+																	<div class="caption">
+																		<h3>
+																				<a href="single_view.php?id=<?php echo $gauchada['0']?>"><?php echo $gauchada['1']?></a>
+																		</h3>
+																		<p><?php echo substr($gauchada['2'],0, 200).'...'?></p>
+																			<a href="single_view.php?id=<?php echo $gauchada['0']?>">Ver más...</a><br><br>
+																	</div>
+															</div>
+															<div class="col-md-2">
+																<br><br>
+																<a href="#">Modificar</a><br><br>
+																<a href="#">Eliminar</a>
+															</div>
+														</div>
+													<?php endforeach; ?>
+										</div>
+									</div>
+								</div>
+			       <div class="tab-pane fade" id="C">Acá irían las gauchadas en las que participé</div>
+			 	 </div>
 	</div> <!-- /container -->
 </div> <!-- /#page-wrapper -->
 

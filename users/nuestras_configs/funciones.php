@@ -63,4 +63,10 @@ function setCreditos($conex, $id){
   return $creditos;
 }
 
+function getMisGauchadas($conex, $id){
+  $consulta = "SELECT * FROM gauchada WHERE id_usuario= $id";
+  $result= mysqli_query($conex, $consulta);
+  return mysqli_fetch_all($result);
+}
+
 ?>
