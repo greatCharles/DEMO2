@@ -38,6 +38,9 @@
 
         </script>
       <?php endif; ?>
+    <?php else: ?>
+        <p>Quieres postularte para realizar esta gauchada?</p><br>
+        <a class="btn btn-primary" href="#">Inicia sesión</a>
     <?php endif; ?>
     </p>
   </div>
