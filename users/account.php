@@ -28,13 +28,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <?php if (!securePage($_SERVER['PHP_SELF'])){die();}?>
 
 <?php
-$grav = get_gravatar(strtolower(trim($user->data()->email)));
-$get_info_id = $user->data()->id;
-// $groupname = ucfirst($loggedInUser->title);
-$raw = date_parse($user->data()->join_date);
-$signupdate = $raw['month']."/".$raw['day']."/".$raw['year'];
-$userdetails = fetchUserDetails(NULL, NULL, $get_info_id);
-$conexion= conexion($bd_config); //Fetch user details
+	$grav = get_gravatar(strtolower(trim($user->data()->email)));
+	$get_info_id = $user->data()->id;
+	// $groupname = ucfirst($loggedInUser->title);
+	$raw = date_parse($user->data()->join_date);
+	$signupdate = $raw['month']."/".$raw['day']."/".$raw['year'];
+	$userdetails = fetchUserDetails(NULL, NULL, $get_info_id);
+	$conexion= conexion($bd_config); //Fetch user details
 ?>
 
 

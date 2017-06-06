@@ -1,3 +1,10 @@
+<html>
+  <head>
+    <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css">
+  </head>
+</html>
+
 <?php $id_gau =  $gauchada[0];?>
 <div class="col-md-6">
   <img class="img-thumbnail" src="<?php echo 'img_gauchadas/'.$gauchada['10']; ?>"  >
@@ -22,7 +29,14 @@
         <div class="btn btn-danger btn-lg btn-block" role="button">Quiero Postularme</div><br>
         <div class="btn btn-success btn-lg btn-block" role="button">Enviar un comentario</div>
       <?php else: ?>
-        <div class="btn btn-danger btn-lg btn-block" role="button" onClick="window.location = 'baja_publicacion.php?id_gau=<?php echo $id_gau ?>'">Dar de baja la publicación</div><br>
+        <!-- <div class="btn btn-danger btn-lg btn-block" role="button" onClick="window.location = 'baja_publicacion.php?id_gau=<?php echo $id_gau ?>'">Dar de baja la publicación</div><br> -->
+        <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar();">Dar de baja la publicación</div><br>
+        <script type="text/javascript">
+          function confirmar() {
+            swal({   title: "Estás seguro?",   text: "No vas a poder recuperar esta Gauchada!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero borrarla!",   closeOnConfirm: false }, function(){ window.location = 'baja_publicacion.php?id_gau=<?php echo $id_gau ?>'   });
+            }
+
+        </script>
       <?php endif; ?>
     <?php endif; ?>
     </p>

@@ -1,4 +1,12 @@
+<html>
+	<head>
+	  <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
+	  <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css">
+	</head>
+</html>
+
 <?php
+
 	//Si el usuario no está logueado lo redirigimos al login
 	require_once 'init.php';
 	if (!$user->isLoggedIn()) {
@@ -27,19 +35,10 @@
 			header("Location:compra_exitosa.php?creditos_comprados=".urlencode($_POST['cant_creditos']));
 		}elseif (mb_strlen($num_tarjeta) != 16 || mb_strlen($cod_seg) != 3) {
 			// emitimos alerta
-			echo '<script language="javascript">alert("Asegúrate de que el número de la tarjeta de crédito tenga 16 dígitos y el código de seguridad 3! ");</script>'; 
+			echo '<script> sweetAlert("Oops...", "Asegúrate de que el número de la tarjeta de crédito tenga 16 dígitos y el código de seguridad 3!", "error");</script>';
 		}
 
 	}
-
-	// $errores='';
-	// if(isset($_POST['submit'])){
-	//  	$cod= $POST['cod_seg'];
-	//
-	// 	if($cod < 4){
-	// 		$errores .= 'Codigo de seguridad invalido <br />';
-	//  	}
-	//  }
 
 
  ?>
@@ -56,4 +55,5 @@
 
 <!-- Place any per-page javascript here -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <?php require_once $abs_us_root.$us_url_root.'users/includes/html_footer.php'; // currently just the closing /body and /html ?>
