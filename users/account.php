@@ -1,3 +1,12 @@
+<html>
+  <head>
+    <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css">
+  </head>
+</html>
+
+
+
 <?php
 /*
 UserSpice 4
@@ -81,7 +90,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 															<div class="col-md-2">
 																<br><br>
 																<a href="#">Modificar</a><br><br>
-																<a href="#">Eliminar</a>
+																<a href="javascript:confirmar()">Eliminar</a>
+
+
+																<script type="text/javascript">
+														          function confirmar() {
+														          	swal({   title: "Estás seguro?",   text: "No vas a poder recuperar esta Gauchada!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero borrarla!",   closeOnConfirm: false }, function(){ window.location = 'baja_publicacion.php?id_gau=<?php echo $gauchada['0'] ?>'   });
+														          }
+														        </script>
 															</div>
 														</div>
 													<?php endforeach; ?>
