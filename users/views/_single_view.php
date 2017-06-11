@@ -9,7 +9,12 @@
   </head>
 </html>
 
-<?php $id_gau =  $gauchada[0];?>
+
+<?php
+  $id_gau =  $gauchada[0];
+  $id_user = $user->data()->id;
+?>
+
 <div class="col-md-6">
   <img class="img-thumbnail" src="<?php echo 'img_gauchadas/'.$gauchada['10']; ?>"  >
   <h2 >
@@ -31,7 +36,7 @@
     <?php if($user->isLoggedIn()): ?>
       <?php if($gauchada['6'] != $user->data()->id): ?>
         <div class="btn btn-danger btn-lg btn-block" role="button">Quiero Postularme</div><br>
-        <div class="btn btn-success btn-lg btn-block" role="button" onClick="enviar_comentario();">Enviar un comentario</div>
+        <div class="btn btn-success btn-lg btn-block" role="button" onClick="enviar_comentario(<?php echo "$id_gau";?>, <?php echo "$id_user"; ?>);">Enviar un comentario</div>
       <?php else: ?>
         <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar(<?php echo "$id_gau"; ?>);">Dar de baja la publicación</div><br>
       <?php endif; ?>
