@@ -1,7 +1,11 @@
+
+
 <html>
   <head>
     <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/nuestros_js.js"></script>
     <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css">
+    
   </head>
 </html>
 
@@ -27,16 +31,9 @@
     <?php if($user->isLoggedIn()): ?>
       <?php if($gauchada['6'] != $user->data()->id): ?>
         <div class="btn btn-danger btn-lg btn-block" role="button">Quiero Postularme</div><br>
-        <div class="btn btn-success btn-lg btn-block" role="button">Enviar un comentario</div>
+        <div class="btn btn-success btn-lg btn-block" role="button" onClick="enviar_comentario();">Enviar un comentario</div>
       <?php else: ?>
-        <!-- <div class="btn btn-danger btn-lg btn-block" role="button" onClick="window.location = 'baja_publicacion.php?id_gau=<?php echo $id_gau ?>'">Dar de baja la publicación</div><br> -->
-        <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar();">Dar de baja la publicación</div><br>
-        <script type="text/javascript">
-          function confirmar() {
-            swal({   title: "Estás seguro?",   text: "No vas a poder recuperar esta Gauchada!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero borrarla!",   closeOnConfirm: false }, function(){ window.location = 'baja_publicacion.php?id_gau=<?php echo $id_gau ?>'   });
-            }
-
-        </script>
+        <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar(<?php echo "$id_gau"; ?>);">Dar de baja la publicación</div><br>
       <?php endif; ?>
     <?php else: ?>
         <p>Quieres postularte para realizar esta gauchada?</p><br>
