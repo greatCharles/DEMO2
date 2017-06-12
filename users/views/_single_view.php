@@ -56,7 +56,7 @@
 </div>
 
 <div class="col-md-12">
-  <h1 class="text-center">Comentarios </h1><br><br>
+  <h1 class="text-center">Comentarios</h1><br><br>
 </div>
     <?php foreach($comentarios as $comentario): ?>
       <div class="col-md-12">
@@ -65,7 +65,7 @@
             <!-- Aca va el nombre del usuario -->
             <?php echo $comentario['1'] ?>
             <?php $usuario= obtener_usuario_por_id($conexion, $comentario['3']); echo $usuario.' dijo:';?>
-            <?php if ($user->data()->id == $gauchada['6']): ?>
+            <?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6']): ?>
                 <a style= "position:absolute; right:25px" href="#">Responder</a>
             <?php endif; ?>
           </div>
