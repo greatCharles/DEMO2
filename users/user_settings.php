@@ -90,7 +90,7 @@ if(!empty($_POST)) {
             ));
             if($validation->passed()){
                 $db->update('users',$userId,$fields);
-                $successes[]='First name updated.';
+                $successes[]='Nombre modificado.';
             }else{
                 //validation did not pass
                 foreach ($validation->errors() as $error) {
@@ -114,7 +114,7 @@ if(!empty($_POST)) {
             ));
             if($validation->passed()){
                 $db->update('users',$userId,$fields);
-                $successes[]='Last name updated.';
+                $successes[]='Apellido modificado.';
             }else{
                 //validation did not pass
                 foreach ($validation->errors() as $error) {
@@ -143,7 +143,7 @@ if(!empty($_POST)) {
                 if($emailR->email_act==1){
                     $db->update('users',$userId,['email_verified'=>0]);
                 }
-                $successes[]='Email updated.';
+                $successes[]='Email actualizado.';
             }else{
                 //validation did not pass
                 foreach ($validation->errors() as $error) {
