@@ -5,8 +5,6 @@
   </head>
 </html>
 
-
-
 <?php
 /*
 UserSpice 4
@@ -75,7 +73,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 														<div class="col-md-12">
 															<hr><div class="col-md-3">
 																	<a href="single_view.php?id=<?php echo $gauchada['0']?>">
-																			<img class="img-responsive" src="<?php echo 'img_gauchadas/'. $gauchada['10']; ?>">
+                                    <?php if($gauchada['10']): ?>
+            													<img class="img-responsive" src="<?php echo 'img_gauchadas/'. $gauchada['10']; ?>">
+            												<?php else: ?>
+            													<img class="img-responsive" src="img_gauchadas/sin_imagen.jpg">
+            												<?php endif; ?>
 																	</a>
 															</div>
 															<div class="col-md-7">

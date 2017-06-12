@@ -64,7 +64,6 @@ $cant_gau= 0;
 												<?php else: ?>
 													<img class="img-responsive" src="users/img_gauchadas/sin_imagen.jpg">
 												<?php endif; ?>
-
 											</a>
 											<div class="caption">
 													<h3>

@@ -3,7 +3,6 @@
     <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/nuestros_js.js"></script>
     <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css">
-
   </head>
 </html>
 
@@ -16,11 +15,19 @@
 ?>
 
 <div class="col-md-6">
-  <img class="img-thumbnail" src="<?php echo 'img_gauchadas/'.$gauchada['10']; ?>"  >
-  <h2 >
-    <?php echo $gauchada['1'] ?>
-  </h2>
-  <p><?php echo $gauchada['2'] ?></p>
+  <div class="thumbnail">
+    <?php if($gauchada['10']): ?>
+      <img class="img-responsive" src="<?php echo 'img_gauchadas/'.$gauchada['10']; ?>"  >
+    <?php else: ?>
+      <img class="img-responsive" src="img_gauchadas/sin_imagen.jpg">
+    <?php endif; ?>
+    <div class="caption">
+      <h2 >
+        <?php echo $gauchada['1'] ?>
+      </h2>
+      <p><?php echo $gauchada['2'] ?></p>
+    </div>
+  </div>
 </div>
 <div class="col-md-6">
   <div class="jumbotron">
