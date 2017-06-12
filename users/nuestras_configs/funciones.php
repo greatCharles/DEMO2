@@ -69,4 +69,11 @@ function getMisGauchadas($conex, $id){
   return mysqli_fetch_all($result);
 }
 
+function getComentarios($conex, $id){
+  $consulta= "SELECT * FROM comentarios WHERE id_gauchada= $id";
+  $result= mysqli_query($conex, $consulta);
+  return mysqli_fetch_all($result);
+}
+
+
 ?>

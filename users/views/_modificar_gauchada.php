@@ -49,6 +49,7 @@
         <br>
 
         <input type="submit" class= "btn btn-primary" value="Enviar">
+        <a href= 'account.php' class="btn btn-primary">Cancelar</a>
     </div>
 
 </form>

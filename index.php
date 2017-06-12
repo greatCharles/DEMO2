@@ -59,7 +59,12 @@ $cant_gau= 0;
 									<div class="col-md-4">
 										<div class="thumbnail">
 											<a href="users/single_view.php?id=<?php echo $gauchada['0']?>">
+												<?php if($gauchada['10']): ?>
 													<img class="img-responsive" src="<?php echo 'users/img_gauchadas/'. $gauchada['10']; ?>">
+												<?php else: ?>
+													<img class="img-responsive" src="users/img_gauchadas/sin_imagen.jpg">
+												<?php endif; ?>
+
 											</a>
 											<div class="caption">
 													<h3>

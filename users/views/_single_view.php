@@ -1,18 +1,18 @@
-
-
 <html>
   <head>
     <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/nuestros_js.js"></script>
     <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css">
-    
+
   </head>
 </html>
 
 
 <?php
   $id_gau =  $gauchada[0];
-  $id_user = $user->data()->id;
+  if ($user->isLoggedIn()){
+    $id_user = $user->data()->id;
+  }
 ?>
 
 <div class="col-md-6">
@@ -47,3 +47,27 @@
     </p>
   </div>
 </div>
+
+<div class="col-md-12">
+  <h1 class="text-center">Comentarios </h1><br><br>
+</div>
+    <?php foreach($comentarios as $comentario): ?>
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <!-- Aca va el nombre del usuario -->
+            <?php echo $comentario['1'] ?>
+            <?php $usuario= obtener_usuario_por_id($conexion, $comentario['3']); echo $usuario.' dijo:';?>
+            <?php if ($user->data()->id == $gauchada['6']): ?>
+                <a style= "position:absolute; right:25px" href="#">Responder</a>
+            <?php endif; ?>
+          </div>
+          <div class="panel-body">
+            <p><?php echo $comentario['4'] ?></p>
+          </div>
+        </div>
+      </div>
+        <!-- <div class="col-md-2">
+              <div class="btn btn-primary">Responder</div>
+        </div> -->
+    <?php endforeach; ?>

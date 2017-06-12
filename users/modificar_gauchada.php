@@ -8,9 +8,9 @@ ini_set("allow_url_fopen", 1);
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php'; ?>
 
 <?php if (!securePage($_SERVER['PHP_SELF'])){die();} ?>
-
-<?php $form_action = 'modificar_gauchada.php' ?>
-
+<?php $id_gauchada=$_GET['id_gauchada']; ?>
+<?php $form_action = 'modificar_gauchada.php?id_gauchada=' . $id_gauchada ?>
+<?php $id_gauchada=$_GET['id_gauchada']; ?>
 <?php
 
 //conexion a la bd y categorias
@@ -22,7 +22,6 @@ $result= mysqli_query($conex, $consulta);
 $query_locali = "SELECT localidad, provincia FROM localidades";
 $result_locali = mysqli_query($conex, $query_locali);
 
-$id_gauchada=$_GET['id_gauchada'];
 $gaucha=obtener_gauchada_por_id($conex,$id_gauchada);
 //insertando en db
 
@@ -53,8 +52,7 @@ if($_POST){
   			WHERE id_gauchada='$id_gauchada'";
 	if (mysqli_query($conex, $sql)) {
 		// echo "New record created successfully";
-		setCreditos($conex, $user->data()->id);
-		Redirect::to('publicacion_exitosa.php');
+		Redirect::to('modificacion_exitosa.php');
 		} else {
 		echo "Error: " . $sql . "<br>" . mysqli_error($conex);
 		}
