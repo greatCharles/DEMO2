@@ -1,6 +1,5 @@
 <?php $respuesta = $_GET['respuesta']?>
-<?php $id_gaucha = $_GET['id_gauchada']?>
-<?php $id_user = $_GET['id_user']?>
+<?php $id_coment = $_GET['id_coment']?>
 <?php require_once 'init.php'; ?>
 <?php require_once $abs_us_root.$us_url_root.'users/includes/header.php'; ?>
 <?php require_once $abs_us_root.$us_url_root.'users/includes/navigation.php'; ?>
@@ -8,7 +7,7 @@
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php'; ?>
 <?php
 
-		$consulta = "UPDATE comentarios SET cuerpo_respuesta = '$respuesta', fecha_respuesta = NOW() WHERE id_gauchada = '$id_gaucha'";
+		$consulta = "UPDATE comentarios SET cuerpo_respuesta = '$respuesta', fecha_respuesta = NOW() WHERE id_comentario = '$id_coment'";
 		if (mysqli_query(conexion($bd_config), $consulta)) {
 				echo "tremendoo";
 			} else {

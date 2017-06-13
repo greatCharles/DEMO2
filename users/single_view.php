@@ -14,8 +14,10 @@ $comentarios= getComentarios($conexion, $id_gauchada);
   Redirect::to($abs_us_root.$us_url_root.'index.php');
  }
 
+// Esta variable gauchada es para evitar poner el primer ['0'] cada vez que nos referimos a ella
 $gauchada= $gauchada['0'];
-$usuario=obtener_usuario_por_id($conexion, $gauchada['6']);
+
+$usuario= obtener_usuario_por_id($conexion, $gauchada['6']);
 header('X-Frame-Options: DENY');?>
 <div id="page-wrapper">
 <div class="container">

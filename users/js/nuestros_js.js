@@ -14,7 +14,7 @@ function enviar_comentario(id_gau, id_user) {
   },
     function(inputValue){
       if (inputValue === false) return false;
-          
+
       if (inputValue === "") {
         swal.showInputError("No te olvides de escribir algo!");
         return false
@@ -24,7 +24,7 @@ function enviar_comentario(id_gau, id_user) {
     });
 }
 
-function enviar_respuesta(id_gau, id_user) {
+function enviar_respuesta(id_coment, id_user) {
   swal({
   title: "Respuesta",
   text: "Escribí tu respuesta",
@@ -36,12 +36,12 @@ function enviar_respuesta(id_gau, id_user) {
   },
     function(inputValue){
       if (inputValue === false) return false;
-          
+
       if (inputValue === "") {
         swal.showInputError("No te olvides de escribir algo!");
         return false
       }
-      window.location = 'respuesta_enviada.php?respuesta=' + inputValue + '&id_gauchada=' + id_gau + '&id_user=' + id_user;
+      window.location = 'respuesta_enviada.php?respuesta=' + inputValue + '&id_coment=' + id_coment + '&id_user=' + id_user;
       // swal("Perfecto!", "You wrote: " + inputValue, "success");
     });
 }

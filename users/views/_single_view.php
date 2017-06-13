@@ -71,14 +71,17 @@
                   " a las ".date('H:i', $fecha_coment).' hs';
             ?>
             <?php $usuario= obtener_usuario_por_id($conexion, $comentario['3']); echo $usuario.' comentó:';?>
-            <?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6']): ?>
-                <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta(<?php echo "$id_gau"; ?>)">Responder</a>
+            <!-- Chequea 3 cosas para habilitar el botón de Responder -->
+            <?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6'] && $comentario['5'] == NULL): ?>
+                <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta(<?php echo $comentario['0'] ?>)">Responder</a>
             <?php endif; ?>
+            <!-- -->
           </div>
           <div class="panel-body">
             <p><?php echo $comentario['4'] ?></p>
           </div>
         </div>
+      </div>
         <!-- Checkeo si hay respuesta, si la hay la muestro en pantalla -->
         <?php if ($comentario['5'] != NULL):?>
             <div class="col-md-12" style="position: relative; left:50px">
@@ -97,8 +100,4 @@
               </div>
             </div>
         <?php endif; ?>
-      </div>
-        <!-- <div class="col-md-2">
-              <div class="btn btn-primary">Responder</div>
-        </div> -->
     <?php endforeach; ?>
