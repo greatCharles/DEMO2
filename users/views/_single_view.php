@@ -9,6 +9,9 @@
 
 <?php
   $id_gau =  $gauchada[0];
+  $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+  $fecha_desde= strtotime($gauchada['3']);
+  $fecha_exacta= strtotime($gauchada['5']);
   if ($user->isLoggedIn()){
     $id_user = $user->data()->id;
   }
@@ -35,9 +38,9 @@
     <p>
     <h4>Dueño: <?php echo $usuario ?></h4>
     <h4>Ubicación: <?php echo $gauchada['8']?> , <?php echo $gauchada['7'] ?></h4>
-    <h4>Fecha de la publicación: <?php echo $gauchada['3'] ?></h4>
+    <h4>Fecha de la publicación: <?php echo date('d', $fecha_desde)." de ".$meses[date('n', $fecha_desde)-1]. " del ".date('Y', $fecha_desde); ?></h4>
     <?php if($gauchada['5'] != '0000-00-00'): ?>
-      <h4>Fecha de realización: <?php echo $gauchada['5'] ?></h4>
+      <h4>Fecha de realización: <?php echo date('d', $fecha_exacta)." de ".$meses[date('n', $fecha_exacta)-1]. " del ".date('Y', $fecha_exacta); ?></h4>
     <?php endif; ?>
     <br><br><br><br><br>
     <?php if($user->isLoggedIn()): ?>
@@ -63,7 +66,10 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <!-- Aca va el nombre del usuario -->
-            <?php echo $comentario['1'] ?>
+            <?php $fecha_coment= strtotime($comentario['1']);
+                  echo "El día ".date('d', $fecha_coment)." de ".$meses[date('n', $fecha_coment)-1]. " del ".date('Y', $fecha_coment).
+                  " a las ".date('H:i', $fecha_coment).' hs';
+            ?>
             <?php $usuario= obtener_usuario_por_id($conexion, $comentario['3']); echo $usuario.' dijo:';?>
             <?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6']): ?>
                 <a style= "position:absolute; right:25px" href="#">Responder</a>

@@ -6,9 +6,9 @@
 <?php require_once $abs_us_root.$us_url_root.'users/includes/navigation.php'; ?>
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/funciones.php'; ?>
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php'; ?>
-<?php 
+<?php
 	if ($_GET) {
-		$consulta = "INSERT INTO comentarios (fecha, id_gauchada, id_user, cuerpo) VALUES ( CURDATE(), '$id_gauchada', '$id_user', '$comentario')";
+		$consulta = "INSERT INTO comentarios (fecha, id_gauchada, id_user, cuerpo) VALUES (NOW(), '$id_gauchada', '$id_user', '$comentario')";
 		if (mysqli_query(conexion($bd_config), $consulta)) {
 				echo "tremendoo";
 			} else {
