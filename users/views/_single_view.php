@@ -70,15 +70,32 @@
                   echo "El día ".date('d', $fecha_coment)." de ".$meses[date('n', $fecha_coment)-1]. " del ".date('Y', $fecha_coment).
                   " a las ".date('H:i', $fecha_coment).' hs';
             ?>
-            <?php $usuario= obtener_usuario_por_id($conexion, $comentario['3']); echo $usuario.' dijo:';?>
+            <?php $usuario= obtener_usuario_por_id($conexion, $comentario['3']); echo $usuario.' comentó:';?>
             <?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6']): ?>
-                <a style= "position:absolute; right:25px" href="#">Responder</a>
+                <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta(<?php echo "$id_gau"; ?>)">Responder</a>
             <?php endif; ?>
           </div>
           <div class="panel-body">
             <p><?php echo $comentario['4'] ?></p>
           </div>
         </div>
+        <?php if ($comentario['5'] != NULL):?>
+            <div class="col-md-12" style="position: relative; left:50px">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <?php $fecha_coment= strtotime($comentario['6']);
+                  echo "El día ".date('d', $fecha_coment)." de ".$meses[date('n', $fecha_coment)-1]. " del ".date('Y', $fecha_coment).
+                  " a las ".date('H:i', $fecha_coment).' hs';
+                  ?>
+                  <?php $usuario= obtener_usuario_por_id($conexion, $gauchada['6']); echo $usuario.' respondió:';?>
+                </div>
+                <div class="panel-body">
+                  <p><?php echo $comentario['5'] ?></p>
+                </div>
+              </div>
+            </div>
+        <?php endif; ?>
+          
       </div>
         <!-- <div class="col-md-2">
               <div class="btn btn-primary">Responder</div>
