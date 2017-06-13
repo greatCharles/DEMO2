@@ -79,6 +79,7 @@
             <p><?php echo $comentario['4'] ?></p>
           </div>
         </div>
+        <!-- Checkeo si hay respuesta, si la hay la muestro en pantalla -->
         <?php if ($comentario['5'] != NULL):?>
             <div class="col-md-12" style="position: relative; left:50px">
               <div class="panel panel-default">
@@ -90,12 +91,12 @@
                   <?php $usuario= obtener_usuario_por_id($conexion, $gauchada['6']); echo $usuario.' respondió:';?>
                 </div>
                 <div class="panel-body">
+                  <!-- imprimimos la respuesta en pantalla -->
                   <p><?php echo $comentario['5'] ?></p>
                 </div>
               </div>
             </div>
         <?php endif; ?>
-          
       </div>
         <!-- <div class="col-md-2">
               <div class="btn btn-primary">Responder</div>
