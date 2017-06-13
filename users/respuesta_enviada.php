@@ -1,5 +1,6 @@
 <?php $respuesta = $_GET['respuesta']?>
 <?php $id_coment = $_GET['id_coment']?>
+<?php $id_gau = $_GET['id_gau']?>
 <?php require_once 'init.php'; ?>
 <?php require_once $abs_us_root.$us_url_root.'users/includes/header.php'; ?>
 <?php require_once $abs_us_root.$us_url_root.'users/includes/navigation.php'; ?>
@@ -21,8 +22,8 @@
 <div class="row">
   <div class="col-xs-12">
   	<div class="jumbotron text-center">
-  		<h1>Felicitaciones!</h1>
-  		<p>Tu respuesta ha sido enviada!</p>
+  		<h2>Tu respuesta ha sido enviada!</h2><br><br>
+  		<a class="btn btn-primary" href= "single_view.php?id=<?php echo $id_gau ?>">Volver a la Gauchada</a>
   </div>
  </div>
 </div>

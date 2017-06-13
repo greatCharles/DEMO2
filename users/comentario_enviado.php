@@ -23,8 +23,8 @@
 <div class="row">
   <div class="col-xs-12">
   	<div class="jumbotron text-center">
-  		<h1>Felicitaciones!</h1>
-  		<p>Tu comentario ha sido enviado!</p>
+			<h2>Tu respuesta ha sido enviada!</h2><br><br>
+			<a class="btn btn-primary" href= "single_view.php?id=<?php echo $id_gauchada ?>">Volver a la Gauchada</a>
   </div>
  </div>
 </div>

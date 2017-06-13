@@ -73,7 +73,7 @@
             <?php $usuario= obtener_usuario_por_id($conexion, $comentario['3']); echo $usuario.' comentó:';?>
             <!-- Chequea 3 cosas para habilitar el botón de Responder -->
             <?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6'] && $comentario['5'] == NULL): ?>
-                <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta(<?php echo $comentario['0'] ?>)">Responder</a>
+                <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta(<?php echo $comentario['0'].', '.$id_gau ?>)">Responder</a>
             <?php endif; ?>
             <!-- -->
           </div>

@@ -50,12 +50,12 @@ if($_POST){
   						VALUES ('$tit', '$desc', '$provincia', '$localidad', '$usu_id', '$cat', '$be_imageName', CURDATE() , ADDDATE(CURDATE(), 60), '$fecha_exacta')";
 	if (mysqli_query($conex, $sql)) {
 		// echo "New record created successfully";
+		$last_id = mysqli_insert_id($conex);
 		setCreditos($conex, $user->data()->id);
-		Redirect::to('publicacion_exitosa.php');
+		Redirect::to('publicacion_exitosa.php?id_gau='.$last_id);
 		} else {
 		echo "Error: " . $sql . "<br>" . mysqli_error($conex);
 		}
-
 }
 
 
