@@ -85,9 +85,9 @@
 </div>
 
 
-<!-- Postulaciones -->
-
-<div class="col-md-12">
+<!-- Para mostrar las postulaciones checkeo que el usuario esté loguiado y que sea el mismo que el dueño de la gauchada
+ --><?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6']):?>
+  <div class="col-md-12">
   <h1 class="text-center">Postulaciones</h1><br><br>
 </div>
 <?php $publicaciones = getPublicaciones($conexion, $id_gau);?>
@@ -98,7 +98,9 @@
     <div class="col-md-12">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <p>El usuario <?php echo obtener_usuario_por_id($conexion, $id_user); ?> se postuló el <?php echo $publicacion['3']?> y escribió:</p>
+          <p style="display: inline;">El usuario <?php echo obtener_usuario_por_id($conexion, $publicacion['1']); ?> se postuló el <?php echo $publicacion['3']?> y escribió:</p>
+        <div class="btn btn-primary btn-xs" role="button" onClick="#" style="width: 15%; position: absolute;right: 25px;">Elegir aplicante</div><br>
+
         </div>
         <div class="panel-body">
           <p><?php echo $publicacion['4'] ?></p>
@@ -107,6 +109,12 @@
     </div>
   <?php endforeach; ?>
 <?php endif; ?>
+<?php endif; ?>
+
+
+
+<!-- Postulaciones -->
+
 
  
 
