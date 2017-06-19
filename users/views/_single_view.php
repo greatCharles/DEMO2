@@ -77,10 +77,10 @@
             <?php else: ?>
               <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar_postulacion(<?php echo "$id_gau"; ?>, <?php echo "$id_user"; ?>);">Quiero Postularme</div><br>
             <?php endif; ?>
-        <div class="btn btn-success btn-lg btn-block" role="button" onClick="enviar_comentario(<?php echo "$id_gau";?>, <?php echo "$id_user"; ?>);">Enviar un comentario</div>
+       <div class="btn btn-success btn-lg btn-block" role="button" onClick="enviar_comentario(<?php echo "$id_gau";?>, <?php echo "$id_user"; ?>);">Enviar un comentario</div>
        <!--Si sos el dueño de la gauchada-->
        <?php else: ?>
-        <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmarBajaGauchada(<?php echo "$id_gau"; ?>);">Dar de baja la publicación</div><br>
+          <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmarBajaGauchada(<?php echo "$id_gau"; ?>);">Dar de baja la publicación</div><br>
       <?php endif; ?>
    <!--Si no iniciaste sesión-->
    <?php else: ?>

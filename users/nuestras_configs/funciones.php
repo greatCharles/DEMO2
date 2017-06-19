@@ -82,7 +82,8 @@ function getPostulaciones($conexion, $id_gau){
 }
 
 function estaPostulado($conexion, $id_gau, $id_user){
-  return $conexion->query("SELECT * FROM postulacion WHERE id_gauchada= $id_gau AND id_user= $id_user");
+  $result= $conexion->query("SELECT * FROM postulacion WHERE id_gauchada= $id_gau AND id_user= $id_user");
+  return (mysqli_num_rows($result) > 0);
 }
 
 function obtener_id_postulacion($conexion, $id_gau, $id_user){

@@ -13,7 +13,7 @@
 		 <?php
 			$consulta = "DELETE FROM postulacion WHERE id_postulacion=$id_postu";
 			if (mysqli_query(conexion($bd_config), $consulta)) {
-				echo '<h1>Te has dado de baja en la postulación exitosamente</h1>';
+				echo '<h3>Te has dado de baja en la postulación exitosamente</h3>';
 			} else {
 				echo "Error: " . $consulta . "<br>" . mysqli_error(conexion($bd_config));
 			}
