@@ -6,6 +6,32 @@
   </head>
 </html>
 
+<script type="text/javascript">
+
+  function confirmar_postulacion(id_gau, id_aplicante) {
+  swal({
+  title: "Postulacion",
+  text: "Escribile un mensaje al solicitante y presioná ok para finalizar!",
+  type: "input",
+  showCancelButton: true,
+  closeOnConfirm: false,
+  animation: "slide-from-top",
+  inputPlaceholder: "Ej: Espero que aceptes mi aplicacion!"
+  },
+    function(inputValue){
+      if (inputValue === false) return false;
+
+      if (inputValue === "") {
+        swal.showInputError("No te olvides de escribir algo!");
+        return false
+      }
+      window.location = 'postulacion_exitosa.php?comentario=' + inputValue + '&id_gau=' + id_gau + '&id_aplicante=' + id_aplicante;
+      // swal("Perfecto!", "You wrote: " + inputValue, "success");
+    });
+}
+</script>
+
+
 
 <?php
   $id_gau =  $gauchada[0];
@@ -45,7 +71,7 @@
     <br><br><br><br><br>
     <?php if($user->isLoggedIn()): ?>
       <?php if($gauchada['6'] != $user->data()->id): ?>
-        <div class="btn btn-danger btn-lg btn-block" role="button">Quiero Postularme</div><br>
+        <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar_postulacion(<?php echo "$id_gau"; ?>, <?php echo "$id_user"; ?>);">Quiero Postularme</div><br>
         <div class="btn btn-success btn-lg btn-block" role="button" onClick="enviar_comentario(<?php echo "$id_gau";?>, <?php echo "$id_user"; ?>);">Enviar un comentario</div>
       <?php else: ?>
         <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar(<?php echo "$id_gau"; ?>);">Dar de baja la publicación</div><br>
@@ -58,12 +84,41 @@
   </div>
 </div>
 
+
+<!-- Postulaciones -->
+
+<div class="col-md-12">
+  <h1 class="text-center">Postulaciones</h1><br><br>
+</div>
+<?php $publicaciones = getPublicaciones($conexion, $id_gau);?>
+<?php if(!$publicaciones):?>
+  <p>Por el momento no existen publicaciones para esta gauchada</p>
+<?php else: ?>
+  <?php foreach($publicaciones as $publicacion): ?>
+    <div class="col-md-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <p>El usuario <?php echo obtener_usuario_por_id($conexion, $id_user); ?> se postuló el <?php echo $publicacion['3']?> y escribió:</p>
+        </div>
+        <div class="panel-body">
+          <p><?php echo $publicacion['4'] ?></p>
+        </div>
+      </div>
+    </div>
+  <?php endforeach; ?>
+<?php endif; ?>
+
+ 
+
+
+<!-- Comentarios -->
+
 <div class="col-md-12">
   <h1 class="text-center">Comentarios</h1><br><br>
 </div>
     <?php foreach($comentarios as $comentario): ?>
       <div class="col-md-12">
-        <div class="panel panel-default">
+        <div class="panel panel-warning">
           <div class="panel-heading">
             <!-- Aca va el nombre del usuario -->
             <?php $fecha_coment= strtotime($comentario['1']);

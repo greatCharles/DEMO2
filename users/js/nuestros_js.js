@@ -45,3 +45,4 @@ function enviar_respuesta(id_coment, id_gau) {
       // swal("Perfecto!", "You wrote: " + inputValue, "success");
     });
 }
+
