@@ -71,7 +71,7 @@ $email_act=$results->email_act;
 
 
 			<ul class="nav navbar-nav ">
-
+					<li><a href="<?=$us_url_root?>users/buscar.php" class=""><i class="fa fa-search"></i> Buscar gauchada</a></li>
 		     	<?php if($user->isLoggedIn()){ //anyone is logged in?>
 					<li><a href="<?=$us_url_root?>users/account.php"><i class="fa fa-fw fa-user"></i> <?php echo ucfirst($user->data()->username);?></a></li> <!-- Common for Hamburger and Regular menus link -->
 
