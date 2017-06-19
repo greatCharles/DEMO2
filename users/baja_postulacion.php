@@ -1,10 +1,9 @@
-<?php $id_gau = $_GET['id_gau']?>
+<?php $id_postu = $_GET['id_postu']?>
 <?php require_once 'init.php'; ?>
 <?php require_once $abs_us_root.$us_url_root.'users/includes/header.php'; ?>
 <?php require_once $abs_us_root.$us_url_root.'users/includes/navigation.php'; ?>
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/funciones.php'; ?>
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php'; ?>
-
 
 <div id="page-wrapper">
 <div class="container">
@@ -12,10 +11,9 @@
   <div class="col-xs-12">
   	<div class="jumbotron text-center">
 		 <?php
-			$consulta = "DELETE FROM gauchada WHERE id_gauchada=$id_gau";
+			$consulta = "DELETE FROM postulacion WHERE id_postulacion=$id_postu";
 			if (mysqli_query(conexion($bd_config), $consulta)) {
-				echo '<h1>Felicitaciones!</h1>';
-  				echo '<p> Borraste tu gauchada</p>' ;
+				echo '<h1>Te has dado de baja en la postulación exitosamente</h1>';
 			} else {
 				echo "Error: " . $consulta . "<br>" . mysqli_error(conexion($bd_config));
 			}

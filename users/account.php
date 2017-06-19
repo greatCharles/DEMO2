@@ -91,9 +91,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 															</div>
 															<div class="col-md-2">
 																<br><br>
-																<a href="modificar_gauchada.php?id_gauchada=<?php echo $gauchada['0']; ?>">Modificar</a><br><br>
+                                <a href="single_view.php?id=<?php echo $gauchada['0']; ?>#seccion-postu">Ver postulantes</a><br>
+                                <a href="single_view.php?id=<?php echo $gauchada['0']; ?>#seccion-comments">Ver comentarios</a><br>
+																<a href="modificar_gauchada.php?id_gauchada=<?php echo $gauchada['0']; ?>">Modificar</a><br>
 																<a href="javascript:confirmar()">Eliminar</a>
-
 
 																<script type="text/javascript">
 														          function confirmar() {

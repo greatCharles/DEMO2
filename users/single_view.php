@@ -9,6 +9,7 @@ $conexion= conexion($bd_config);
 $id_gauchada= id_gauchada($_GET['id']);
 $gauchada= obtener_gauchada_por_id($conexion, $id_gauchada);
 $comentarios= getComentarios($conexion, $id_gauchada);
+$postulaciones = getPostulaciones($conexion, $id_gauchada);
 
  if(!$gauchada){
   Redirect::to($abs_us_root.$us_url_root.'index.php');

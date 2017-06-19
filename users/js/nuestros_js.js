@@ -1,5 +1,9 @@
-function confirmar(id_gau) {
+function confirmarBajaGauchada(id_gau) {
   swal({   title: "Estás seguro?",   text: "No vas a poder recuperar esta Gauchada!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero borrarla!",   closeOnConfirm: false }, function(){ window.location = 'baja_publicacion.php?id_gau=' + id_gau   });
+}
+
+function confirmarBajaPostulacion(id_postu) {
+  swal({ title: "Estás seguro?", text: "Podrás volver a postularte luego si quieres!", type: "warning", showCancelButton: true, confirmButtonColor:"#DD6B55", confirmButtonText: "Si, estoy seguro!",   closeOnConfirm: false }, function(){ window.location = 'baja_postulacion.php?id_postu=' + id_postu });
 }
 
 function enviar_comentario(id_gau, id_user) {
@@ -45,4 +49,3 @@ function enviar_respuesta(id_coment, id_gau) {
       // swal("Perfecto!", "You wrote: " + inputValue, "success");
     });
 }
-

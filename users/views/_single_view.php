@@ -31,8 +31,6 @@
 }
 </script>
 
-
-
 <?php
   $id_gau =  $gauchada[0];
   $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
@@ -70,81 +68,89 @@
     <?php endif; ?>
     <br><br><br><br><br>
     <?php if($user->isLoggedIn()): ?>
-      <?php if($gauchada['6'] != $user->data()->id): ?>
-        <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar_postulacion(<?php echo "$id_gau"; ?>, <?php echo "$id_user"; ?>);">Quiero Postularme</div><br>
+        <!--Si no sos el dueño de la gauchada-->
+        <?php if($gauchada['6'] != $user->data()->id): ?>
+            <?php if(estaPostulado($conexion, $id_gauchada, $user->data()->id)): ?>
+              <?php $id_postulacion= obtener_id_postulacion($conexion, $id_gauchada, $user->data()->id)?>
+              <p class="text-center">Te encuentras postulado para esta gauchada</p><br>
+              <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmarBajaPostulacion(<?php echo $id_postulacion['0']['0']; ?>);">Cancelar Postulación</div><br>
+            <?php else: ?>
+              <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar_postulacion(<?php echo "$id_gau"; ?>, <?php echo "$id_user"; ?>);">Quiero Postularme</div><br>
+            <?php endif; ?>
         <div class="btn btn-success btn-lg btn-block" role="button" onClick="enviar_comentario(<?php echo "$id_gau";?>, <?php echo "$id_user"; ?>);">Enviar un comentario</div>
-      <?php else: ?>
-        <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar(<?php echo "$id_gau"; ?>);">Dar de baja la publicación</div><br>
+       <!--Si sos el dueño de la gauchada-->
+       <?php else: ?>
+        <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmarBajaGauchada(<?php echo "$id_gau"; ?>);">Dar de baja la publicación</div><br>
       <?php endif; ?>
-    <?php else: ?>
+   <!--Si no iniciaste sesión-->
+   <?php else: ?>
         <p>Quieres postularte para realizar esta gauchada?</p><br>
         <a class="btn btn-primary" href="#">Inicia sesión</a>
-    <?php endif; ?>
-    </p>
+   <?php endif; ?>
   </div>
 </div>
 
-
 <!-- Para mostrar las postulaciones checkeo que el usuario esté loguiado y que sea el mismo que el dueño de la gauchada
- --><?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6']):?>
-  <div class="col-md-12">
-  <h1 class="text-center">Postulaciones</h1><br><br>
-</div>
-<?php $publicaciones = getPostulaciones($conexion, $id_gau);?>
-<?php if(!$publicaciones):?>
-  <p>Por el momento no existen postulaciones para esta gauchada</p>
-<?php else: ?>
-  <?php foreach($publicaciones as $publicacion): ?>
-    <div class="col-md-12">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <p style="display: inline;">El usuario <?php echo obtener_usuario_por_id($conexion, $publicacion['1']); ?> se postuló el <?php echo $publicacion['3']?> y escribió:</p>
-        <div class="btn btn-primary btn-xs" role="button" onClick="#" style="width: 15%; position: absolute;right: 25px;">Elegir aplicante</div><br>
-
-        </div>
-        <div class="panel-body">
-          <p><?php echo $publicacion['4'] ?></p>
-        </div>
+--><?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6']):?>
+      <div class="col-md-12" id="seccion-postu" >
+        <h1 class="text-center">Postulaciones</h1><br><br>
       </div>
-    </div>
-  <?php endforeach; ?>
-<?php endif; ?>
-<?php endif; ?>
-
-
+      <?php if(!$postulaciones): ?>
+        <div class="col-md-12">
+          <p class="text-center">Por el momento no existen postulaciones para esta gauchada</p>
+        </div>
+      <?php else: ?>
+          <?php foreach($postulaciones as $postulacion): ?>
+            <div class="col-md-12">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <?php $fecha_postu= strtotime($postulacion['3']); ?>
+                  <p style="display: inline;">El usuario <?php echo obtener_usuario_por_id($conexion, $postulacion['1']); ?> se postuló el <?php echo date('d', $fecha_postu)." de ".$meses[date('n', $fecha_postu)-1]. " del ".date('Y', $fecha_postu).
+                            " a las ".date('H:i', $fecha_postu).' hs';?> y escribió:</p>
+                <div class="btn btn-primary btn-xs" role="button" onClick="#" style="width: 15%; position: absolute;right: 25px;">Elegir postulante</div><br>
+                </div>
+                <div class="panel-body">
+                  <p><?php echo $postulacion['4'] ?></p>
+                </div>
+              </div>
+            </div>
+          <?php endforeach; ?>
+      <?php endif; ?>
+    <?php endif; ?>
 
 <!-- Postulaciones -->
 
-
-
-
-
 <!-- Comentarios -->
 
-<div class="col-md-12">
+<div class="col-md-12" id="seccion-comments">
   <h1 class="text-center">Comentarios</h1><br><br>
 </div>
-    <?php foreach($comentarios as $comentario): ?>
-      <div class="col-md-12">
-        <div class="panel panel-warning">
-          <div class="panel-heading">
-            <!-- Aca va el nombre del usuario -->
-            <?php $fecha_coment= strtotime($comentario['1']);
-                  echo "El día ".date('d', $fecha_coment)." de ".$meses[date('n', $fecha_coment)-1]. " del ".date('Y', $fecha_coment).
-                  " a las ".date('H:i', $fecha_coment).' hs';
-            ?>
-            <?php $usuario= obtener_usuario_por_id($conexion, $comentario['3']); echo $usuario.' comentó:';?>
-            <!-- Chequea 3 cosas para habilitar el botón de Responder -->
-            <?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6'] && $comentario['5'] == NULL): ?>
-                <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta(<?php echo $comentario['0'].', '.$id_gau ?>)">Responder</a>
-            <?php endif; ?>
-            <!-- -->
+<?php if(!$comentarios): ?>
+  <div class="col-md-12">
+    <p class="text-center">Por el momento no existen comentarios para esta gauchada</p>
+  </div>
+<?php else: ?>
+        <?php foreach($comentarios as $comentario): ?>
+          <div class="col-md-12">
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                <!-- Aca va el nombre del usuario -->
+                <?php $fecha_coment= strtotime($comentario['1']);
+                      echo "El día ".date('d', $fecha_coment)." de ".$meses[date('n', $fecha_coment)-1]. " del ".date('Y', $fecha_coment).
+                      " a las ".date('H:i', $fecha_coment).' hs';
+                ?>
+                <?php $usuario= obtener_usuario_por_id($conexion, $comentario['3']); echo $usuario.' comentó:';?>
+                <!-- Chequea 3 cosas para habilitar el botón de Responder -->
+                <?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6'] && $comentario['5'] == NULL): ?>
+                    <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta(<?php echo $comentario['0'].', '.$id_gau ?>)">Responder</a>
+                <?php endif; ?>
+                <!-- -->
+              </div>
+              <div class="panel-body">
+                <p><?php echo $comentario['4'] ?></p>
+              </div>
+            </div>
           </div>
-          <div class="panel-body">
-            <p><?php echo $comentario['4'] ?></p>
-          </div>
-        </div>
-      </div>
         <!-- Checkeo si hay respuesta, si la hay la muestro en pantalla -->
         <?php if ($comentario['5'] != NULL):?>
             <div class="col-md-12" style="position: relative; left:50px">
@@ -164,3 +170,4 @@
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
+  <?php endif; ?>
