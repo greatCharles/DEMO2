@@ -10,13 +10,13 @@
 
   function confirmar_postulacion(id_gau, id_aplicante) {
   swal({
-  title: "Postulacion",
-  text: "Escribile un mensaje al solicitante y presioná ok para finalizar!",
+  title: "Postulación",
+  text: "Dile al dueño de la gauchada los motivos por los cuales te quieres postular!",
   type: "input",
   showCancelButton: true,
   closeOnConfirm: false,
   animation: "slide-from-top",
-  inputPlaceholder: "Ej: Espero que aceptes mi aplicacion!"
+  inputPlaceholder: "Ej: Espero que aceptes mi postulación!"
   },
     function(inputValue){
       if (inputValue === false) return false;
@@ -90,9 +90,9 @@
 <div class="col-md-12">
   <h1 class="text-center">Postulaciones</h1><br><br>
 </div>
-<?php $publicaciones = getPublicaciones($conexion, $id_gau);?>
+<?php $publicaciones = getPostulaciones($conexion, $id_gau);?>
 <?php if(!$publicaciones):?>
-  <p>Por el momento no existen publicaciones para esta gauchada</p>
+  <p>Por el momento no existen postulaciones para esta gauchada</p>
 <?php else: ?>
   <?php foreach($publicaciones as $publicacion): ?>
     <div class="col-md-12">
@@ -108,7 +108,7 @@
   <?php endforeach; ?>
 <?php endif; ?>
 
- 
+
 
 
 <!-- Comentarios -->

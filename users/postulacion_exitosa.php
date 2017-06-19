@@ -7,8 +7,8 @@
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/funciones.php'; ?>
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php'; ?>
 
-<?php 
-	$consulta = "INSERT INTO publicacion (id_user, id_gauchada, fecha, comentario) VALUES ('$id_aplicante', '$id_gau', NOW(), '$comentario')";
+<?php
+	$consulta = "INSERT INTO postulacion (id_user, id_gauchada, fecha, comentario) VALUES ('$id_aplicante', '$id_gau', NOW(), '$comentario')";
 	if (mysqli_query(conexion($bd_config), $consulta)) {
 				echo "tremendoo";
 			} else {
@@ -25,7 +25,7 @@
 <div class="row">
   <div class="col-xs-12">
   	<div class="jumbotron text-center">
-  		<h2>Tu aplicación se procesó satisfactoriamente!</h2><br><br>
+  		<h2>Tu postulación se procesó satisfactoriamente!</h2><br><br>
   		<a class="btn btn-primary" href= "single_view.php?id=<?php echo $id_gau ?>">Volver a la Gauchada</a>
   </div>
  </div>

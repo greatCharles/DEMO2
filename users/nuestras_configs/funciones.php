@@ -75,8 +75,8 @@ function getComentarios($conex, $id){
   return mysqli_fetch_all($result);
 }
 
-function getPublicaciones($conexion, $id_gau){
-  $result= $conexion->query("SELECT * FROM publicacion WHERE id_gauchada = $id_gau");
+function getPostulaciones($conexion, $id_gau){
+  $result= $conexion->query("SELECT * FROM postulacion WHERE id_gauchada = $id_gau");
   $result= mysqli_fetch_all($result);
   return $result;
 }
