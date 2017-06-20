@@ -29,6 +29,11 @@
       // swal("Perfecto!", "You wrote: " + inputValue, "success");
     });
 }
+
+function confirmarPostulanteElegido(id_user, id_gau) {
+  swal({   title: "Estás seguro de elegirlo?",   text: "Se desestimarán las demás postulaciones",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero elegirlo!",   closeOnConfirm: false }, function(){ window.location = 'postulante_elegido.php?id_user=' + id_user  + '&id_gau=' + id_gau  });
+}
+
 </script>
 
 <?php
@@ -74,13 +79,20 @@
               <?php $id_postulacion= obtener_id_postulacion($conexion, $id_gauchada, $user->data()->id)?>
               <p class="text-center">Te encuentras postulado para esta gauchada</p><br>
               <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmarBajaPostulacion(<?php echo $id_postulacion['0']['0']; ?>);">Cancelar Postulación</div><br>
-            <?php else: ?>
+            <?php elseif(!$gauchada['11']): ?>
               <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar_postulacion(<?php echo "$id_gau"; ?>, <?php echo "$id_user"; ?>);">Quiero Postularme</div><br>
+            <?php else: ?>
+              <p class="text-center">Ya se ha elegido un postulante para esta gauchada</p>
             <?php endif; ?>
-       <div class="btn btn-success btn-lg btn-block" role="button" onClick="enviar_comentario(<?php echo "$id_gau";?>, <?php echo "$id_user"; ?>);">Enviar un comentario</div>
+            <?php if(!$gauchada['11']): ?>
+              <div class="btn btn-success btn-lg btn-block" role="button" onClick="enviar_comentario(<?php echo "$id_gau";?>, <?php echo "$id_user"; ?>);">Enviar un comentario</div>
+            <?php endif; ?>
        <!--Si sos el dueño de la gauchada-->
        <?php else: ?>
-          <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmarBajaGauchada(<?php echo "$id_gau"; ?>);">Dar de baja la publicación</div><br>
+          <?php if($gauchada['11']): ?>
+            <p class="text-center">Ya se ha elegido un postulante para esta gauchada</p>
+          <?php endif; ?>
+        <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmarBajaGauchada(<?php echo "$id_gau"; ?>);">Dar de baja la publicación</div><br>
       <?php endif; ?>
    <!--Si no iniciaste sesión-->
    <?php else: ?>
@@ -90,8 +102,11 @@
   </div>
 </div>
 
-<!-- Para mostrar las postulaciones checkeo que el usuario esté loguiado y que sea el mismo que el dueño de la gauchada
---><?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6']):?>
+<!-- Para mostrar las postulaciones checkeo que el usuario esté loguiado y que sea el mismo que el dueño de la gauchada y que no tenga un postulante ya elegido
+
+-->
+<?php if(!$gauchada['11']): ?>
+  <?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6']):?>
       <div class="col-md-12" id="seccion-postu" >
         <h1 class="text-center">Postulaciones</h1><br><br>
       </div>
@@ -107,7 +122,7 @@
                   <?php $fecha_postu= strtotime($postulacion['3']); ?>
                   <p style="display: inline;">El usuario <?php echo obtener_usuario_por_id($conexion, $postulacion['1']); ?> se postuló el <?php echo date('d', $fecha_postu)." de ".$meses[date('n', $fecha_postu)-1]. " del ".date('Y', $fecha_postu).
                             " a las ".date('H:i', $fecha_postu).' hs';?> y escribió:</p>
-                <div class="btn btn-primary btn-xs" role="button" onClick="#" style="width: 15%; position: absolute;right: 25px;">Elegir postulante</div><br>
+                <div class="btn btn-primary btn-xs" role="button" onClick="confirmarPostulanteElegido(<?php echo $postulacion['1'] ?>, <?php echo $id_gauchada ?> );" style="width: 15%; position: absolute;right: 25px;">Elegir postulante</div><br>
                 </div>
                 <div class="panel-body">
                   <p><?php echo $postulacion['4'] ?></p>
@@ -117,6 +132,7 @@
           <?php endforeach; ?>
       <?php endif; ?>
     <?php endif; ?>
+<?php endif; ?>
 
 <!-- Postulaciones -->
 

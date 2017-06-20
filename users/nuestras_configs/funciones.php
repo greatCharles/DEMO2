@@ -45,6 +45,7 @@ function obtener_gauchada_por_id($conex, $id){
   $result= mysqli_fetch_all($result);
   return ($result) ? $result : false;
 }
+
 function obtener_usuario_por_id($conex, $id){
   $result=$conex->query("SELECT username FROM users WHERE id= $id LIMIT 1");
   $result= mysqli_fetch_all($result);
@@ -91,5 +92,12 @@ function obtener_id_postulacion($conexion, $id_gau, $id_user){
   $result= mysqli_fetch_all($result);
   return $result;
 }
+
+function obtener_datos_usuario($conex, $id){
+  $result=$conex->query("SELECT * FROM users WHERE id= $id LIMIT 1");
+  $result= mysqli_fetch_all($result);
+  return $result;
+}
+
 
 ?>

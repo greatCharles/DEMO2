@@ -6,6 +6,11 @@ function confirmarBajaPostulacion(id_postu) {
   swal({ title: "Estás seguro?", text: "Podrás volver a postularte luego si quieres!", type: "warning", showCancelButton: true, confirmButtonColor:"#DD6B55", confirmButtonText: "Si, estoy seguro!",   closeOnConfirm: false }, function(){ window.location = 'baja_postulacion.php?id_postu=' + id_postu });
 }
 
+function confirmarPostulanteElegido(id_postu) {
+  swal({   title: "Estás seguro de elegirlo?",   text: "Se desestimarán las demás postulaciones",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero elegirlo!",   closeOnConfirm: false }, function(){ window.location = 'postulante_elegido.php?id_postu=' + id_postu   });
+}
+
+
 function enviar_comentario(id_gau, id_user) {
   swal({
   title: "Comentario",

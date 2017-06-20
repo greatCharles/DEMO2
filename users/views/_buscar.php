@@ -4,10 +4,13 @@
 
     <div class="form-group">
 
-        <label for= titulo>Título</label>
+        <input type="checkbox" name="c1" onclick="showMe('div4')">Por Título<br>
+        <div id="div4" style="display: none"
+        <label for= titulo>Por título</label>
         <input class="form-control" type="text" placeholder="Título a buscar" name="titulo" id="titulo" required="true"><br>
-
-        <input type="checkbox" name="c1" onclick="showMe('div1')">Desea buscar una ubicacion?<br>
+        </div>
+        <br>
+        <input type="checkbox" name="c1" onclick="showMe('div1')">Por ubicación<br>
         <div id="div1" style="display: none"
         <label for="ubicacion">Ubicación</label><br>
         <label>Localidad - Provincia</label>
@@ -20,7 +23,7 @@
             </div>
       <br>
 
-        <input type="checkbox" name="c1" onclick="showMe('div2')">Desea buscar por categoria?<br>
+        <input type="checkbox" name="c1" onclick="showMe('div2')">Por categoria<br>
         <div id="div2" style="display: none"
         <label for= "categoria">Seleccione una categoría</label><br>
         <select name="categoria" id="categoria">
@@ -31,7 +34,7 @@
         </div>
         <br>
 
-        <input type="checkbox" name="c1" onclick="showMe('div3')">La gauchada posee una fecha específica?<br>
+        <input type="checkbox" name="c1" onclick="showMe('div3')">Por una fecha específica<br>
         <div id="div3" style="display: none">
                 <br>
                 <label for= "fecha_exacta">Fecha: </label>
