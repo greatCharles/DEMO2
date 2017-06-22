@@ -44,6 +44,7 @@ function obtener_gauchada_por_id($conex, $id){
   $result=$conex->query("SELECT * FROM gauchada WHERE id_gauchada= $id LIMIT 1");
   $result= mysqli_fetch_all($result);
   return ($result) ? $result : false;
+
 }
 
 function obtener_usuario_por_id($conex, $id){
@@ -99,5 +100,20 @@ function obtener_datos_usuario($conex, $id){
   return $result;
 }
 
+function setPuntos($conex, $id_elegido, $id_gau, $calificacion){
+  switch ($calificacion) {
+    case 'positivo':
+      $conex->query("UPDATE users SET puntos=puntos + 2 WHERE id=$id_elegido");
+      $conex->query("UPDATE gauchada SET completada=1 WHERE id_gauchada=$id_gau");
 
+      break;
+    case 'neutral':
+      $conex->query("UPDATE gauchada SET completada=1 WHERE id_gauchada=$id_gau");
+      break;
+    case 'negativo':
+      $conex->query("UPDATE users SET puntos=puntos - 1 WHERE id=$id_elegido");
+      $conex->query("UPDATE gauchada SET completada=1 WHERE id_gauchada=$id_gau");
+      break;
+  }
+}
 ?>
