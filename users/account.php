@@ -96,7 +96,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 <?php if($gauchada['11'] && $gauchada['12'] == '0'): ?> <!-- Checkeo que la gauchada tenga colaborador y no esté ya calificada para mostrar el boton de calificar -->
                                 	<a href="dejar_reputacion.php?id=<?php echo $gauchada['0']; ?>">Dejar reputacion</a><br>
                                 <?php elseif($gauchada['12'] == '1'): ?> <!-- Si la gauchada está completada, se lo hago saber al usuario -->
-                                	<p style="color: green">Ya dejaste reputación.</p>
+                                	<p style="color: green">Ya calificaste a <?php echo obtener_usuario_por_id($conexion, $gauchada['11']); ?></p>
                                 <?php endif ?>
 																<a href="modificar_gauchada.php?id_gauchada=<?php echo $gauchada['0']; ?>">Modificar</a><br>
 																<a href="javascript:confirmar()">Eliminar</a>
