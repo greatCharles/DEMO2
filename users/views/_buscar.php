@@ -2,13 +2,14 @@
 
     <h2 class="form-signin-heading">Búsqueda</h2>
 
-    <div class="form-group">
+    <div class="form-group col-xs-6">
 
         <input type="checkbox" name="c1" onclick="showMe('div4')">Por Título<br>
         <div id="div4" style="display: none"
         <label for= titulo>Por título</label>
         <input class="form-control" type="text" placeholder="Título a buscar" name="titulo" id="titulo" required="true"><br>
         </div>
+
         <br>
         <input type="checkbox" name="c1" onclick="showMe('div1')">Por ubicación<br>
         <div id="div1" style="display: none"
@@ -34,19 +35,33 @@
         </div>
         <br>
 
-        <input type="checkbox" name="c1" onclick="showMe('div3')">Por una fecha específica<br>
-        <div id="div3" style="display: none">
-                <br>
-                <label for= "fecha_exacta">Fecha: </label>
-                <input type="date" name="fecha_exacta" class="">
-                <br>
-        </div>
-        <br>
-
-
-
 
         <input type="submit" class= "btn btn-primary" value="Buscar">
     </div>
+
+      <?php   if ($resultado):?>
+        <div class="container-fluid">
+    					<div class="col-md-12">
+    								<?php foreach($resultado as $gauchada): ?>
+    									<div class="col-md-4">
+    										<div class="thumbnail">
+    											<a href="single_view.php?id=<?php echo $gauchada['0']?>">
+    											</a>
+    											<div class="caption">
+    													<h3>
+    															<a href="single_view.php?id=<?php echo $gauchada['0']?>"><?php echo $gauchada['1']?></a>
+    													</h3>
+    													<p><?php echo substr($gauchada['2'],0, 200).'...'?></p>
+    													<a href="single_view.php?id=<?php echo $gauchada['0']?>">Ver más...</a><br><br>
+    										  </div>
+    										</div>
+    									</div>
+    								<?php endforeach; ?>
+    					</div>
+    		</div>
+    <?php else: ?>
+    <?php   echo 'No se encontraron gauchadas.'; ?>
+  <?php endif; ?>
+
 
 </form>

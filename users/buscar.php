@@ -18,15 +18,35 @@ $result= mysqli_query($conex, $consulta);
 //Esto es todo lo que se hace cuando se envía el formulario
 $query_locali = "SELECT localidad, provincia FROM localidades";
 $result_locali = mysqli_query($conex, $query_locali);
-
+$form_action = 'buscar.php'
 ?>
 
 <!-- parte dificil -->
+<?php
+$titulo='%%';
+$ubicacion='%%';
+$categoria='%%';
+if ($_POST) {
+  $titulo= '%'.$_POST['titulo'].'%';
+  $categoria= '%'.$_POST['categoria'].'%';
+}
+
+
+$busqueda= "SELECT * FROM gauchada WHERE titulo LIKE '$titulo' AND categoria LIKE '$categoria'";
+$resultado= mysqli_query($conex, $busqueda);
+$resultado= mysqli_fetch_all($resultado)
+
+
+?>
+
+
+
+
 <?php header('X-Frame-Options: DENY'); ?>
 <div id="page-wrapper">
 <div class="container">
 <?php require 'views/_buscar.php';?>
-</div>
-</div>
 
+</div>
+</div>
 <?php require_once $abs_us_root.$us_url_root.'users/includes/page_footer.php';
