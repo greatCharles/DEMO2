@@ -116,4 +116,9 @@ function setPuntos($conex, $id_elegido, $id_gau, $calificacion){
       break;
   }
 }
+
+function tienePostulantes($conex,$id_gau){
+  $result=$conex->query("SELECT * FROM postulacion WHERE id_gauchada = $id_gau");
+  return (mysqli_num_rows($result) > 0);
+}
 ?>
