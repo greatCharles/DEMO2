@@ -116,4 +116,16 @@ function setPuntos($conex, $id_elegido, $id_gau, $calificacion){
       break;
   }
 }
+
+
+  function getNotificaciones($conex, $id_usuario){
+    $result= $conex->query("SELECT * FROM notificaciones WHERE id_usuario= $id_usuario ORDER BY id_notificacion DESC");
+    $result= mysqli_fetch_all($result);
+    return $result;
+  }
+
+  function marcarNotiComoLeida($conex, $id_notificacion){
+    $conex->query("UPDATE notificaciones SET estado = 1 WHERE id_notificacion= $id_notificacion");
+  }
+
 ?>
