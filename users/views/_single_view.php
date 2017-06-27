@@ -80,7 +80,9 @@ function confirmarPostulanteElegido(id_user, id_gau) {
             <?php if(estaPostulado($conexion, $id_gauchada, $user->data()->id)): ?>
               <?php $id_postulacion= obtener_id_postulacion($conexion, $id_gauchada, $user->data()->id)?>
               <p class="text-center">Te encuentras postulado para esta gauchada</p><br>
+              <?php if(!$gauchada['11']): ?>
               <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmarBajaPostulacion(<?php echo $id_postulacion['0']['0']; ?>);">Cancelar Postulación</div><br>
+            <?php endif; ?>
             <?php elseif(!$gauchada['11']): ?>
               <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar_postulacion(<?php echo "$id_gau"; ?>, <?php echo "$id_user"; ?>);">Quiero Postularme</div><br>
             <?php else: ?>
