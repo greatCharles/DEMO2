@@ -43,6 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	$userdetails = fetchUserDetails(NULL, NULL, $get_info_id);
 	$conexion= conexion($bd_config); //Fetch user details
 	$mis_gauchadas= getMisGauchadas($conexion, $user->data()->id);
+	$notificaciones = getNotificaciones($conexion, $user->data()->id);
 ?>
 
 
@@ -51,7 +52,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			    <ul class="nav nav-tabs">
 			        <li class="nav active"><a href="#A" data-toggle="tab">Perfil</a></li>
 			        <li class="nav"><a href="#B" data-toggle="tab">Mis gauchadas</a></li>
-			        <li class="nav"><a href="#C" data-toggle="tab">Gauchadas en las que participé</a></li>
+			        <li class="nav"><a href="#C" data-toggle="tab">Notificaciones</a></li>
 			    </ul>
 			    <!-- Tab panes -->
 			    <div class="tab-content">
@@ -64,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<!-- <p><img src="<?=$grav; ?>" class="img-thumbnail" alt="Generic placeholder thumbnail"></p> -->
 										<p><a href="user_settings.php" class="btn btn-primary">Modificar Perfil</a></p>
 										<!-- <p><a class="btn btn-primary" href="profile.php?id=<?=$get_info_id;?>" role="button">Perfil público</a></p> -->
-							</div>
+					</div>
 							<!--Contenido de Mis Gauchadas-->
 			        <div class="tab-pane fade" id="B">
 								<div class="container-fluid">
@@ -122,10 +123,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 													<?php endforeach; ?>
 										</div>
 									</div>
-								</div>
-			       <div class="tab-pane fade" id="C">Acá irían las gauchadas en las que participé</div>
-			 	 </div>
-	</div> <!-- /container -->
+					</div>
+					   <div class="tab-pane fade" id="C">
+					   	  <div class="container-fluid">
+							<div class="row">
+								<?php foreach($notificaciones as $notificacion): ?>
+									<br>
+									<div class="col-md-12">
+										<a style = "text-decoration: none" href=<?php echo $notificacion['5']  ?>>
+											<?php if($notificacion['4'] == 1): ?>
+												<div class="alert alert-info" role="alert">
+											  <strong></strong><?php echo $notificacion['2'] ?> 
+											</div>
+										<?php else:  ?>
+											<div onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>" class="alert alert-danger" role="alert">
+											  <strong></strong><?php echo $notificacion['2'] ?> 
+											</div>
+										<?php endif; ?>
+										</a>		  
+									</div>
+									<hr>
+								<?php endforeach; ?>
+							</div>
+						 </div>
+					  </div>
+
+		</div>
+
+			
+<!-- 			onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>"
+ -->	</div> <!-- /container -->
 </div> <!-- /#page-wrapper -->
 
 

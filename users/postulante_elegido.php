@@ -14,6 +14,12 @@ $usuario= obtener_datos_usuario($conexion, $id_user);
 $conexion->query("UPDATE gauchada SET id_elegido= $id_user WHERE id_gauchada= $id_gau");
 $conexion->query("UPDATE postulacion SET estado= 'Rechazado' WHERE id_gauchada= $id_gau AND id_user <> $id_user");
 $conexion->query("UPDATE postulacion SET estado= 'Elegido' WHERE id_gauchada= $id_gau AND id_user = $id_user");
+
+$gauchada = obtener_gauchada_por_id($conexion, $id_gau);
+$cuerpo_notificacion = "Has sido seleccionado como colaborador para realizar la gauchada: " . $gauchada['0']['1'];
+$link_gauchada = 'single_view.php?id=' . $id_gau;
+$conexion->query("INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link) VALUES ('$id_user', '$cuerpo_notificacion', NOW(), '$link_gauchada')");
+
 // Mandar las notificaciones a los postulantes
 
 

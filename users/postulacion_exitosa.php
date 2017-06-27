@@ -7,6 +7,10 @@
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/funciones.php'; ?>
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php'; ?>
 
+
+
+
+
 <?php
 	$consulta = "INSERT INTO postulacion (id_user, id_gauchada, fecha, comentario) VALUES ('$id_aplicante', '$id_gau', NOW(), '$comentario')";
 	if (mysqli_query(conexion($bd_config), $consulta)) {
@@ -14,6 +18,13 @@
 			} else {
 				echo "Error: " . $consulta . "<br>" . mysqli_error(conexion($bd_config));
 	}
+	$gauchada = obtener_gauchada_por_id(conexion($bd_config), $id_gau);
+	$dueño = $gauchada['0']['6'];
+	$postulante = obtener_usuario_por_id(conexion($bd_config), $id_aplicante);
+	$cuerpo_notificacion = 'El usuario ' . $postulante . ' se ha postulado a tu gauchada ' . $gauchada['0']['1'];
+	$link_gauchada = 'single_view.php?id=' . $id_gau;
+	$consulta2 = "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link) VALUES ('$dueño', '$cuerpo_notificacion', NOW(), '$link_gauchada')";
+	mysqli_query(conexion($bd_config), $consulta2);
  ?>
 
 
