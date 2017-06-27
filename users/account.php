@@ -99,13 +99,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 <?php elseif($gauchada['12'] == '1'): ?> <!-- Si la gauchada está completada, se lo hago saber al usuario -->
                                 	<p style="color: green">Ya calificaste a <?php echo obtener_usuario_por_id($conexion, $gauchada['11']); ?></p>
                                 <?php endif ?>
-																<a href="modificar_gauchada.php?id_gauchada=<?php echo $gauchada['0']; ?>">Modificar</a><br>
+                                <?php if(tienePostulantes($conexion,$gauchada['0'])): ?>
+                                  <a onclick="javascript:error_1()" href="#">Modificar</a>
+                                <?php else: ?>
+                                  <a href="modificar_gauchada.php?id_gauchada=<?php echo $gauchada['0']; ?>">Modificar</a>
+                                <?php endif; ?>
+                              <br>
 																<a href="javascript:confirmar()">Eliminar</a>
 
 																<script type="text/javascript">
 														          function confirmar() {
 														          	swal({   title: "Estás seguro?",   text: "No vas a poder recuperar esta Gauchada!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero borrarla!",   closeOnConfirm: false }, function(){ window.location = 'baja_publicacion.php?id_gau=<?php echo $gauchada['0'] ?>'   });
 														          }
+
+                                      function error_1(){
+                                        sweetAlert("Oops...", "La gauchada posee postulantes por lo tanto no se puede modificar", "error");
+
+                                      }
+
 														        </script>
 															</div>
 														</div>

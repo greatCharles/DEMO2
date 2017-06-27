@@ -18,7 +18,8 @@ $result= mysqli_query($conex, $consulta);
 //Esto es todo lo que se hace cuando se envía el formulario
 $query_locali = "SELECT localidad, provincia FROM localidades";
 $result_locali = mysqli_query($conex, $query_locali);
-$form_action = 'buscar.php'
+$form_action = 'buscar.php';
+$cant_gau= 0;
 ?>
 
 <!-- parte dificil -->
@@ -26,21 +27,24 @@ $form_action = 'buscar.php'
 $titulo='%%';
 $ubicacion='%%';
 $categoria='%%';
+$localidad='%%';
+$provincia='%%';
 if ($_POST) {
   $titulo= '%'.$_POST['titulo'].'%';
   $categoria= '%'.$_POST['categoria'].'%';
+  $ubicacion= $_POST['ubicacion'];
+  if($ubicacion){
+    $ubicacion= explode(' - ',$ubicacion);
+    $localidad= '%'.$ubicacion['0'].'%';
+    $provincia ='%'.$ubicacion['1'].'%';
+  }
 }
 
-
-$busqueda= "SELECT * FROM gauchada WHERE titulo LIKE '$titulo' AND categoria LIKE '$categoria'";
+$busqueda= "SELECT * FROM gauchada WHERE titulo LIKE '$titulo' AND categoria LIKE '$categoria' AND provincia LIKE '$provincia' AND localidad LIKE '$localidad'";
 $resultado= mysqli_query($conex, $busqueda);
 $resultado= mysqli_fetch_all($resultado)
 
-
 ?>
-
-
-
 
 <?php header('X-Frame-Options: DENY'); ?>
 <div id="page-wrapper">

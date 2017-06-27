@@ -117,6 +117,7 @@ function setPuntos($conex, $id_elegido, $id_gau, $calificacion){
   }
 }
 
+<<<<<<< HEAD
 
   function getNotificaciones($conex, $id_usuario){
     $result= $conex->query("SELECT * FROM notificaciones WHERE id_usuario= $id_usuario ORDER BY id_notificacion DESC");
@@ -128,4 +129,10 @@ function setPuntos($conex, $id_elegido, $id_gau, $calificacion){
     $conex->query("UPDATE notificaciones SET estado = 1 WHERE id_notificacion= $id_notificacion");
   }
 
+=======
+function tienePostulantes($conex,$id_gau){
+  $result=$conex->query("SELECT * FROM postulacion WHERE id_gauchada = $id_gau");
+  return (mysqli_num_rows($result) > 0);
+}
+>>>>>>> cd5658193d3fcc8b46d6397ccf876ed535cf5f1a
 ?>
