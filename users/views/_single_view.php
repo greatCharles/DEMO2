@@ -68,6 +68,7 @@ function confirmarPostulanteElegido(id_user, id_gau) {
     <h4>Dueño: <?php echo $usuario ?></h4>
     <h4>Ubicación: <?php echo $gauchada['8']?> , <?php echo $gauchada['7'] ?></h4>
     <h4>Fecha de la publicación: <?php echo date('d', $fecha_desde)." de ".$meses[date('n', $fecha_desde)-1]. " del ".date('Y', $fecha_desde); ?></h4>
+    <h4>Categoría: <?php echo $gauchada['9']?></h4>
     <?php if($gauchada['5'] != '0000-00-00'): ?>
       <h4>Fecha de realización: <?php echo date('d', $fecha_exacta)." de ".$meses[date('n', $fecha_exacta)-1]. " del ".date('Y', $fecha_exacta); ?></h4>
     <?php endif; ?>
@@ -116,11 +117,12 @@ function confirmarPostulanteElegido(id_user, id_gau) {
         </div>
       <?php else: ?>
           <?php foreach($postulaciones as $postulacion): ?>
+            <?php $nombre_user= obtener_usuario_por_id($conexion, $postulacion['1']); ?>
             <div class="col-md-12">
               <div class="panel panel-info">
                 <div class="panel-heading">
                   <?php $fecha_postu= strtotime($postulacion['3']); ?>
-                  <p style="display: inline;">El usuario <?php echo obtener_usuario_por_id($conexion, $postulacion['1']); ?> se postuló el <?php echo date('d', $fecha_postu)." de ".$meses[date('n', $fecha_postu)-1]. " del ".date('Y', $fecha_postu).
+                  <p style="display: inline;">El usuario <a href="perfil_usuario.php?id_user=<?php echo $postulacion['1']; ?>"><?php echo $nombre_user; ?></a> se postuló el <?php echo date('d', $fecha_postu)." de ".$meses[date('n', $fecha_postu)-1]. " del ".date('Y', $fecha_postu).
                             " a las ".date('H:i', $fecha_postu).' hs';?> y escribió:</p>
                 <div class="btn btn-primary btn-xs" role="button" onClick="confirmarPostulanteElegido(<?php echo $postulacion['1'] ?>, <?php echo $id_gauchada ?> );" style="width: 15%; position: absolute;right: 25px;">Elegir postulante</div><br>
                 </div>
@@ -147,6 +149,7 @@ function confirmarPostulanteElegido(id_user, id_gau) {
   </div>
 <?php else: ?>
         <?php foreach($comentarios as $comentario): ?>
+          <?php $nombre_user= obtener_usuario_por_id($conexion, $comentario['3']); ?>
           <div class="col-md-12">
             <div class="panel panel-warning">
               <div class="panel-heading">
@@ -155,7 +158,7 @@ function confirmarPostulanteElegido(id_user, id_gau) {
                       echo "El día ".date('d', $fecha_coment)." de ".$meses[date('n', $fecha_coment)-1]. " del ".date('Y', $fecha_coment).
                       " a las ".date('H:i', $fecha_coment).' hs';
                 ?>
-                <?php $usuario= obtener_usuario_por_id($conexion, $comentario['3']); echo $usuario.' comentó:';?>
+                <a href="perfil_usuario.php?id_user=<?php echo $comentario['3']; ?>"><?php echo $nombre_user; ?></a> comentó:
                 <!-- Chequea 3 cosas para habilitar el botón de Responder -->
                 <?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6'] && $comentario['5'] == NULL): ?>
                     <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta(<?php echo $comentario['0'].', '.$id_gau ?>)">Responder</a>

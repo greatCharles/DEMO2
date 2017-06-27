@@ -72,13 +72,13 @@ function getMisGauchadas($conex, $id){
 }
 
 function getComentarios($conex, $id){
-  $consulta= "SELECT * FROM comentarios WHERE id_gauchada= $id";
+  $consulta= "SELECT * FROM comentarios WHERE id_gauchada= $id ORDER BY id_comentario DESC";
   $result= mysqli_query($conex, $consulta);
   return mysqli_fetch_all($result);
 }
 
 function getPostulaciones($conexion, $id_gau){
-  $result= $conexion->query("SELECT * FROM postulacion WHERE id_gauchada = $id_gau");
+  $result= $conexion->query("SELECT * FROM postulacion WHERE id_gauchada = $id_gau ORDER BY id_postulacion DESC");
   $result= mysqli_fetch_all($result);
   return $result;
 }
