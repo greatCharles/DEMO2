@@ -2,6 +2,7 @@
   <head>
     <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" href="css/estilo_notifi.css">
   </head>
 </html>
 
@@ -130,17 +131,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								<?php foreach($notificaciones as $notificacion): ?>
 									<br>
 									<div class="col-md-12">
-										<a style = "text-decoration: none" href=<?php echo $notificacion['5']  ?>>
-											<?php if($notificacion['4'] == "Leida"): ?>
-												<div class="alert alert-info" role="alert">
+
+											<?php if($notificacion['4'] == "No leida"): ?>
+
+                        <div class="alert" onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                            <a class="link-notifi" href=<?php echo $notificacion['5'] ?>><?php echo $notificacion['2'] ?></a>
+                        </div>
+
+                        <!-- <div onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>" class="alert alert-danger" role="alert">
+                           <?php echo $notificacion['2'] ?>
+                        </div>              -->
+										  <?php else: ?>
+                        <div class="alert alert-info">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                            <a class= "link-notifi" href=<?php echo $notificacion['5'] ?>><?php echo $notificacion['2'] ?></a>
+                        </div>
+
+                        <!-- <div class="alert alert-info" role="alert">
 											     <?php echo $notificacion['2'] ?>
-											  </div>
-										<?php else:  ?>
-											  <div onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>" class="alert alert-danger" role="alert">
-											     <?php echo $notificacion['2'] ?>
-											  </div>
-										<?php endif; ?>
-										</a>
+											  </div> -->
+										  <?php endif; ?>
+
 									</div>
 									<hr>
 								<?php endforeach; ?>
