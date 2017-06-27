@@ -42,7 +42,6 @@
         <div class="container-fluid">
     					<div class="col-md-12">
     								<?php foreach($resultado as $gauchada): ?>
-                      <?php if($gauchada['13'] == 'activa'): ?>
                         <?php $cant_gau++; ?>
       									<div class="col-md-4">
       										<div class="thumbnail">
@@ -64,7 +63,6 @@
                         <?php if($cant_gau==3):?>
                           <div class="col-md-12"></div>
                         <?php endif; ?>
-                      <?php endif; ?>
     								<?php endforeach; ?>
     					</div>
     		</div>

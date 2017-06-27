@@ -38,7 +38,7 @@ if ($_POST) {
   }
 }
 
-$busqueda= "SELECT * FROM gauchada WHERE titulo LIKE '$titulo' AND categoria LIKE '$categoria' AND provincia LIKE '$provincia' AND localidad LIKE '$localidad'";
+$busqueda= "SELECT * FROM gauchada WHERE titulo LIKE '$titulo' AND categoria LIKE '$categoria' AND provincia LIKE '$provincia' AND localidad LIKE '$localidad' AND estado='activa'";
 $resultado= mysqli_query($conex, $busqueda);
 $resultado= mysqli_fetch_all($resultado)
 

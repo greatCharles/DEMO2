@@ -23,7 +23,7 @@ function pagina_actual(){
 
 function getGauchada($post_por_pagina, $conexion){
   $inicio= (pagina_actual() > 1) ? pagina_actual() * $post_por_pagina - $post_por_pagina : 0;
-  $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM gauchada ORDER BY id_gauchada DESC LIMIT $inicio, $post_por_pagina";
+  $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM gauchada WHERE estado='activa' ORDER BY id_gauchada DESC LIMIT $inicio, $post_por_pagina";
   $result= mysqli_query($conexion, $consulta);
   return mysqli_fetch_all($result);
 }
@@ -66,7 +66,7 @@ function setCreditos($conex, $id){
 }
 
 function getMisGauchadas($conex, $id){
-  $consulta = "SELECT * FROM gauchada WHERE id_usuario= $id";
+  $consulta = "SELECT * FROM gauchada WHERE id_usuario= $id AND estado='activa'";
   $result= mysqli_query($conex, $consulta);
   return mysqli_fetch_all($result);
 }
