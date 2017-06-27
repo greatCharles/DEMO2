@@ -7,9 +7,7 @@ ini_set("allow_url_fopen", 1);
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/funciones.php'; ?>
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php'; ?>
 
-
 <?php
-
 //conexion a la bd y categorias
 $conex= mysqli_connect('localhost', 'root', '', 'db');
 $consulta= "SELECT nombre FROM categoria";

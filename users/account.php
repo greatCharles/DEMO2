@@ -154,7 +154,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										  <?php endif; ?>
 
 									</div>
-									<hr>
 								<?php endforeach; ?>
 							</div>
 						 </div>

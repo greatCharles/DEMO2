@@ -8,12 +8,20 @@
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php'; ?>
 <?php
 
-		$consulta = "UPDATE comentarios SET cuerpo_respuesta = '$respuesta', fecha_respuesta = NOW() WHERE id_comentario = '$id_coment'";
-		if (mysqli_query(conexion($bd_config), $consulta)) {
-				echo "tremendoo";
-			} else {
-				echo "Error: " . $consulta . "<br>" . mysqli_error(conexion($bd_config));
-		}
+$consulta = "UPDATE comentarios SET cuerpo_respuesta = '$respuesta', fecha_respuesta = NOW() WHERE id_comentario = '$id_coment'";
+if (!mysqli_query(conexion($bd_config), $consulta)){
+		echo "Error: " . $consulta . "<br>" . mysqli_error(conexion($bd_config));
+}
+
+$gauchada = obtener_gauchada_por_id(conexion($bd_config), $id_gau);
+$nombre_dueño = obtener_usuario_por_id(conexion($bd_config), $gauchada['0']['6']);
+$consulta_id_comentador= mysqli_query(conexion($bd_config), "SELECT id_user FROM comentarios WHERE id_comentario= $id_coment");
+$array_consulta= mysqli_fetch_all($consulta_id_comentador);
+$id_usuario_comentador= $array_consulta['0']['0'];
+$cuerpo_notificacion = 'El usuario ' . $nombre_dueño . ' ha respondido tu comentario en la gauchada ' .$gauchada['0']['1'];
+$link_gauchada = 'single_view.php?id='.$id_gau.'#seccion-comments';
+$consulta2 = "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link) VALUES ('$id_usuario_comentador', '$cuerpo_notificacion', NOW(), '$link_gauchada')";
+mysqli_query(conexion($bd_config), $consulta2);
 
 ?>
 

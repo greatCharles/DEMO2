@@ -105,7 +105,6 @@ function setPuntos($conex, $id_elegido, $id_gau, $calificacion){
     case 'positivo':
       $conex->query("UPDATE users SET puntos=puntos + 2 WHERE id=$id_elegido");
       $conex->query("UPDATE gauchada SET completada=1 WHERE id_gauchada=$id_gau");
-
       break;
     case 'neutral':
       $conex->query("UPDATE gauchada SET completada=1 WHERE id_gauchada=$id_gau");

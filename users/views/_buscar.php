@@ -38,30 +38,32 @@
         <input type="submit" class= "btn btn-primary" value="Buscar"><hr>
     </div>
 
-      <?php   if ($resultado):?>
+      <?php if ($resultado):?>
         <div class="container-fluid">
     					<div class="col-md-12">
     								<?php foreach($resultado as $gauchada): ?>
-                      <?php $cant_gau++; ?>
-    									<div class="col-md-4">
-    										<div class="thumbnail">
-    											<a href="single_view.php?id=<?php echo $gauchada['0']?>"></a>
-                          <?php if($gauchada['10']): ?>
-  													<img class="img-responsive" src="<?php echo 'img_gauchadas/'.$gauchada['10']; ?>">
-  												<?php else: ?>
-  													<img class="img-responsive" src="img_gauchadas/sin_imagen.jpg">
-  												<?php endif; ?>
-    											<div class="caption">
-    													<h3>
-    															<a href="single_view.php?id=<?php echo $gauchada['0']?>"><?php echo $gauchada['1']?></a>
-    													</h3>
-    													<p><?php echo substr($gauchada['2'],0, 200).'...'?></p>
-    													<a href="single_view.php?id=<?php echo $gauchada['0']?>">Ver más...</a><br><br>
-    										  </div>
-    										</div>
-    									</div>
-                      <?php if($cant_gau==3):?>
-                        <div class="col-md-12"></div>
+                      <?php if($gauchada['13'] == 'activa'): ?>
+                        <?php $cant_gau++; ?>
+      									<div class="col-md-4">
+      										<div class="thumbnail">
+      											<a href="single_view.php?id=<?php echo $gauchada['0']?>"></a>
+                            <?php if($gauchada['10']): ?>
+    													<img class="img-responsive" src="<?php echo 'img_gauchadas/'.$gauchada['10']; ?>">
+    												<?php else: ?>
+    													<img class="img-responsive" src="img_gauchadas/sin_imagen.jpg">
+    												<?php endif; ?>
+      											<div class="caption">
+      													<h3>
+      															<a href="single_view.php?id=<?php echo $gauchada['0']?>"><?php echo $gauchada['1']?></a>
+      													</h3>
+      													<p><?php echo substr($gauchada['2'],0, 200).'...'?></p>
+      													<a href="single_view.php?id=<?php echo $gauchada['0']?>">Ver más...</a><br><br>
+      										  </div>
+      										</div>
+      									</div>
+                        <?php if($cant_gau==3):?>
+                          <div class="col-md-12"></div>
+                        <?php endif; ?>
                       <?php endif; ?>
     								<?php endforeach; ?>
     					</div>

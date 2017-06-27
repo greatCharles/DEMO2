@@ -3,6 +3,7 @@
     <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/nuestros_js.js"></script>
     <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" href="css/estilo_comentarios.css">
   </head>
 </html>
 
@@ -158,7 +159,7 @@ function confirmarPostulanteElegido(id_user, id_gau) {
                       echo "El día ".date('d', $fecha_coment)." de ".$meses[date('n', $fecha_coment)-1]. " del ".date('Y', $fecha_coment).
                       " a las ".date('H:i', $fecha_coment).' hs';
                 ?>
-                <a href="perfil_usuario.php?id_user=<?php echo $comentario['3']; ?>"><?php echo $nombre_user; ?></a> comentó:
+                <a class="link-usuario" href="perfil_usuario.php?id_user=<?php echo $comentario['3']; ?>"><?php echo $nombre_user; ?></a> comentó:
                 <!-- Chequea 3 cosas para habilitar el botón de Responder -->
                 <?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6'] && $comentario['5'] == NULL): ?>
                     <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta(<?php echo $comentario['0'].', '.$id_gau ?>)">Responder</a>

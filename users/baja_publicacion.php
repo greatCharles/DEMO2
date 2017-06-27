@@ -5,6 +5,19 @@
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/funciones.php'; ?>
 <?php require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php'; ?>
 
+<?php
+
+$conexion= conexion($bd_config);
+$gauchada= obtener_gauchada_por_id($conexion, $id_gau);
+$postulantes= getPostulaciones($conexion, $id_gau);
+$cuerpo_notificacion= 'El dueño de la gauchada '.$gauchada['0']['1'].' ha decidido eliminarla, por lo tanto tu postulación se dio de baja también';
+foreach($postulantes as $postulacion){
+  $id_postulante= $postulacion['1'];
+  $consulta_notificacion= "INSERT INTO notificaciones (id_usuario, cuerpo, fecha) VALUES ('$id_postulante', '$cuerpo_notificacion', NOW())";
+  $conexion->query($consulta_notificacion);
+}
+?>
+
 
 <div id="page-wrapper">
 <div class="container">
@@ -12,12 +25,11 @@
   <div class="col-xs-12">
   	<div class="jumbotron text-center">
 		 <?php
-			$consulta = "DELETE FROM gauchada WHERE id_gauchada=$id_gau";
-			if (mysqli_query(conexion($bd_config), $consulta)) {
-				echo '<h1>Felicitaciones!</h1>';
-  				echo '<p> Borraste tu gauchada</p>' ;
+			$consulta_baja = "UPDATE gauchada SET estado= 'inactiva' WHERE id_gauchada=$id_gau";
+			if ($conexion->query($consulta_baja)) {
+				echo '<p>Tu gauchada ha sido eliminada exitosamente</p>';
 			} else {
-				echo "Error: " . $consulta . "<br>" . mysqli_error(conexion($bd_config));
+				echo "Error: " . $consulta_baja . "<br>" . mysqli_error(conexion($bd_config));
 			}
 		 ?>
   </div>

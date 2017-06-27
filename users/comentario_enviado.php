@@ -9,21 +9,26 @@
 <?php
 	if ($_GET) {
 		$consulta = "INSERT INTO comentarios (fecha, id_gauchada, id_user, cuerpo) VALUES (NOW(), '$id_gauchada', '$id_user', '$comentario')";
-		if (mysqli_query(conexion($bd_config), $consulta)) {
-				echo "tremendoo";
-			} else {
+		if (!mysqli_query(conexion($bd_config), $consulta)){
 				echo "Error: " . $consulta . "<br>" . mysqli_error(conexion($bd_config));
 			}
 	}
-?>
 
+	$gauchada = obtener_gauchada_por_id(conexion($bd_config), $id_gauchada);
+	$dueño = $gauchada['0']['6'];
+	$nombre_comentador = obtener_usuario_por_id(conexion($bd_config), $id_user);
+	$cuerpo_notificacion = 'El usuario ' . $nombre_comentador . ' ha dejado un comentario en tu gauchada ' .$gauchada['0']['1'];
+	$link_gauchada = 'single_view.php?id='.$id_gauchada.'#seccion-comments';
+	$consulta2 = "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link) VALUES ('$dueño', '$cuerpo_notificacion', NOW(), '$link_gauchada')";
+	mysqli_query(conexion($bd_config), $consulta2);
+ ?>
 
 <div id="page-wrapper">
 <div class="container">
 <div class="row">
   <div class="col-xs-12">
   	<div class="jumbotron text-center">
-			<h2>Tu respuesta ha sido enviada!</h2><br><br>
+			<h2>Tu comentario ha sido enviado!</h2><br><br>
 			<a class="btn btn-primary" href= "single_view.php?id=<?php echo $id_gauchada ?>">Volver a la Gauchada</a>
   </div>
  </div>
