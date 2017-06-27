@@ -131,16 +131,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									<br>
 									<div class="col-md-12">
 										<a style = "text-decoration: none" href=<?php echo $notificacion['5']  ?>>
-											<?php if($notificacion['4'] == 1): ?>
+											<?php if($notificacion['4'] == "Leida"): ?>
 												<div class="alert alert-info" role="alert">
-											  <strong></strong><?php echo $notificacion['2'] ?> 
-											</div>
+											     <?php echo $notificacion['2'] ?>
+											  </div>
 										<?php else:  ?>
-											<div onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>" class="alert alert-danger" role="alert">
-											  <strong></strong><?php echo $notificacion['2'] ?> 
-											</div>
+											  <div onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>" class="alert alert-danger" role="alert">
+											     <?php echo $notificacion['2'] ?>
+											  </div>
 										<?php endif; ?>
-										</a>		  
+										</a>
 									</div>
 									<hr>
 								<?php endforeach; ?>
@@ -150,7 +150,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 		</div>
 
-			
+
 <!-- 			onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>"
  -->	</div> <!-- /container -->
 </div> <!-- /#page-wrapper -->
