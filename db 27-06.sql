@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 22, 2017 at 11:46 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 28-06-2017 a las 01:13:44
+-- Versión del servidor: 10.1.16-MariaDB
+-- Versión de PHP: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db`
+-- Base de datos: `db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `audit`
+-- Estructura de tabla para la tabla `audit`
 --
 
 CREATE TABLE `audit` (
@@ -36,7 +36,7 @@ CREATE TABLE `audit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `audit`
+-- Volcado de datos para la tabla `audit`
 --
 
 INSERT INTO `audit` (`id`, `user`, `page`, `timestamp`, `ip`, `viewed`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `audit` (`id`, `user`, `page`, `timestamp`, `ip`, `viewed`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoria`
+-- Estructura de tabla para la tabla `categoria`
 --
 
 CREATE TABLE `categoria` (
@@ -54,7 +54,7 @@ CREATE TABLE `categoria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `categoria`
+-- Volcado de datos para la tabla `categoria`
 --
 
 INSERT INTO `categoria` (`id_categoria`, `nombre`) VALUES
@@ -65,7 +65,7 @@ INSERT INTO `categoria` (`id_categoria`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comentarios`
+-- Estructura de tabla para la tabla `comentarios`
 --
 
 CREATE TABLE `comentarios` (
@@ -79,7 +79,7 @@ CREATE TABLE `comentarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `comentarios`
+-- Volcado de datos para la tabla `comentarios`
 --
 
 INSERT INTO `comentarios` (`id_comentario`, `fecha`, `id_gauchada`, `id_user`, `cuerpo`, `cuerpo_respuesta`, `fecha_respuesta`) VALUES
@@ -93,12 +93,15 @@ INSERT INTO `comentarios` (`id_comentario`, `fecha`, `id_gauchada`, `id_user`, `
 (8, '2017-06-13 05:31:34', 12, 4, 'Sigo metiendo mano', 'Buenisimo', '2017-06-13 05:34:23'),
 (9, '2017-06-13 05:35:10', 8, 1, 'que lindas bicis che!', 'gracias pibe', '2017-06-13 05:40:18'),
 (10, '2017-06-13 05:41:32', 12, 4, 'probando 25', 'prueba de respuesta', '2017-06-13 11:43:05'),
-(11, '2017-06-13 11:41:46', 12, 4, 'Hola', 'ughughuyg', '2017-06-13 11:42:35');
+(11, '2017-06-13 11:41:46', 12, 4, 'Hola', 'ughughuyg', '2017-06-13 11:42:35'),
+(12, '2017-06-27 16:15:58', 4, 4, 'asdasda', '', '0000-00-00 00:00:00'),
+(13, '2017-06-27 16:16:09', 4, 4, 'asds', '', '0000-00-00 00:00:00'),
+(14, '2017-06-27 16:28:01', 8, 1, 'asdasdfdsf', '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `email`
+-- Estructura de tabla para la tabla `email`
 --
 
 CREATE TABLE `email` (
@@ -116,7 +119,7 @@ CREATE TABLE `email` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `email`
+-- Volcado de datos para la tabla `email`
 --
 
 INSERT INTO `email` (`id`, `website_name`, `smtp_server`, `smtp_port`, `email_login`, `email_pass`, `from_name`, `from_email`, `transport`, `verify_url`, `email_act`) VALUES
@@ -125,7 +128,7 @@ INSERT INTO `email` (`id`, `website_name`, `smtp_server`, `smtp_port`, `email_lo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gauchada`
+-- Estructura de tabla para la tabla `gauchada`
 --
 
 CREATE TABLE `gauchada` (
@@ -141,31 +144,31 @@ CREATE TABLE `gauchada` (
   `categoria` varchar(100) NOT NULL,
   `imagen` varchar(200) DEFAULT NULL,
   `id_elegido` int(11) DEFAULT NULL,
-  `completada` tinyint(127) NOT NULL DEFAULT '0'
+  `completada` tinyint(127) NOT NULL DEFAULT '0',
+  `estado` varchar(20) NOT NULL DEFAULT 'activa'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `gauchada`
+-- Volcado de datos para la tabla `gauchada`
 --
 
-INSERT INTO `gauchada` (`id_gauchada`, `titulo`, `descripcion`, `fecha_desde`, `fecha_hasta`, `fecha_exacta`, `id_usuario`, `provincia`, `localidad`, `categoria`, `imagen`, `id_elegido`, `completada`) VALUES
-(1, 'Se busca niÃ±era  ', 'Es  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo sobreviviÃ³ 500 aÃ±os, sino que tambien ingresÃ³ como texto de relleno en documentos electrÃ³nicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creaciÃ³n de las hojas \"Letraset\", las cuales contenian pasajes de Lorem Ipsum, y mÃ¡s recientemente con software de autoediciÃ³n, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.\r\n\r\nÂ¿Por quÃ© lo usamos?\r\nEs un hecho establecido hace demasiado tiempo que un lector se distraerÃ¡ con el contenido del texto de un sitio mientras que mira su diseÃ±o. El punto de usar Lorem Ipsum es que tiene una distribuciÃ³n mÃ¡s o menos normal', '2017-05-30', '2017-07-29', '2017-07-06', 4, 'Buenos Aires  ', 'Baradero', 'Familiar  ', '', NULL, 0),
-(3, 'Alguien me pinta la casa?', 'Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza clÂ´sica de la literatura del Latin, que data del aÃ±o 45 antes de Cristo, haciendo que este adquiera mas de 2000 aÃ±os de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontrÃ³ una de las palabras mÃ¡s oscuras de la lengua del latÃ­n, \"consecteur\", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latÃ­n, descubriÃ³ la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de \"de Finnibus Bonorum et Malorum\"', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'descarga.jpg', NULL, 0),
-(4, 'Una gauchada modificada de vuelta ', '  EstÃ¡ modificada otra vez ', '2017-05-30', '2017-07-29', '0000-00-00', 1, ' ', '', 'Gastronomicos   ', '', NULL, 0),
-(5, 'Restaurador de botas', 'Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayorÃ­a sufriÃ³ alteraciones en alguna manera, ya sea porque se le agregÃ³ humor, o palabras aleatorias que no parecen ni un poco creÃ­bles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitÃ¡s estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el Ãºnico generador verdadero (vÃ¡lido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latÃ­n, combinadas con estructuras muy Ãºtiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estarÃ¡ libre de repeticiones, humor agregado o palabras no caracterÃ­sticas del lenguaje, etc.', '2017-05-30', '2017-07-29', '0000-00-00', 1, 'Buenos Aires', 'Capilla del Seï¿½or', 'Servicios Domesticos', 'images.jpg', 3, 1),
-(6, 'Se busca Cocinero', 'Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayorÃ­a sufriÃ³ alteraciones en alguna manera, ya sea porque se le agregÃ³ humor, o palabras aleatorias que no parecen ni un poco creÃ­bles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitÃ¡s estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el Ãºnico generador verdadero (vÃ¡lido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latÃ­n, combinadas con estructuras muy Ãºtiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estarÃ¡ libre de repeticiones, humor agregado o palabras no caracterÃ­sticas del lenguaje, etc.', '2017-05-30', '2017-07-29', '0000-00-00', 1, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'images (1).jpg', 4, 0),
-(7, 'Buscamos gente que pueda ayudarnos a fabricar una casa', ' en Virginia, encontrÃ³ una de las palabras mÃ¡s oscuras de la lengua del latÃ­n, \"consecteur\", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latÃ­n, descubriÃ³ la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de \"de Finnibus Bonorum et Malorum\" (Los Extremos del Bien y El Mal) por Cicero, escrito en el aÃ±o 45 antes de Cristo. Este libro es un tratado de teorÃ­a de Ã©ticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", viene de una linea en la secciÃ³n 1.10.32\r\n\r\nEl trozo de texto estÃ¡ndar de Lorem Ipsum usado desde el aÃ±o 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de \"de Finibus Bonorum et Malorum\" por Cicero son tambiÃ©n reproducidas en su f', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', 'Lobos', 'Servicios Domesticos', 'descarga (1).jpg', NULL, 0),
-(8, 'Gauchada 7', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo so', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'fixie-bicicletas.jpg', NULL, 0),
-(9, 'Gauchada 8', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo so', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'images (2).jpg', NULL, 0),
-(10, 'Gauchada 9', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo soLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo so', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'images (4).jpg', NULL, 0),
-(11, 'Gauchada 10', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo soLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo so', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'images (3).jpg', NULL, 0),
-(12, 'asdas', 'gfdgddf', '2017-06-11', '2017-08-10', '0000-00-00', 1, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', '', 5, 0),
-(13, 'Gauchada 1000', 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ', '2017-06-13', '2017-08-12', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', '', 3, 0);
+INSERT INTO `gauchada` (`id_gauchada`, `titulo`, `descripcion`, `fecha_desde`, `fecha_hasta`, `fecha_exacta`, `id_usuario`, `provincia`, `localidad`, `categoria`, `imagen`, `id_elegido`, `completada`, `estado`) VALUES
+(1, 'Se busca niÃ±era  ', 'Es  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo sobreviviÃ³ 500 aÃ±os, sino que tambien ingresÃ³ como texto de relleno en documentos electrÃ³nicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creaciÃ³n de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y mÃ¡s recientemente con software de autoediciÃ³n, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.\r\n\r\nÂ¿Por quÃ© lo usamos?\r\nEs un hecho establecido hace demasiado tiempo que un lector se distraerÃ¡ con el contenido del texto de un sitio mientras que mira su diseÃ±o. El punto de usar Lorem Ipsum es que tiene una distribuciÃ³n mÃ¡s o menos normal', '2017-05-30', '2017-07-29', '2017-07-06', 4, 'Buenos Aires  ', 'Baradero', 'Familiar  ', '', NULL, 0, 'activa'),
+(3, 'Alguien me pinta la casa?', 'Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza clÂ´sica de la literatura del Latin, que data del aÃ±o 45 antes de Cristo, haciendo que este adquiera mas de 2000 aÃ±os de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontrÃ³ una de las palabras mÃ¡s oscuras de la lengua del latÃ­n, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latÃ­n, descubriÃ³ la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum"', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'descarga.jpg', 5, 0, 'activa'),
+(4, 'Una gauchada modificada de vuelta ', '  EstÃ¡ modificada otra vez ', '2017-05-30', '2017-07-29', '0000-00-00', 1, ' ', '', 'Gastronomicos   ', '', NULL, 0, 'activa'),
+(5, 'Restaurador de botas', 'Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayorÃ­a sufriÃ³ alteraciones en alguna manera, ya sea porque se le agregÃ³ humor, o palabras aleatorias que no parecen ni un poco creÃ­bles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitÃ¡s estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el Ãºnico generador verdadero (vÃ¡lido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latÃ­n, combinadas con estructuras muy Ãºtiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estarÃ¡ libre de repeticiones, humor agregado o palabras no caracterÃ­sticas del lenguaje, etc.', '2017-05-30', '2017-07-29', '0000-00-00', 1, 'Buenos Aires', 'Capilla del Seï¿½or', 'Servicios Domesticos', 'images.jpg', 3, 1, 'activa'),
+(6, 'Se busca Cocinero', 'Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayorÃ­a sufriÃ³ alteraciones en alguna manera, ya sea porque se le agregÃ³ humor, o palabras aleatorias que no parecen ni un poco creÃ­bles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitÃ¡s estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el Ãºnico generador verdadero (vÃ¡lido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latÃ­n, combinadas con estructuras muy Ãºtiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estarÃ¡ libre de repeticiones, humor agregado o palabras no caracterÃ­sticas del lenguaje, etc.', '2017-05-30', '2017-07-29', '0000-00-00', 1, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'images (1).jpg', 4, 0, 'activa'),
+(7, 'Buscamos gente que pueda ayudarnos a fabricar una casa', ' en Virginia, encontrÃ³ una de las palabras mÃ¡s oscuras de la lengua del latÃ­n, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latÃ­n, descubriÃ³ la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el aÃ±o 45 antes de Cristo. Este libro es un tratado de teorÃ­a de Ã©ticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la secciÃ³n 1.10.32\r\n\r\nEl trozo de texto estÃ¡ndar de Lorem Ipsum usado desde el aÃ±o 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son tambiÃ©n reproducidas en su f', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', 'Lobos', 'Servicios Domesticos', 'descarga (1).jpg', NULL, 0, 'activa'),
+(8, 'Gauchada 7', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo so', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'fixie-bicicletas.jpg', NULL, 0, 'activa'),
+(9, 'Gauchada 8', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo so', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'images (2).jpg', 1, 0, 'activa'),
+(11, 'Gauchada 10', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo soLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo so', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'images (3).jpg', 1, 0, 'inactiva'),
+(12, 'asdas', 'gfdgddf', '2017-06-11', '2017-08-10', '0000-00-00', 1, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', '', 5, 0, 'activa'),
+(13, 'Gauchada 1000', 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ', '2017-06-13', '2017-08-12', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', '', 3, 1, 'activa');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keys`
+-- Estructura de tabla para la tabla `keys`
 --
 
 CREATE TABLE `keys` (
@@ -181,7 +184,7 @@ CREATE TABLE `keys` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `localidades`
+-- Estructura de tabla para la tabla `localidades`
 --
 
 CREATE TABLE `localidades` (
@@ -192,7 +195,7 @@ CREATE TABLE `localidades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `localidades`
+-- Volcado de datos para la tabla `localidades`
 --
 
 INSERT INTO `localidades` (`id_localidad`, `id_provincia`, `localidad`, `provincia`) VALUES
@@ -2458,7 +2461,7 @@ INSERT INTO `localidades` (`id_localidad`, `id_provincia`, `localidad`, `provinc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Estructura de tabla para la tabla `messages`
 --
 
 CREATE TABLE `messages` (
@@ -2475,7 +2478,7 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message_threads`
+-- Estructura de tabla para la tabla `message_threads`
 --
 
 CREATE TABLE `message_threads` (
@@ -2490,7 +2493,42 @@ CREATE TABLE `message_threads` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pages`
+-- Estructura de tabla para la tabla `notificaciones`
+--
+
+CREATE TABLE `notificaciones` (
+  `id_notificacion` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `cuerpo` varchar(255) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `estado` varchar(20) NOT NULL DEFAULT 'No leida',
+  `link` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `notificaciones`
+--
+
+INSERT INTO `notificaciones` (`id_notificacion`, `id_usuario`, `cuerpo`, `fecha`, `estado`, `link`) VALUES
+(3, 4, 'El usuario admin se ha postulado a tu gauchada Gauchada 10', '2017-06-26 22:53:50', 'Leida', 'single_view.php?id=11'),
+(5, 1, 'El usuario Matias se ha postulado a tu gauchada Una gauchada modificada de vuelta ', '2017-06-27 14:21:03', 'Leida', 'single_view.php?id=4#seccion-postu'),
+(8, 1, 'El usuario Matias se ha postulado a tu gauchada Una gauchada modificada de vuelta ', '2017-06-27 14:41:25', 'Leida', 'single_view.php?id=4#seccion-postu'),
+(9, 1, 'El dueÃ±o de la gauchada Gauchada 10 ha decidido eliminarla, por lo tanto tu postulaciÃ³n se dio de baja tambiÃ©n', '2017-06-27 14:54:25', 'Leida', ''),
+(10, 3, 'El dueÃ±o de la gauchada Gauchada 10 ha decidido eliminarla, por lo tanto tu postulaciÃ³n se dio de baja tambiÃ©n', '2017-06-27 14:54:25', 'No leida', ''),
+(11, 4, 'El usuario admin se ha postulado a tu gauchada Alguien me pinta la casa?', '2017-06-27 14:59:20', 'Leida', 'single_view.php?id=3#seccion-postu'),
+(12, 4, 'El usuario Matias se ha postulado a tu gauchada Alguien me pinta la casa?', '2017-06-27 14:59:42', 'Leida', 'single_view.php?id=3#seccion-postu'),
+(13, 5, 'Has sido seleccionado como colaborador para realizar la gauchada: Alguien me pinta la casa?', '2017-06-27 15:00:08', 'Leida', 'single_view.php?id=3'),
+(14, 4, 'El usuario admin se ha postulado a tu gauchada Gauchada 8', '2017-06-27 15:08:30', 'Leida', 'single_view.php?id=9#seccion-postu'),
+(15, 1, 'Has sido seleccionado como colaborador para realizar la gauchada: Gauchada 8', '2017-06-27 15:08:57', 'Leida', 'single_view.php?id=9'),
+(16, 1, 'El usuario greatCharles ha dejado un comentario en tu gauchada Una gauchada modificada de vuelta ', '2017-06-27 16:15:58', 'Leida', 'single_view.php?id=4#seccion-comments'),
+(17, 1, 'El usuario greatCharles ha dejado un comentario en tu gauchada Una gauchada modificada de vuelta ', '2017-06-27 16:16:09', 'Leida', 'single_view.php?id=4#seccion-comments'),
+(18, 4, 'El usuario admin ha dejado un comentario en tu gauchada Gauchada 7', '2017-06-27 16:28:01', 'Leida', 'single_view.php?id=8#seccion-comments'),
+(19, 4, 'El usuario admin se ha postulado a tu gauchada Gauchada 7', '2017-06-27 16:34:47', 'Leida', 'single_view.php?id=8#seccion-postu');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pages`
 --
 
 CREATE TABLE `pages` (
@@ -2500,7 +2538,7 @@ CREATE TABLE `pages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `pages`
+-- Volcado de datos para la tabla `pages`
 --
 
 INSERT INTO `pages` (`id`, `page`, `private`) VALUES
@@ -2555,7 +2593,7 @@ INSERT INTO `pages` (`id`, `page`, `private`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permissions`
+-- Estructura de tabla para la tabla `permissions`
 --
 
 CREATE TABLE `permissions` (
@@ -2564,7 +2602,7 @@ CREATE TABLE `permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `permissions`
+-- Volcado de datos para la tabla `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `name`) VALUES
@@ -2574,7 +2612,7 @@ INSERT INTO `permissions` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permission_page_matches`
+-- Estructura de tabla para la tabla `permission_page_matches`
 --
 
 CREATE TABLE `permission_page_matches` (
@@ -2584,7 +2622,7 @@ CREATE TABLE `permission_page_matches` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `permission_page_matches`
+-- Volcado de datos para la tabla `permission_page_matches`
 --
 
 INSERT INTO `permission_page_matches` (`id`, `permission_id`, `page_id`) VALUES
@@ -2625,7 +2663,7 @@ INSERT INTO `permission_page_matches` (`id`, `permission_id`, `page_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `postulacion`
+-- Estructura de tabla para la tabla `postulacion`
 --
 
 CREATE TABLE `postulacion` (
@@ -2638,22 +2676,25 @@ CREATE TABLE `postulacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `postulacion`
+-- Volcado de datos para la tabla `postulacion`
 --
 
 INSERT INTO `postulacion` (`id_postulacion`, `id_user`, `id_gauchada`, `fecha`, `comentario`, `estado`) VALUES
-(6, 3, 11, '2017-06-20 00:00:00', 'HpÃ±a', 'En espera'),
-(7, 1, 11, '2017-06-20 00:00:00', 'Funca?', 'En espera'),
+(6, 3, 11, '2017-06-20 00:00:00', 'HpÃ±a', 'Rechazado'),
 (8, 4, 6, '2017-06-20 15:35:37', 'Soy cocinero', 'En espera'),
 (9, 3, 13, '2017-06-20 17:21:46', 'a ver', 'En espera'),
 (10, 3, 5, '2017-06-20 17:49:53', 'Yo tengo una', 'Elegido'),
-(11, 5, 5, '2017-06-20 17:51:29', 'Hola yo tambien', 'Rechazado'),
-(12, 5, 12, '2017-06-20 18:02:44', 'Soy uno', 'Elegido');
+(15, 1, 11, '2017-06-26 22:53:50', 'asd', 'Elegido'),
+(16, 5, 8, '2017-06-27 14:19:32', 'Holaaa', 'En espera'),
+(19, 5, 4, '2017-06-27 14:41:25', 'Holaa', 'En espera'),
+(21, 5, 3, '2017-06-27 14:59:42', 'Hola', 'Elegido'),
+(22, 1, 9, '2017-06-27 15:08:30', 'asdas', 'Elegido'),
+(23, 1, 8, '2017-06-27 16:34:47', 'Aceptamee', 'En espera');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profiles`
+-- Estructura de tabla para la tabla `profiles`
 --
 
 CREATE TABLE `profiles` (
@@ -2663,7 +2704,7 @@ CREATE TABLE `profiles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `profiles`
+-- Volcado de datos para la tabla `profiles`
 --
 
 INSERT INTO `profiles` (`id`, `user_id`, `bio`) VALUES
@@ -2677,7 +2718,7 @@ INSERT INTO `profiles` (`id`, `user_id`, `bio`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `provincias`
+-- Estructura de tabla para la tabla `provincias`
 --
 
 CREATE TABLE `provincias` (
@@ -2686,7 +2727,7 @@ CREATE TABLE `provincias` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `provincias`
+-- Volcado de datos para la tabla `provincias`
 --
 
 INSERT INTO `provincias` (`id_provincia`, `provincia`) VALUES
@@ -2719,7 +2760,7 @@ INSERT INTO `provincias` (`id_provincia`, `provincia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings`
+-- Estructura de tabla para la tabla `settings`
 --
 
 CREATE TABLE `settings` (
@@ -2769,7 +2810,7 @@ CREATE TABLE `settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `settings`
+-- Volcado de datos para la tabla `settings`
 --
 
 INSERT INTO `settings` (`id`, `recaptcha`, `force_ssl`, `login_type`, `css_sample`, `us_css1`, `us_css2`, `us_css3`, `css1`, `css2`, `css3`, `site_name`, `language`, `track_guest`, `site_offline`, `force_pr`, `reserved1`, `reserverd2`, `custom1`, `custom2`, `custom3`, `glogin`, `fblogin`, `gid`, `gsecret`, `gredirect`, `ghome`, `fbid`, `fbsecret`, `fbcallback`, `graph_ver`, `finalredir`, `req_cap`, `req_num`, `min_pw`, `max_pw`, `min_un`, `max_un`, `messaging`, `snooping`, `echouser`, `wys`, `change_un`) VALUES
@@ -2778,7 +2819,7 @@ INSERT INTO `settings` (`id`, `recaptcha`, `force_ssl`, `login_type`, `css_sampl
 -- --------------------------------------------------------
 
 --
--- Table structure for table `test`
+-- Estructura de tabla para la tabla `test`
 --
 
 CREATE TABLE `test` (
@@ -2787,7 +2828,7 @@ CREATE TABLE `test` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `test`
+-- Volcado de datos para la tabla `test`
 --
 
 INSERT INTO `test` (`titulo`, `descripcion`) VALUES
@@ -2798,7 +2839,7 @@ INSERT INTO `test` (`titulo`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
@@ -2841,26 +2882,26 @@ CREATE TABLE `users` (
   `modified` datetime NOT NULL,
   `fb_uid` varchar(255) NOT NULL,
   `un_changed` int(1) NOT NULL,
-  `creditos` int(11) NOT NULL,
+  `creditos` int(11) NOT NULL DEFAULT '1',
   `puntos` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `fname`, `lname`, `permissions`, `logins`, `account_owner`, `account_id`, `company`, `stripe_cust_id`, `billing_phone`, `billing_srt1`, `billing_srt2`, `billing_city`, `billing_state`, `billing_zip_code`, `join_date`, `last_login`, `email_verified`, `vericode`, `title`, `active`, `custom1`, `custom2`, `custom3`, `custom4`, `custom5`, `oauth_provider`, `oauth_uid`, `gender`, `locale`, `gpluslink`, `picture`, `created`, `modified`, `fb_uid`, `un_changed`, `creditos`, `puntos`) VALUES
-(1, 'sreguren@gmail.com', 'admin', '$2y$12$1v06jm2KMOXuuo3qP7erTuTIJFOnzhpds1Moa8BadnUUeX0RV3ex.', 'Sebasti&aacute;n', 'Eguren', 1, 92, 1, 0, 'UserSpice', '', '', '', '', '', '', '', '2016-01-01 00:00:00', '2017-06-22 17:29:36', 1, '322418', '', 0, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '1899-11-30 00:00:00', '', 0, 182573, 0),
+(1, 'sreguren@gmail.com', 'admin', '$2y$12$1v06jm2KMOXuuo3qP7erTuTIJFOnzhpds1Moa8BadnUUeX0RV3ex.', 'Sebasti&aacute;n', 'Eguren', 1, 109, 1, 0, 'UserSpice', '', '', '', '', '', '', '', '2016-01-01 00:00:00', '2017-06-27 19:36:19', 1, '322418', '', 0, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '1899-11-30 00:00:00', '', 0, 182573, 0),
 (2, 'noreply@userspice.com', 'user', '$2y$12$HZa0/d7evKvuHO8I3U8Ff.pOjJqsGTZqlX8qURratzP./EvWetbkK', 'Sample', 'User', 1, 5, 1, 0, 'none', '', '', '', '', '', '', '', '2016-01-02 00:00:00', '2017-02-20 12:14:10', 1, '970748', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0),
 (3, 'poroto.acosta@gmail.com', 'Poroto', '$2y$12$sJST.wocDtg1/c9.G.RNmOOiZDDt9KZnMreRCbbCsxfQiHrKXKLl2', 'Alejoo', 'Acostaaa', 1, 7, 1, 0, '', '', '', '', '', '', '', '', '2017-05-23 21:38:58', '2017-06-20 20:49:41', 1, '984480', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0),
-(4, 'menendez_carlos@yahoo.com.ar', 'greatCharles', '$2y$12$EDpNT/NH1PRpfSS1JnDbkukXujFQdZy.XifXfCScGfrWM5rKqWNju', 'Carlos', 'Men&eacute;ndez', 1, 25, 1, 0, '', '', '', '', '', '', '', '', '2017-05-28 23:29:39', '2017-06-20 20:22:05', 1, '460960', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 114, 0),
-(5, 'maatias.p.97@gmail.com', 'Matias', '$2y$12$elb/nHsth6p11gCdZ3LL4uGSyfDjS1JBqSFHvwtOk23PFYX.jsYxe', 'Mat&iacute;as', 'Pompilio', 1, 5, 1, 0, '', '', '', '', '', '', '', '', '2017-06-01 23:50:26', '2017-06-20 21:02:33', 1, '764755', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 1204, 0),
+(4, 'menendez_carlos@yahoo.com.ar', 'greatCharles', '$2y$12$EDpNT/NH1PRpfSS1JnDbkukXujFQdZy.XifXfCScGfrWM5rKqWNju', 'Carlos', 'Men&eacute;ndez', 1, 35, 1, 0, '', '', '', '', '', '', '', '', '2017-05-28 23:29:39', '2017-06-27 19:35:04', 1, '460960', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 114, 0),
+(5, 'maatias.p.97@gmail.com', 'Matias', '$2y$12$elb/nHsth6p11gCdZ3LL4uGSyfDjS1JBqSFHvwtOk23PFYX.jsYxe', 'Mat&iacute;as', 'Pompilio', 1, 14, 1, 0, '', '', '', '', '', '', '', '', '2017-06-01 23:50:26', '2017-06-27 18:43:36', 1, '764755', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 1204, 0),
 (6, 'asdsdfd@gmail.com', 'Hola', '$2y$12$VKR7x7Z.vU.FlGBXCcsoee3pn8RDF7IWE5hN9D9TuOZGU88iMz.zW', 'Hola', 'Pompilio', 1, 0, 1, 0, '', '', '', '', '', '', '', '', '2017-06-11 19:32:28', '0000-00-00 00:00:00', 1, '661703', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_online`
+-- Estructura de tabla para la tabla `users_online`
 --
 
 CREATE TABLE `users_online` (
@@ -2872,19 +2913,19 @@ CREATE TABLE `users_online` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users_online`
+-- Volcado de datos para la tabla `users_online`
 --
 
 INSERT INTO `users_online` (`id`, `ip`, `timestamp`, `user_id`, `session`) VALUES
-(1, '::1', '1498167752', 1, ''),
+(1, '::1', '1498592864', 1, ''),
 (2, '::1', '1497991795', 3, ''),
-(3, '::1', '1497990134', 4, ''),
-(4, '::1', '1497992566', 5, '');
+(3, '::1', '1498592107', 4, ''),
+(4, '::1', '1498589044', 5, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_session`
+-- Estructura de tabla para la tabla `users_session`
 --
 
 CREATE TABLE `users_session` (
@@ -2897,7 +2938,7 @@ CREATE TABLE `users_session` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_permission_matches`
+-- Estructura de tabla para la tabla `user_permission_matches`
 --
 
 CREATE TABLE `user_permission_matches` (
@@ -2907,7 +2948,7 @@ CREATE TABLE `user_permission_matches` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user_permission_matches`
+-- Volcado de datos para la tabla `user_permission_matches`
 --
 
 INSERT INTO `user_permission_matches` (`id`, `user_id`, `permission_id`) VALUES
@@ -2920,23 +2961,23 @@ INSERT INTO `user_permission_matches` (`id`, `user_id`, `permission_id`) VALUES
 (106, 6, 1);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `audit`
+-- Indices de la tabla `audit`
 --
 ALTER TABLE `audit`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `categoria`
+-- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indexes for table `comentarios`
+-- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
@@ -2944,62 +2985,69 @@ ALTER TABLE `comentarios`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `email`
+-- Indices de la tabla `email`
 --
 ALTER TABLE `email`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `gauchada`
+-- Indices de la tabla `gauchada`
 --
 ALTER TABLE `gauchada`
   ADD PRIMARY KEY (`id_gauchada`),
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indexes for table `keys`
+-- Indices de la tabla `keys`
 --
 ALTER TABLE `keys`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `localidades`
+-- Indices de la tabla `localidades`
 --
 ALTER TABLE `localidades`
   ADD PRIMARY KEY (`id_localidad`);
 
 --
--- Indexes for table `messages`
+-- Indices de la tabla `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `message_threads`
+-- Indices de la tabla `message_threads`
 --
 ALTER TABLE `message_threads`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pages`
+-- Indices de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD PRIMARY KEY (`id_notificacion`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `pages`
 --
 ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `permissions`
+-- Indices de la tabla `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `permission_page_matches`
+-- Indices de la tabla `permission_page_matches`
 --
 ALTER TABLE `permission_page_matches`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `postulacion`
+-- Indices de la tabla `postulacion`
 --
 ALTER TABLE `postulacion`
   ADD PRIMARY KEY (`id_postulacion`),
@@ -3007,171 +3055,182 @@ ALTER TABLE `postulacion`
   ADD KEY `id_gauchada` (`id_gauchada`);
 
 --
--- Indexes for table `profiles`
+-- Indices de la tabla `profiles`
 --
 ALTER TABLE `profiles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `provincias`
+-- Indices de la tabla `provincias`
 --
 ALTER TABLE `provincias`
   ADD PRIMARY KEY (`id_provincia`);
 
 --
--- Indexes for table `settings`
+-- Indices de la tabla `settings`
 --
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD KEY `EMAIL` (`email`) USING BTREE;
 
 --
--- Indexes for table `users_online`
+-- Indices de la tabla `users_online`
 --
 ALTER TABLE `users_online`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users_session`
+-- Indices de la tabla `users_session`
 --
 ALTER TABLE `users_session`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_permission_matches`
+-- Indices de la tabla `user_permission_matches`
 --
 ALTER TABLE `user_permission_matches`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `audit`
+-- AUTO_INCREMENT de la tabla `audit`
 --
 ALTER TABLE `audit`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `categoria`
+-- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `comentarios`
+-- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_comentario` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
--- AUTO_INCREMENT for table `email`
+-- AUTO_INCREMENT de la tabla `email`
 --
 ALTER TABLE `email`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `gauchada`
+-- AUTO_INCREMENT de la tabla `gauchada`
 --
 ALTER TABLE `gauchada`
   MODIFY `id_gauchada` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT for table `keys`
+-- AUTO_INCREMENT de la tabla `keys`
 --
 ALTER TABLE `keys`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `localidades`
+-- AUTO_INCREMENT de la tabla `localidades`
 --
 ALTER TABLE `localidades`
   MODIFY `id_localidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2383;
 --
--- AUTO_INCREMENT for table `messages`
+-- AUTO_INCREMENT de la tabla `messages`
 --
 ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `message_threads`
+-- AUTO_INCREMENT de la tabla `message_threads`
 --
 ALTER TABLE `message_threads`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `pages`
+-- AUTO_INCREMENT de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT de la tabla `pages`
 --
 ALTER TABLE `pages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
--- AUTO_INCREMENT for table `permissions`
+-- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `permission_page_matches`
+-- AUTO_INCREMENT de la tabla `permission_page_matches`
 --
 ALTER TABLE `permission_page_matches`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
--- AUTO_INCREMENT for table `postulacion`
+-- AUTO_INCREMENT de la tabla `postulacion`
 --
 ALTER TABLE `postulacion`
-  MODIFY `id_postulacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_postulacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
--- AUTO_INCREMENT for table `profiles`
+-- AUTO_INCREMENT de la tabla `profiles`
 --
 ALTER TABLE `profiles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `provincias`
+-- AUTO_INCREMENT de la tabla `provincias`
 --
 ALTER TABLE `provincias`
   MODIFY `id_provincia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
--- AUTO_INCREMENT for table `settings`
+-- AUTO_INCREMENT de la tabla `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `users_online`
+-- AUTO_INCREMENT de la tabla `users_online`
 --
 ALTER TABLE `users_online`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `users_session`
+-- AUTO_INCREMENT de la tabla `users_session`
 --
 ALTER TABLE `users_session`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `user_permission_matches`
+-- AUTO_INCREMENT de la tabla `user_permission_matches`
 --
 ALTER TABLE `user_permission_matches`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `comentarios`
+-- Filtros para la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_gauchada`) REFERENCES `gauchada` (`id_gauchada`),
   ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `gauchada`
+-- Filtros para la tabla `gauchada`
 --
 ALTER TABLE `gauchada`
   ADD CONSTRAINT `gauchada_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `postulacion`
+-- Filtros para la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD CONSTRAINT `notificaciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `postulacion`
 --
 ALTER TABLE `postulacion`
   ADD CONSTRAINT `postulacion_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`),
