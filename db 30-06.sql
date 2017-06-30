@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-06-2017 a las 01:13:44
+-- Tiempo de generación: 30-06-2017 a las 19:54:34
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db`
 --
+CREATE DATABASE IF NOT EXISTS `db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `db`;
 
 -- --------------------------------------------------------
 
@@ -60,7 +62,8 @@ CREATE TABLE `categoria` (
 INSERT INTO `categoria` (`id_categoria`, `nombre`) VALUES
 (1, 'Servicios Domesticos'),
 (2, 'Gastronomicos'),
-(3, 'Familiar');
+(3, 'Familiar'),
+(4, 'Entretenimiento');
 
 -- --------------------------------------------------------
 
@@ -83,20 +86,7 @@ CREATE TABLE `comentarios` (
 --
 
 INSERT INTO `comentarios` (`id_comentario`, `fecha`, `id_gauchada`, `id_user`, `cuerpo`, `cuerpo_respuesta`, `fecha_respuesta`) VALUES
-(1, '2017-06-12 00:00:00', 11, 1, 'Hola. todo bien loco?', 'Si, otra vez.', '2017-06-13 04:28:35'),
-(2, '2017-06-12 00:00:00', 11, 1, 'De donde sos?', 'Si, otra vez.', '2017-06-13 04:28:35'),
-(3, '2017-06-12 00:00:00', 12, 4, 'Hola amigo', 'Hola ameo', '2017-06-13 05:01:38'),
-(4, '2017-06-12 00:00:00', 12, 4, 'QuÃ© es Lorem Ipsum? Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la impr', 'No sÃ© de que me estÃ¡s hablando!', '2017-06-13 05:04:23'),
-(5, '2017-06-12 00:00:00', 11, 1, 'Que bueno che!', 'Si, otra vez.', '2017-06-13 04:28:35'),
-(6, '2017-06-12 21:59:54', 11, 1, 'Prueba de comentario con dÃ­a y horario.', 'Si, otra vez.', '2017-06-13 04:28:35'),
-(7, '2017-06-13 05:07:31', 7, 1, 'Probando el sistema de comentarios.', 'Parece que anda muy bien.', '2017-06-13 05:08:05'),
-(8, '2017-06-13 05:31:34', 12, 4, 'Sigo metiendo mano', 'Buenisimo', '2017-06-13 05:34:23'),
-(9, '2017-06-13 05:35:10', 8, 1, 'que lindas bicis che!', 'gracias pibe', '2017-06-13 05:40:18'),
-(10, '2017-06-13 05:41:32', 12, 4, 'probando 25', 'prueba de respuesta', '2017-06-13 11:43:05'),
-(11, '2017-06-13 11:41:46', 12, 4, 'Hola', 'ughughuyg', '2017-06-13 11:42:35'),
-(12, '2017-06-27 16:15:58', 4, 4, 'asdasda', '', '0000-00-00 00:00:00'),
-(13, '2017-06-27 16:16:09', 4, 4, 'asds', '', '0000-00-00 00:00:00'),
-(14, '2017-06-27 16:28:01', 8, 1, 'asdasdfdsf', '', '0000-00-00 00:00:00');
+(1, '2017-06-29 19:28:17', 14, 1, 'Cuando es el partido?', '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -153,17 +143,12 @@ CREATE TABLE `gauchada` (
 --
 
 INSERT INTO `gauchada` (`id_gauchada`, `titulo`, `descripcion`, `fecha_desde`, `fecha_hasta`, `fecha_exacta`, `id_usuario`, `provincia`, `localidad`, `categoria`, `imagen`, `id_elegido`, `completada`, `estado`) VALUES
-(1, 'Se busca niÃ±era  ', 'Es  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo sobreviviÃ³ 500 aÃ±os, sino que tambien ingresÃ³ como texto de relleno en documentos electrÃ³nicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creaciÃ³n de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y mÃ¡s recientemente con software de autoediciÃ³n, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.\r\n\r\nÂ¿Por quÃ© lo usamos?\r\nEs un hecho establecido hace demasiado tiempo que un lector se distraerÃ¡ con el contenido del texto de un sitio mientras que mira su diseÃ±o. El punto de usar Lorem Ipsum es que tiene una distribuciÃ³n mÃ¡s o menos normal', '2017-05-30', '2017-07-29', '2017-07-06', 4, 'Buenos Aires  ', 'Baradero', 'Familiar  ', '', NULL, 0, 'activa'),
-(3, 'Alguien me pinta la casa?', 'Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza clÂ´sica de la literatura del Latin, que data del aÃ±o 45 antes de Cristo, haciendo que este adquiera mas de 2000 aÃ±os de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontrÃ³ una de las palabras mÃ¡s oscuras de la lengua del latÃ­n, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latÃ­n, descubriÃ³ la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum"', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'descarga.jpg', 5, 0, 'activa'),
-(4, 'Una gauchada modificada de vuelta ', '  EstÃ¡ modificada otra vez ', '2017-05-30', '2017-07-29', '0000-00-00', 1, ' ', '', 'Gastronomicos   ', '', NULL, 0, 'activa'),
-(5, 'Restaurador de botas', 'Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayorÃ­a sufriÃ³ alteraciones en alguna manera, ya sea porque se le agregÃ³ humor, o palabras aleatorias que no parecen ni un poco creÃ­bles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitÃ¡s estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el Ãºnico generador verdadero (vÃ¡lido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latÃ­n, combinadas con estructuras muy Ãºtiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estarÃ¡ libre de repeticiones, humor agregado o palabras no caracterÃ­sticas del lenguaje, etc.', '2017-05-30', '2017-07-29', '0000-00-00', 1, 'Buenos Aires', 'Capilla del Seï¿½or', 'Servicios Domesticos', 'images.jpg', 3, 1, 'activa'),
-(6, 'Se busca Cocinero', 'Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayorÃ­a sufriÃ³ alteraciones en alguna manera, ya sea porque se le agregÃ³ humor, o palabras aleatorias que no parecen ni un poco creÃ­bles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitÃ¡s estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el Ãºnico generador verdadero (vÃ¡lido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latÃ­n, combinadas con estructuras muy Ãºtiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estarÃ¡ libre de repeticiones, humor agregado o palabras no caracterÃ­sticas del lenguaje, etc.', '2017-05-30', '2017-07-29', '0000-00-00', 1, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'images (1).jpg', 4, 0, 'activa'),
-(7, 'Buscamos gente que pueda ayudarnos a fabricar una casa', ' en Virginia, encontrÃ³ una de las palabras mÃ¡s oscuras de la lengua del latÃ­n, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latÃ­n, descubriÃ³ la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el aÃ±o 45 antes de Cristo. Este libro es un tratado de teorÃ­a de Ã©ticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la secciÃ³n 1.10.32\r\n\r\nEl trozo de texto estÃ¡ndar de Lorem Ipsum usado desde el aÃ±o 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son tambiÃ©n reproducidas en su f', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', 'Lobos', 'Servicios Domesticos', 'descarga (1).jpg', NULL, 0, 'activa'),
-(8, 'Gauchada 7', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo so', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'fixie-bicicletas.jpg', NULL, 0, 'activa'),
-(9, 'Gauchada 8', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo so', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'images (2).jpg', 1, 0, 'activa'),
-(11, 'Gauchada 10', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo soLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estÃ¡ndar de las industrias desde el aÃ±o 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usÃ³ una galerÃ­a de textos y los mezclÃ³ de tal manera que logrÃ³ hacer un libro de textos especimen. No sÃ³lo so', '2017-05-30', '2017-07-29', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', 'images (3).jpg', 1, 0, 'inactiva'),
-(12, 'asdas', 'gfdgddf', '2017-06-11', '2017-08-10', '0000-00-00', 1, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', '', 5, 0, 'activa'),
-(13, 'Gauchada 1000', 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ', '2017-06-13', '2017-08-12', '0000-00-00', 4, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', '', 3, 1, 'activa');
+(14, 'Un delantero para un futbol 5', 'Necesito de alguien que quiera jugar un fÃºtbol 5 y que juegue de delantero, porque el actual delantero estÃ¡ por jubilarse. \r\nNecesariamente que haya jugado varios partidos y que sepa atajar (Por si el arquero se aburre).\r\nSaludos.', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires', '3 de febrero', 'Entretenimiento', '470039.jpg', NULL, 0, 'activa'),
+(15, 'Obrero para mi casa  ', '  Se necesita un obrero que trabaje gratis en mi casa. Necesito terminar el paredÃ³n de afuera, pintar el techo y revocar la pared del sÃ³tano. Debe cumplir el horario perfectamente y no tolero faltas.  ', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires  ', 'A. Alsina', 'Familiar  ', 'obrero.jpg', NULL, 0, 'activa'),
+(17, 'asdasf', 'gdfgfgdf', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires', '25 de Mayo', 'Gastronomicos', '', NULL, 0, 'inactiva'),
+(20, 'asdas', 'sfdfgdf', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', '', NULL, 0, 'inactiva'),
+(21, 'Esta funca', 'seee', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', '', NULL, 0, 'inactiva'),
+(22, 'asdas', 'fdgfdfgd', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', '', NULL, 0, 'inactiva');
 
 -- --------------------------------------------------------
 
@@ -2461,6 +2446,21 @@ INSERT INTO `localidades` (`id_localidad`, `id_provincia`, `localidad`, `provinc
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `message_threads`
+--
+
+CREATE TABLE `message_threads` (
+  `id` int(11) NOT NULL,
+  `msg_to` int(11) NOT NULL,
+  `msg_from` int(11) NOT NULL,
+  `msg_subject` varchar(255) NOT NULL,
+  `last_update` datetime NOT NULL,
+  `last_update_by` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `messages`
 --
 
@@ -2473,21 +2473,6 @@ CREATE TABLE `messages` (
   `msg_thread` int(11) NOT NULL,
   `deleted` int(1) NOT NULL,
   `sent_on` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `message_threads`
---
-
-CREATE TABLE `message_threads` (
-  `id` int(11) NOT NULL,
-  `msg_to` int(11) NOT NULL,
-  `msg_from` int(11) NOT NULL,
-  `msg_subject` varchar(255) NOT NULL,
-  `last_update` datetime NOT NULL,
-  `last_update_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -2510,20 +2495,9 @@ CREATE TABLE `notificaciones` (
 --
 
 INSERT INTO `notificaciones` (`id_notificacion`, `id_usuario`, `cuerpo`, `fecha`, `estado`, `link`) VALUES
-(3, 4, 'El usuario admin se ha postulado a tu gauchada Gauchada 10', '2017-06-26 22:53:50', 'Leida', 'single_view.php?id=11'),
-(5, 1, 'El usuario Matias se ha postulado a tu gauchada Una gauchada modificada de vuelta ', '2017-06-27 14:21:03', 'Leida', 'single_view.php?id=4#seccion-postu'),
-(8, 1, 'El usuario Matias se ha postulado a tu gauchada Una gauchada modificada de vuelta ', '2017-06-27 14:41:25', 'Leida', 'single_view.php?id=4#seccion-postu'),
-(9, 1, 'El dueÃ±o de la gauchada Gauchada 10 ha decidido eliminarla, por lo tanto tu postulaciÃ³n se dio de baja tambiÃ©n', '2017-06-27 14:54:25', 'Leida', ''),
-(10, 3, 'El dueÃ±o de la gauchada Gauchada 10 ha decidido eliminarla, por lo tanto tu postulaciÃ³n se dio de baja tambiÃ©n', '2017-06-27 14:54:25', 'No leida', ''),
-(11, 4, 'El usuario admin se ha postulado a tu gauchada Alguien me pinta la casa?', '2017-06-27 14:59:20', 'Leida', 'single_view.php?id=3#seccion-postu'),
-(12, 4, 'El usuario Matias se ha postulado a tu gauchada Alguien me pinta la casa?', '2017-06-27 14:59:42', 'Leida', 'single_view.php?id=3#seccion-postu'),
-(13, 5, 'Has sido seleccionado como colaborador para realizar la gauchada: Alguien me pinta la casa?', '2017-06-27 15:00:08', 'Leida', 'single_view.php?id=3'),
-(14, 4, 'El usuario admin se ha postulado a tu gauchada Gauchada 8', '2017-06-27 15:08:30', 'Leida', 'single_view.php?id=9#seccion-postu'),
-(15, 1, 'Has sido seleccionado como colaborador para realizar la gauchada: Gauchada 8', '2017-06-27 15:08:57', 'Leida', 'single_view.php?id=9'),
-(16, 1, 'El usuario greatCharles ha dejado un comentario en tu gauchada Una gauchada modificada de vuelta ', '2017-06-27 16:15:58', 'Leida', 'single_view.php?id=4#seccion-comments'),
-(17, 1, 'El usuario greatCharles ha dejado un comentario en tu gauchada Una gauchada modificada de vuelta ', '2017-06-27 16:16:09', 'Leida', 'single_view.php?id=4#seccion-comments'),
-(18, 4, 'El usuario admin ha dejado un comentario en tu gauchada Gauchada 7', '2017-06-27 16:28:01', 'Leida', 'single_view.php?id=8#seccion-comments'),
-(19, 4, 'El usuario admin se ha postulado a tu gauchada Gauchada 7', '2017-06-27 16:34:47', 'Leida', 'single_view.php?id=8#seccion-postu');
+(1, 5, 'El usuario admin ha dejado un comentario en tu gauchada Un delantero para un futbol 5', '2017-06-29 19:28:17', 'Leida', 'single_view.php?id=14#seccion-comments'),
+(2, 5, 'El usuario admin se ha postulado a tu gauchada asdasf', '2017-06-29 20:59:35', 'Leida', 'single_view.php?id=17#seccion-postu'),
+(3, 1, 'El dueÃ±o de la gauchada asdasf ha decidido eliminarla, por lo tanto tu postulaciÃ³n se dio de baja tambiÃ©n', '2017-06-29 21:00:00', 'No leida', '');
 
 -- --------------------------------------------------------
 
@@ -2593,25 +2567,6 @@ INSERT INTO `pages` (`id`, `page`, `private`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `permissions`
---
-
-CREATE TABLE `permissions` (
-  `id` int(11) NOT NULL,
-  `name` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `permissions`
---
-
-INSERT INTO `permissions` (`id`, `name`) VALUES
-(1, 'User'),
-(2, 'Administrator');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `permission_page_matches`
 --
 
@@ -2663,6 +2618,25 @@ INSERT INTO `permission_page_matches` (`id`, `permission_id`, `page_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`) VALUES
+(1, 'User'),
+(2, 'Administrator');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `postulacion`
 --
 
@@ -2680,16 +2654,7 @@ CREATE TABLE `postulacion` (
 --
 
 INSERT INTO `postulacion` (`id_postulacion`, `id_user`, `id_gauchada`, `fecha`, `comentario`, `estado`) VALUES
-(6, 3, 11, '2017-06-20 00:00:00', 'HpÃ±a', 'Rechazado'),
-(8, 4, 6, '2017-06-20 15:35:37', 'Soy cocinero', 'En espera'),
-(9, 3, 13, '2017-06-20 17:21:46', 'a ver', 'En espera'),
-(10, 3, 5, '2017-06-20 17:49:53', 'Yo tengo una', 'Elegido'),
-(15, 1, 11, '2017-06-26 22:53:50', 'asd', 'Elegido'),
-(16, 5, 8, '2017-06-27 14:19:32', 'Holaaa', 'En espera'),
-(19, 5, 4, '2017-06-27 14:41:25', 'Holaa', 'En espera'),
-(21, 5, 3, '2017-06-27 14:59:42', 'Hola', 'Elegido'),
-(22, 1, 9, '2017-06-27 15:08:30', 'asdas', 'Elegido'),
-(23, 1, 8, '2017-06-27 16:34:47', 'Aceptamee', 'En espera');
+(1, 1, 17, '2017-06-29 20:59:35', 'aseee', 'En espera');
 
 -- --------------------------------------------------------
 
@@ -2839,6 +2804,31 @@ INSERT INTO `test` (`titulo`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `user_permission_matches`
+--
+
+CREATE TABLE `user_permission_matches` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `user_permission_matches`
+--
+
+INSERT INTO `user_permission_matches` (`id`, `user_id`, `permission_id`) VALUES
+(100, 1, 1),
+(101, 1, 2),
+(102, 2, 1),
+(103, 3, 1),
+(104, 4, 1),
+(105, 5, 1),
+(106, 6, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -2891,11 +2881,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `fname`, `lname`, `permissions`, `logins`, `account_owner`, `account_id`, `company`, `stripe_cust_id`, `billing_phone`, `billing_srt1`, `billing_srt2`, `billing_city`, `billing_state`, `billing_zip_code`, `join_date`, `last_login`, `email_verified`, `vericode`, `title`, `active`, `custom1`, `custom2`, `custom3`, `custom4`, `custom5`, `oauth_provider`, `oauth_uid`, `gender`, `locale`, `gpluslink`, `picture`, `created`, `modified`, `fb_uid`, `un_changed`, `creditos`, `puntos`) VALUES
-(1, 'sreguren@gmail.com', 'admin', '$2y$12$1v06jm2KMOXuuo3qP7erTuTIJFOnzhpds1Moa8BadnUUeX0RV3ex.', 'Sebasti&aacute;n', 'Eguren', 1, 109, 1, 0, 'UserSpice', '', '', '', '', '', '', '', '2016-01-01 00:00:00', '2017-06-27 19:36:19', 1, '322418', '', 0, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '1899-11-30 00:00:00', '', 0, 182573, 0),
+(1, 'sreguren@gmail.com', 'admin', '$2y$12$1v06jm2KMOXuuo3qP7erTuTIJFOnzhpds1Moa8BadnUUeX0RV3ex.', 'Sebasti&aacute;n', 'Eguren', 1, 112, 1, 0, 'UserSpice', '', '', '', '', '', '', '', '2016-01-01 00:00:00', '2017-06-29 23:59:26', 1, '322418', '', 0, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '1899-11-30 00:00:00', '', 0, 2, 0),
 (2, 'noreply@userspice.com', 'user', '$2y$12$HZa0/d7evKvuHO8I3U8Ff.pOjJqsGTZqlX8qURratzP./EvWetbkK', 'Sample', 'User', 1, 5, 1, 0, 'none', '', '', '', '', '', '', '', '2016-01-02 00:00:00', '2017-02-20 12:14:10', 1, '970748', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0),
 (3, 'poroto.acosta@gmail.com', 'Poroto', '$2y$12$sJST.wocDtg1/c9.G.RNmOOiZDDt9KZnMreRCbbCsxfQiHrKXKLl2', 'Alejoo', 'Acostaaa', 1, 7, 1, 0, '', '', '', '', '', '', '', '', '2017-05-23 21:38:58', '2017-06-20 20:49:41', 1, '984480', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0),
 (4, 'menendez_carlos@yahoo.com.ar', 'greatCharles', '$2y$12$EDpNT/NH1PRpfSS1JnDbkukXujFQdZy.XifXfCScGfrWM5rKqWNju', 'Carlos', 'Men&eacute;ndez', 1, 35, 1, 0, '', '', '', '', '', '', '', '', '2017-05-28 23:29:39', '2017-06-27 19:35:04', 1, '460960', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 114, 0),
-(5, 'maatias.p.97@gmail.com', 'Matias', '$2y$12$elb/nHsth6p11gCdZ3LL4uGSyfDjS1JBqSFHvwtOk23PFYX.jsYxe', 'Mat&iacute;as', 'Pompilio', 1, 14, 1, 0, '', '', '', '', '', '', '', '', '2017-06-01 23:50:26', '2017-06-27 18:43:36', 1, '764755', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 1204, 0),
+(5, 'maatias.p.97@gmail.com', 'Matias', '$2y$12$elb/nHsth6p11gCdZ3LL4uGSyfDjS1JBqSFHvwtOk23PFYX.jsYxe', 'Mat&iacute;as', 'Pompilio', 1, 19, 1, 0, '', '', '', '', '', '', '', '', '2017-06-01 23:50:26', '2017-06-30 00:00:35', 1, '764755', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 2, 3),
 (6, 'asdsdfd@gmail.com', 'Hola', '$2y$12$VKR7x7Z.vU.FlGBXCcsoee3pn8RDF7IWE5hN9D9TuOZGU88iMz.zW', 'Hola', 'Pompilio', 1, 0, 1, 0, '', '', '', '', '', '', '', '', '2017-06-11 19:32:28', '0000-00-00 00:00:00', 1, '661703', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0);
 
 -- --------------------------------------------------------
@@ -2917,10 +2907,10 @@ CREATE TABLE `users_online` (
 --
 
 INSERT INTO `users_online` (`id`, `ip`, `timestamp`, `user_id`, `session`) VALUES
-(1, '::1', '1498592864', 1, ''),
+(1, '::1', '1498780777', 1, ''),
 (2, '::1', '1497991795', 3, ''),
 (3, '::1', '1498592107', 4, ''),
-(4, '::1', '1498589044', 5, '');
+(4, '::1', '1498785697', 5, '');
 
 -- --------------------------------------------------------
 
@@ -2934,31 +2924,6 @@ CREATE TABLE `users_session` (
   `hash` varchar(255) NOT NULL,
   `uagent` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `user_permission_matches`
---
-
-CREATE TABLE `user_permission_matches` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `user_permission_matches`
---
-
-INSERT INTO `user_permission_matches` (`id`, `user_id`, `permission_id`) VALUES
-(100, 1, 1),
-(101, 1, 2),
-(102, 2, 1),
-(103, 3, 1),
-(104, 4, 1),
-(105, 5, 1),
-(106, 6, 1);
 
 --
 -- Índices para tablas volcadas
@@ -3010,15 +2975,15 @@ ALTER TABLE `localidades`
   ADD PRIMARY KEY (`id_localidad`);
 
 --
--- Indices de la tabla `messages`
---
-ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `message_threads`
 --
 ALTER TABLE `message_threads`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `messages`
+--
+ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3035,15 +3000,15 @@ ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `permissions`
---
-ALTER TABLE `permissions`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `permission_page_matches`
 --
 ALTER TABLE `permission_page_matches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `permissions`
+--
+ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3073,6 +3038,12 @@ ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `user_permission_matches`
+--
+ALTER TABLE `user_permission_matches`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -3092,12 +3063,6 @@ ALTER TABLE `users_session`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `user_permission_matches`
---
-ALTER TABLE `user_permission_matches`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -3110,12 +3075,12 @@ ALTER TABLE `audit`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_comentario` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `email`
 --
@@ -3125,7 +3090,7 @@ ALTER TABLE `email`
 -- AUTO_INCREMENT de la tabla `gauchada`
 --
 ALTER TABLE `gauchada`
-  MODIFY `id_gauchada` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_gauchada` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `keys`
 --
@@ -3137,40 +3102,40 @@ ALTER TABLE `keys`
 ALTER TABLE `localidades`
   MODIFY `id_localidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2383;
 --
--- AUTO_INCREMENT de la tabla `messages`
---
-ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT de la tabla `message_threads`
 --
 ALTER TABLE `message_threads`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `pages`
 --
 ALTER TABLE `pages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
--- AUTO_INCREMENT de la tabla `permissions`
---
-ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
 -- AUTO_INCREMENT de la tabla `permission_page_matches`
 --
 ALTER TABLE `permission_page_matches`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
+-- AUTO_INCREMENT de la tabla `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT de la tabla `postulacion`
 --
 ALTER TABLE `postulacion`
-  MODIFY `id_postulacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_postulacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `profiles`
 --
@@ -3187,6 +3152,11 @@ ALTER TABLE `provincias`
 ALTER TABLE `settings`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT de la tabla `user_permission_matches`
+--
+ALTER TABLE `user_permission_matches`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+--
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
@@ -3201,11 +3171,6 @@ ALTER TABLE `users_online`
 --
 ALTER TABLE `users_session`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `user_permission_matches`
---
-ALTER TABLE `user_permission_matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 --
 -- Restricciones para tablas volcadas
 --
@@ -3235,7 +3200,588 @@ ALTER TABLE `notificaciones`
 ALTER TABLE `postulacion`
   ADD CONSTRAINT `postulacion_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `postulacion_ibfk_3` FOREIGN KEY (`id_gauchada`) REFERENCES `gauchada` (`id_gauchada`);
+--
+-- Base de datos: `phpmyadmin`
+--
+CREATE DATABASE IF NOT EXISTS `phpmyadmin` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `phpmyadmin`;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__bookmark`
+--
+
+CREATE TABLE `pma__bookmark` (
+  `id` int(11) NOT NULL,
+  `dbase` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `user` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `label` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `query` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Bookmarks';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__central_columns`
+--
+
+CREATE TABLE `pma__central_columns` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `col_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `col_type` varchar(64) COLLATE utf8_bin NOT NULL,
+  `col_length` text COLLATE utf8_bin,
+  `col_collation` varchar(64) COLLATE utf8_bin NOT NULL,
+  `col_isNull` tinyint(1) NOT NULL,
+  `col_extra` varchar(255) COLLATE utf8_bin DEFAULT '',
+  `col_default` text COLLATE utf8_bin
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Central list of columns';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__column_info`
+--
+
+CREATE TABLE `pma__column_info` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `column_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `comment` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `mimetype` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `transformation` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `transformation_options` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `input_transformation` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `input_transformation_options` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Column information for phpMyAdmin';
+
+--
+-- Volcado de datos para la tabla `pma__column_info`
+--
+
+INSERT INTO `pma__column_info` (`id`, `db_name`, `table_name`, `column_name`, `comment`, `mimetype`, `transformation`, `transformation_options`, `input_transformation`, `input_transformation_options`) VALUES
+(1, 'dbd', '', '(db_comment)', 'hola', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__designer_settings`
+--
+
+CREATE TABLE `pma__designer_settings` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `settings_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Settings related to Designer';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__export_templates`
+--
+
+CREATE TABLE `pma__export_templates` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `export_type` varchar(10) COLLATE utf8_bin NOT NULL,
+  `template_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `template_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved export templates';
+
+--
+-- Volcado de datos para la tabla `pma__export_templates`
+--
+
+INSERT INTO `pma__export_templates` (`id`, `username`, `export_type`, `template_name`, `template_data`) VALUES
+(1, 'root', 'server', 'db', '{"quick_or_custom":"quick","what":"sql","db_select[]":["phpmyadmin","test","testdb","unagauchada"],"output_format":"sendit","filename_template":"@SERVER@","remember_template":"on","charset":"utf-8","compression":"none","maxsize":"","codegen_structure_or_data":"data","codegen_format":"0","csv_separator":",","csv_enclosed":"\\"","csv_escaped":"\\"","csv_terminated":"AUTO","csv_null":"NULL","csv_structure_or_data":"data","excel_null":"NULL","excel_edition":"win","excel_structure_or_data":"data","htmlword_structure_or_data":"structure_and_data","htmlword_null":"NULL","json_structure_or_data":"data","latex_caption":"something","latex_structure_or_data":"structure_and_data","latex_structure_caption":"Estructura de la tabla @TABLE@","latex_structure_continued_caption":"Estructura de la tabla @TABLE@ (continÃºa)","latex_structure_label":"tab:@TABLE@-structure","latex_relation":"something","latex_comments":"something","latex_mime":"something","latex_columns":"something","latex_data_caption":"Contenido de la tabla @TABLE@","latex_data_continued_caption":"Contenido de la tabla @TABLE@ (continÃºa)","latex_data_label":"tab:@TABLE@-data","latex_null":"\\\\textit{NULL}","mediawiki_structure_or_data":"data","mediawiki_caption":"something","mediawiki_headers":"something","ods_null":"NULL","ods_structure_or_data":"data","odt_structure_or_data":"structure_and_data","odt_relation":"something","odt_comments":"something","odt_mime":"something","odt_columns":"something","odt_null":"NULL","pdf_report_title":"","pdf_structure_or_data":"data","phparray_structure_or_data":"data","sql_include_comments":"something","sql_header_comment":"","sql_compatibility":"NONE","sql_structure_or_data":"structure_and_data","sql_create_table":"something","sql_auto_increment":"something","sql_create_view":"something","sql_procedure_function":"something","sql_create_trigger":"something","sql_backquotes":"something","sql_type":"INSERT","sql_insert_syntax":"both","sql_max_query_size":"50000","sql_hex_for_binary":"something","sql_utc_time":"something","texytext_structure_or_data":"structure_and_data","texytext_null":"NULL","yaml_structure_or_data":"data","":null,"as_separate_files":null,"csv_removeCRLF":null,"csv_columns":null,"excel_removeCRLF":null,"excel_columns":null,"htmlword_columns":null,"json_pretty_print":null,"ods_columns":null,"sql_dates":null,"sql_relation":null,"sql_mime":null,"sql_use_transaction":null,"sql_disable_fk":null,"sql_views_as_tables":null,"sql_metadata":null,"sql_drop_database":null,"sql_drop_table":null,"sql_if_not_exists":null,"sql_truncate":null,"sql_delayed":null,"sql_ignore":null,"texytext_columns":null}');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__favorite`
+--
+
+CREATE TABLE `pma__favorite` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `tables` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Favorite tables';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__history`
+--
+
+CREATE TABLE `pma__history` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `sqlquery` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='SQL history for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__navigationhiding`
+--
+
+CREATE TABLE `pma__navigationhiding` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `item_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `item_type` varchar(64) COLLATE utf8_bin NOT NULL,
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Hidden items of navigation tree';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__pdf_pages`
+--
+
+CREATE TABLE `pma__pdf_pages` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `page_nr` int(10) UNSIGNED NOT NULL,
+  `page_descr` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='PDF relation pages for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__recent`
+--
+
+CREATE TABLE `pma__recent` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `tables` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Recently accessed tables';
+
+--
+-- Volcado de datos para la tabla `pma__recent`
+--
+
+INSERT INTO `pma__recent` (`username`, `tables`) VALUES
+('root', '[{"db":"db","table":"users"},{"db":"db","table":"gauchada"},{"db":"db","table":"categoria"},{"db":"db","table":"notificaciones"},{"db":"db","table":"postulacion"},{"db":"db","table":"audit"},{"db":"db","table":"publicacion"},{"db":"db","table":"comentarios"},{"db":"db","table":"email"},{"db":"db","table":"localidades"}]');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__relation`
+--
+
+CREATE TABLE `pma__relation` (
+  `master_db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `master_table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `master_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `foreign_db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `foreign_table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `foreign_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relation table';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__savedsearches`
+--
+
+CREATE TABLE `pma__savedsearches` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `search_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `search_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved searches';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__table_coords`
+--
+
+CREATE TABLE `pma__table_coords` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `pdf_page_number` int(11) NOT NULL DEFAULT '0',
+  `x` float UNSIGNED NOT NULL DEFAULT '0',
+  `y` float UNSIGNED NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__table_info`
+--
+
+CREATE TABLE `pma__table_info` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `display_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table information for phpMyAdmin';
+
+--
+-- Volcado de datos para la tabla `pma__table_info`
+--
+
+INSERT INTO `pma__table_info` (`db_name`, `table_name`, `display_field`) VALUES
+('db', 'comentarios', 'id_gauchada');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__table_uiprefs`
+--
+
+CREATE TABLE `pma__table_uiprefs` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `prefs` text COLLATE utf8_bin NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tables'' UI preferences';
+
+--
+-- Volcado de datos para la tabla `pma__table_uiprefs`
+--
+
+INSERT INTO `pma__table_uiprefs` (`username`, `db_name`, `table_name`, `prefs`, `last_update`) VALUES
+('root', 'db', 'gauchada', '{"sorted_col":"`gauchada`.`id_usuario` ASC"}', '2017-06-08 17:40:04');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__tracking`
+--
+
+CREATE TABLE `pma__tracking` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `version` int(10) UNSIGNED NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  `schema_snapshot` text COLLATE utf8_bin NOT NULL,
+  `schema_sql` text COLLATE utf8_bin,
+  `data_sql` longtext COLLATE utf8_bin,
+  `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') COLLATE utf8_bin DEFAULT NULL,
+  `tracking_active` int(1) UNSIGNED NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Database changes tracking for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__userconfig`
+--
+
+CREATE TABLE `pma__userconfig` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `config_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User preferences storage for phpMyAdmin';
+
+--
+-- Volcado de datos para la tabla `pma__userconfig`
+--
+
+INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
+('root', '2016-10-18 15:49:07', '{"lang":"es","collation_connection":"utf8mb4_unicode_ci"}');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__usergroups`
+--
+
+CREATE TABLE `pma__usergroups` (
+  `usergroup` varchar(64) COLLATE utf8_bin NOT NULL,
+  `tab` varchar(64) COLLATE utf8_bin NOT NULL,
+  `allowed` enum('Y','N') COLLATE utf8_bin NOT NULL DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User groups with configured menu items';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pma__users`
+--
+
+CREATE TABLE `pma__users` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `usergroup` varchar(64) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Users and their assignments to user groups';
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `pma__bookmark`
+--
+ALTER TABLE `pma__bookmark`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `pma__central_columns`
+--
+ALTER TABLE `pma__central_columns`
+  ADD PRIMARY KEY (`db_name`,`col_name`);
+
+--
+-- Indices de la tabla `pma__column_info`
+--
+ALTER TABLE `pma__column_info`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`);
+
+--
+-- Indices de la tabla `pma__designer_settings`
+--
+ALTER TABLE `pma__designer_settings`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indices de la tabla `pma__export_templates`
+--
+ALTER TABLE `pma__export_templates`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `u_user_type_template` (`username`,`export_type`,`template_name`);
+
+--
+-- Indices de la tabla `pma__favorite`
+--
+ALTER TABLE `pma__favorite`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indices de la tabla `pma__history`
+--
+ALTER TABLE `pma__history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `username` (`username`,`db`,`table`,`timevalue`);
+
+--
+-- Indices de la tabla `pma__navigationhiding`
+--
+ALTER TABLE `pma__navigationhiding`
+  ADD PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`);
+
+--
+-- Indices de la tabla `pma__pdf_pages`
+--
+ALTER TABLE `pma__pdf_pages`
+  ADD PRIMARY KEY (`page_nr`),
+  ADD KEY `db_name` (`db_name`);
+
+--
+-- Indices de la tabla `pma__recent`
+--
+ALTER TABLE `pma__recent`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indices de la tabla `pma__relation`
+--
+ALTER TABLE `pma__relation`
+  ADD PRIMARY KEY (`master_db`,`master_table`,`master_field`),
+  ADD KEY `foreign_field` (`foreign_db`,`foreign_table`);
+
+--
+-- Indices de la tabla `pma__savedsearches`
+--
+ALTER TABLE `pma__savedsearches`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`);
+
+--
+-- Indices de la tabla `pma__table_coords`
+--
+ALTER TABLE `pma__table_coords`
+  ADD PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`);
+
+--
+-- Indices de la tabla `pma__table_info`
+--
+ALTER TABLE `pma__table_info`
+  ADD PRIMARY KEY (`db_name`,`table_name`);
+
+--
+-- Indices de la tabla `pma__table_uiprefs`
+--
+ALTER TABLE `pma__table_uiprefs`
+  ADD PRIMARY KEY (`username`,`db_name`,`table_name`);
+
+--
+-- Indices de la tabla `pma__tracking`
+--
+ALTER TABLE `pma__tracking`
+  ADD PRIMARY KEY (`db_name`,`table_name`,`version`);
+
+--
+-- Indices de la tabla `pma__userconfig`
+--
+ALTER TABLE `pma__userconfig`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indices de la tabla `pma__usergroups`
+--
+ALTER TABLE `pma__usergroups`
+  ADD PRIMARY KEY (`usergroup`,`tab`,`allowed`);
+
+--
+-- Indices de la tabla `pma__users`
+--
+ALTER TABLE `pma__users`
+  ADD PRIMARY KEY (`username`,`usergroup`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `pma__bookmark`
+--
+ALTER TABLE `pma__bookmark`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `pma__column_info`
+--
+ALTER TABLE `pma__column_info`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `pma__export_templates`
+--
+ALTER TABLE `pma__export_templates`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `pma__history`
+--
+ALTER TABLE `pma__history`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `pma__pdf_pages`
+--
+ALTER TABLE `pma__pdf_pages`
+  MODIFY `page_nr` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `pma__savedsearches`
+--
+ALTER TABLE `pma__savedsearches`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;--
+-- Base de datos: `test`
+--
+CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `test`;
+--
+-- Base de datos: `testdb`
+--
+CREATE DATABASE IF NOT EXISTS `testdb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `testdb`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(12) NOT NULL,
+  `fname` varchar(30) NOT NULL,
+  `lname` varchar(30) NOT NULL,
+  `email` varchar(60) NOT NULL,
+  `password` varchar(40) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;--
+-- Base de datos: `unagauchada`
+--
+CREATE DATABASE IF NOT EXISTS `unagauchada` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `unagauchada`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ci_sessions`
+--
+
+CREATE TABLE `ci_sessions` (
+  `id` varchar(40) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `data` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ci_sessions`
+--
+
+INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
+('29bcaadeb3b97e8aac15b029ef4cd0618bb7e348', '::1', 1495489270, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439353438383939373b),
+('d15d1b5de232b25082710064276e485f502f4fb3', '::1', 1495489632, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439353438393435383b);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `username` varchar(255) NOT NULL DEFAULT '',
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `password` varchar(255) NOT NULL DEFAULT '',
+  `avatar` varchar(255) DEFAULT 'default.jpg',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `is_admin` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `is_confirmed` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `ci_sessions`
+--
+ALTER TABLE `ci_sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
+
+--
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
