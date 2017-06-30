@@ -1,5 +1,5 @@
 function confirmarBajaGauchada(id_gau) {
-  swal({   title: "Estás seguro?",   text: "No vas a poder recuperar esta Gauchada!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero borrarla!",   closeOnConfirm: false }, function(){ window.location = 'baja_publicacion.php?id_gau=' + id_gau   });
+  swal({   title: "Estás seguro?",   text: "En caso de que la publicación posea postulantes se perderá el credito gastado!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero borrarla!",   closeOnConfirm: false }, function(){ window.location = 'baja_publicacion.php?id_gau=' + id_gau   });
 }
 
 function confirmarBajaPostulacion(id_postu) {

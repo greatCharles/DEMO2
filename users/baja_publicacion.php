@@ -27,7 +27,13 @@ foreach($postulantes as $postulacion){
 		 <?php
 			$consulta_baja = "UPDATE gauchada SET estado= 'inactiva' WHERE id_gauchada=$id_gau";
 			if ($conexion->query($consulta_baja)) {
-				echo '<p>Tu gauchada ha sido eliminada exitosamente</p>';
+        if(!poseePostulantes($conexion,$id_gau)){
+          devolver($conexion, $gauchada['0']['6']);
+          echo '<p>Tu gauchada ha sido eliminada exitosamente y se te ha devuelto el crédito gastado</p>';
+        }
+      else{
+				echo '<p>Tu gauchada ha sido eliminada exitosamente y no se te ha podido recuperar el crédito</p>';
+      }
 			} else {
 				echo "Error: " . $consulta_baja . "<br>" . mysqli_error(conexion($bd_config));
 			}

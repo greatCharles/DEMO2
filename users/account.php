@@ -122,6 +122,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 													<?php endforeach; ?>
 										</div>
 									</div>
+                  <br>
 					</div>
 					   <div class="tab-pane fade" id="C">
 					   	  <div class="container-fluid">

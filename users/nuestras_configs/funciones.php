@@ -59,6 +59,12 @@ function getCreditos($conex, $id){
   return $result['0']['0'];
 }
 
+function devolver($conex, $id){
+  $creditos= getCreditos($conex, $id) + 1;
+  $conex->query("UPDATE users SET creditos= $creditos WHERE id= $id");
+  return $creditos;
+}
+
 function setCreditos($conex, $id){
   $creditos= getCreditos($conex, $id) - 1;
   $conex->query("UPDATE users SET creditos= $creditos WHERE id= $id");
@@ -85,6 +91,11 @@ function getPostulaciones($conexion, $id_gau){
 
 function estaPostulado($conexion, $id_gau, $id_user){
   $result= $conexion->query("SELECT * FROM postulacion WHERE id_gauchada= $id_gau AND id_user= $id_user");
+  return (mysqli_num_rows($result) > 0);
+}
+
+function poseePostulantes($conexion, $id_gau){
+  $result= $conexion->query("SELECT * FROM postulacion WHERE id_gauchada= $id_gau");
   return (mysqli_num_rows($result) > 0);
 }
 

@@ -35,6 +35,10 @@ function confirmarPostulanteElegido(id_user, id_gau) {
   swal({   title: "Estás seguro de elegirlo?",   text: "Se desestimarán las demás postulaciones",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero elegirlo!",   closeOnConfirm: false }, function(){ window.location = 'postulante_elegido.php?id_user=' + id_user  + '&id_gau=' + id_gau  });
 }
 
+function confirmarBajaGauchada(id_gau) {
+  swal({   title: "Estás seguro?",   text: "En caso de que la publicación posea postulantes se perderá el credito gastado!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero borrarla!",   closeOnConfirm: false }, function(){ window.location = 'baja_publicacion.php?id_gau=' + id_gau   });
+}
+
 </script>
 
 <?php
@@ -100,8 +104,8 @@ function confirmarPostulanteElegido(id_user, id_gau) {
       <?php endif; ?>
    <!--Si no iniciaste sesión-->
    <?php else: ?>
-        <p>Quieres postularte para realizar esta gauchada?</p><br>
-        <a class="btn btn-primary" href="#">Inicia sesión</a>
+        <!-- <p>Quieres postularte para realizar esta gauchada?</p><br>
+        <a class="btn btn-primary" href="#">Inicia sesión</a> -->
    <?php endif; ?>
   </div>
 </div>
