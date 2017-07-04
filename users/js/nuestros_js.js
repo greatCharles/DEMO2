@@ -10,6 +10,9 @@ function confirmarPostulanteElegido(id_postu) {
   swal({   title: "Estás seguro de elegirlo?",   text: "Se desestimarán las demás postulaciones",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero elegirlo!",   closeOnConfirm: false }, function(){ window.location = 'postulante_elegido.php?id_postu=' + id_postu   });
 }
 
+function confirmarBajaCuenta(id_user) {
+  swal({   title: "Estás seguro?",   text: "Tu cuenta no se podrá recuperar!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero borrarla!",   closeOnConfirm: false }, function(){ window.location = 'borrar_cuenta.php?id_user=' + id_user   });
+}
 
 function enviar_comentario(id_gau, id_user) {
   swal({

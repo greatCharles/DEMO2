@@ -142,4 +142,9 @@ function tienePostulantes($conex,$id_gau){
   return (mysqli_num_rows($result) > 0);
 }
 
+function borrarDatosCuenta($conex, $id_user){
+  $conex->query("DELETE FROM users WHERE id = $id_user");
+  $conex->query("DELETE FROM notificaciones WHERE id_usuario = $id_user");
+}
+
 ?>

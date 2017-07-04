@@ -1,6 +1,7 @@
 <html>
   <head>
     <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/nuestros_js.js"></script>
     <link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css">
     <link rel="stylesheet" href="css/estilo_notifi.css">
   </head>
@@ -65,6 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<p>Créditos disponibles: <?php echo getCreditos($conexion, $user->data()->id) ?></p>
 										<!-- <p><img src="<?=$grav; ?>" class="img-thumbnail" alt="Generic placeholder thumbnail"></p> -->
 										<p><a href="user_settings.php" class="btn btn-primary">Modificar Perfil</a></p>
+                                        <p style="width: 300"><a href="javascript:confirmarBajaCuenta(<?php echo "$get_info_id"; ?>)" class="btn btn-danger">Eliminar cuenta</a></p>
 										<!-- <p><a class="btn btn-primary" href="profile.php?id=<?=$get_info_id;?>" role="button">Perfil público</a></p> -->
 					</div>
 							<!--Contenido de Mis Gauchadas-->
@@ -134,6 +136,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 											<?php if($notificacion['4'] == "No leida"): ?>
 
                         <div class="alert" onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>">
+
+
                             <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
                             <a class="link-notifi" href=<?php echo $notificacion['5'] ?>><?php echo $notificacion['2'] ?></a>
                         </div>
