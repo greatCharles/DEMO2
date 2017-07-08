@@ -32,7 +32,7 @@ foreach($postulantes as $postulacion){
           echo '<p>Tu gauchada ha sido eliminada exitosamente y se te ha devuelto el crédito gastado</p>';
         }
       else{
-				echo '<p>Tu gauchada ha sido eliminada exitosamente y no se te ha podido recuperar el crédito</p>';
+				echo '<p>Tu gauchada ha sido eliminada exitosamente.<br>Dado que poseía postulantes no pudimos devolverte el crédito gastado</p>';
       }
 			} else {
 				echo "Error: " . $consulta_baja . "<br>" . mysqli_error(conexion($bd_config));
