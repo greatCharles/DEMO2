@@ -145,6 +145,23 @@ function tienePostulantes($conex,$id_gau){
 function borrarDatosCuenta($conex, $id_user){
   $conex->query("DELETE FROM users WHERE id = $id_user");
   $conex->query("DELETE FROM notificaciones WHERE id_usuario = $id_user");
+  $conex->query("DELETE FROM postulacion WHERE id_user = $id_user");
+  $conex->query("DELETE FROM comentarios WHERE id_user = $id_user");
+  $conex->query("UPDATE gauchada SET estado = 'inactiva' WHERE id_usuario = $id_user");
 }
+
+function getReputaciones($conex){
+    $result=$conex->query("SELECT * FROM reputaciones ORDER BY minimo");
+    $result= mysqli_fetch_all($result);
+    return $result;
+}
+
+function agregarReputacion($conex,$nombre,$minimo){
+  $sql = "INSERT INTO reputaciones (nombre,minimo) VALUES ('$nombre','$minimo')";
+  $test = mysqli_query($conex, $sql);
+  return $test;
+ }
+
+
 
 ?>

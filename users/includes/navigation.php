@@ -93,8 +93,10 @@ $email_act=$results->email_act;
 									 <!-- regular user menu link -->
 
 							<?php if (checkMenu(2,$user->data()->id)){  //Links for permission level 2 (default admin) ?>
-								<!-- <li class="divider"></li>
-								<li><a href="<?=$us_url_root?>users/admin.php"><i class="fa fa-fw fa-cogs"></i> Panel de Admin</a></li>  -->
+							 <li class="divider"></li>
+<!-- 								<li><a href="<?=$us_url_root?>users/admin.php"><i class="fa fa-fw fa-cogs"></i> Panel de Admin</a></li>  -->
+									<li><a href="<?=$us_url_root?>users/administrador.php"><i class="fa fa-fw fa-cogs"></i> Panel de Admin</a></li>
+
 							<?php } // is user an admin ?>
 							<li class="divider"></li>
 							<li><a href="<?=$us_url_root?>users/logout.php"><i class="fa fa-fw fa-sign-out"></i> Cerrar Sesión</a></li> <!-- regular Logout menu link -->
