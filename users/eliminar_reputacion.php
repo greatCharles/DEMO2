@@ -1,5 +1,4 @@
-<?php $nombre = $_POST['nombre']?>
-<?php $minimo = $_POST['minimo'] ?>
+<?php $id = $_GET['id']?>
 <?php require_once 'init.php';
 require_once $abs_us_root.$us_url_root.'users/includes/header.php';
 require_once $abs_us_root.$us_url_root.'users/includes/navigation.php';
@@ -15,12 +14,10 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
   <div class="row">
     <div class="col-xs-12">
       <div class="jumbotron text-center">
-			<?php if (agregarReputacion($conex,$nombre,$minimo)): ?>
-        		<p>Se ha creado la reputación con exito.</p><br><br>
-    		<?php else: ?>
-    			<p>Ya existe una reputacion con ese nombre o ese valor minimo.</p>    			
-    		<?php endif; ?>
-    		 <a href="admin_reputaciones.php" class="btn btn-primary">Volver</a>
+			<?php if (eliminarReputacion($conex,$id)): ?>
+       	<p>Se ha eliminado la reputación con exito.</p><br><br>
+    	<?php endif; ?>
+    		<a href="admin_reputaciones.php" class="btn btn-primary">Volver</a>
       </div>
     </div>
   </div>

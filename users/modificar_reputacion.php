@@ -2,6 +2,7 @@
 
 $nombre = $_GET['nombre']; 
 $minimo = $_GET['minimo'];
+$id = $_GET['id'];
 
 ?>
 
@@ -24,7 +25,7 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
       
 			<h1>Modificar Reputación</h1>
 
-      <form action= "<?=$form_action;?>" method="post" name="" enctype="multipart/form-data" class="form_signup" >
+      <form action= "reputacion_mod_exitosa.php?id=<?php echo $id; ?>" method="post" name="" enctype="multipart/form-data" class="form_signup" >
 
         <label for= titulo>Nombre</label>
         <input class="form-control" type="text" placeholder="Nombre" name="nombre" id="nombre" required="true" value="<?php echo $nombre; ?> "><br>

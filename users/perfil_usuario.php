@@ -7,6 +7,7 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
 $id_user= $_GET['id_user'];
 $conexion= conexion($bd_config);
 $usuario= obtener_datos_usuario($conexion, $id_user);
+$puntaje= $usuario['0']['40'];
 $miembro_desde= strtotime($usuario['0']['18']);
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 
@@ -21,6 +22,7 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
             <p>Nombre: <?php echo $usuario['0']['4'] ?></p>
             <p>Apellido: <?php echo $usuario['0']['5'] ?></p>
             <p>Miembro desde: <?php echo date('d', $miembro_desde)." de ".$meses[date('n', $miembro_desde)-1]. " del ".date('Y', $miembro_desde); ?></p>
+            <p>Reputacion: <?php echo getReputacion($conexion, $puntaje);?></p>
       </div>
     </div>
   </div>

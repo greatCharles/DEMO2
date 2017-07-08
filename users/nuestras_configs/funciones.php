@@ -160,8 +160,31 @@ function agregarReputacion($conex,$nombre,$minimo){
   $sql = "INSERT INTO reputaciones (nombre,minimo) VALUES ('$nombre','$minimo')";
   $test = mysqli_query($conex, $sql);
   return $test;
- }
+}
 
+function modificarReputacion($conex, $nombre, $minimo, $id){
+  $consulta= "UPDATE reputaciones SET nombre= '$nombre', minimo= '$minimo' WHERE id_reputacion= $id";
+  $test = mysqli_query($conex, $consulta);
+  return $test;
+}
+
+function eliminarReputacion($conex, $id){
+  $consulta= "DELETE FROM reputaciones WHERE id_reputacion='$id'";
+  $test = mysqli_query($conex, $consulta);
+  return $test;
+}
+
+function getReputacion($conex, $puntaje){
+  $consulta= mysqli_query($conex, "SELECT nombre FROM reputaciones WHERE minimo <= $puntaje ORDER BY minimo DESC LIMIT 1");
+  if ( mysqli_num_rows($consulta) != 0 ){
+    $result= mysqli_fetch_all($consulta);
+    }
+  else{
+      $consulta= mysqli_query($conex, "SELECT nombre FROM reputaciones ORDER BY minimo LIMIT 1");
+      $result= mysqli_fetch_all($consulta);         
+    } 
+  return $result['0']['0'];  
+}
 
 
 ?>

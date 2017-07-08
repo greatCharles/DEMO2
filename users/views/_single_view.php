@@ -129,7 +129,7 @@ function confirmarBajaGauchada(id_gau) {
               <div class="panel panel-info">
                 <div class="panel-heading">
                   <?php $fecha_postu= strtotime($postulacion['3']); ?>
-                  <p style="display: inline;">El usuario <a href="perfil_usuario.php?id_user=<?php echo $postulacion['1']; ?>"><?php echo $nombre_user; ?></a> se postuló el <?php echo date('d', $fecha_postu)." de ".$meses[date('n', $fecha_postu)-1]. " del ".date('Y', $fecha_postu).
+                  <p style="display: inline;">El usuario <a class="link-usuario" href="perfil_usuario.php?id_user=<?php echo $postulacion['1']; ?>"><?php echo $nombre_user; ?></a> se postuló el <?php echo date('d', $fecha_postu)." de ".$meses[date('n', $fecha_postu)-1]. " del ".date('Y', $fecha_postu).
                             " a las ".date('H:i', $fecha_postu).' hs';?> y escribió:</p>
                 <div class="btn btn-primary btn-xs" role="button" onClick="confirmarPostulanteElegido(<?php echo $postulacion['1'] ?>, <?php echo $id_gauchada ?> );" style="width: 15%; position: absolute;right: 25px;">Elegir postulante</div><br>
                 </div>

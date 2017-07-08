@@ -19,21 +19,21 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
   <div class="row">
     <div class="col-xs-12">
       <h1>Listado de reputaciones</h1><br>
-      <table class='table table-hover table-list-search'>
+      <table class='jumbotron table table-hover table-list-search'>
 					<th>Nombre</th><th>Puntaje Mínimo</th>
 
 					<?php foreach ($reputaciones as $reputacion): ?>
 
-						<?php $nombre= $reputacion['1']; $minimo= $reputacion['2']; ?> 
+						<?php $nombre= $reputacion['1']; $minimo= $reputacion['2']; $id= $reputacion['0']; ?> 
 						<tr><td><?php echo $nombre; ?></td>
 							<td><?php echo $minimo; ?></td>
-							<?php $url1= "modificar_reputacion.php?nombre=$nombre&minimo=$minimo" ?>
+							<?php $url1= "modificar_reputacion.php?nombre=$nombre&minimo=$minimo&id=$id" ?>
 							<td> <a href="<?php echo $url1; ?>">Modificar</a></td>
-							<td> <a href="eliminar_reputacion.php">Eliminar</a></td>
+							<td> <a href="eliminar_reputacion.php?id=<?php echo $id; ?>">Eliminar</a></td>
 						</tr>
 					<?php endforeach; ?>		
 														
-		</table>
+	  </table><hr>
 
 
       <h1>Crear Reputacion</h1><br><br>
