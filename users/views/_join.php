@@ -46,6 +46,9 @@ if (!$form_valid && Input::exists()){
 		<label for="email">Dirección de Email*</label>
 		<input  class="form-control" type="text" name="email" id="email" placeholder="ejemplo@gmail.com" value="<?php if (!$form_valid && !empty($_POST)){ echo $email;} ?>" required >
 
+		<label for="telefono">Número de teléfono (opcional)</label>
+		<input  class="numberinput form-control" type="text" name="telefono" id="telefono" placeholder="2216573456" value="<?php if (!$form_valid && !empty($_POST)){ echo $telefono;} ?>" >
+
 <?php
 
 		$character_range = 'Tener entre '.$settings->min_pw . ' y ' . $settings->max_pw;

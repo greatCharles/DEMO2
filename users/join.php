@@ -68,6 +68,7 @@ if(Input::exists()){
 	$fname = Input::get('fname');
 	$lname = Input::get('lname');
 	$email = Input::get('email');
+	$telefono = Input::get('telefono');
 	$agreement_checkbox = Input::get('agreement_checkbox');
 
 	if ($agreement_checkbox=='on'){
@@ -106,7 +107,11 @@ if(Input::exists()){
 		'valid_email' => true,
 		'unique' => 'users',
 	  ),
-
+		'telefono' => array(
+		'display' => 'Telefono',
+		'min' => 0,
+		'max' => 35,
+		),
 	  'password' => array(
 		'display' => 'Password',
 		'required' => true,
@@ -178,6 +183,7 @@ if(Input::exists()){
 					'fname' => Input::get('fname'),
 					'lname' => Input::get('lname'),
 					'email' => Input::get('email'),
+					'telefono' => Input::get('telefono'),
 					'password' =>
 					password_hash(Input::get('password'), PASSWORD_BCRYPT, array('cost' => 12)),
 					'permissions' => 1,
@@ -211,6 +217,41 @@ require_once $abs_us_root.$us_url_root.'users/includes/facebook_oauth.php';
 }
 require 'views/_join.php';
 ?>
+
+<script type="text/javascript">
+		$(document).ready(function () {
+				$(".numberinput").forceNumeric();
+		});
+
+		// forceNumeric() plug-in implementation
+		jQuery.fn.forceNumeric = function () {
+
+				return this.each(function () {
+						$(this).keydown(function (e) {
+								var key = e.which || e.keyCode;
+
+								if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
+								// numbers
+										key >= 48 && key <= 57 ||
+								// Numeric keypad
+										key >= 96 && key <= 105 ||
+								// comma, period and minus, . on keypad
+									 key == 190 || key == 188 || key == 109 || key == 110 ||
+								// Backspace and Tab and Enter
+									 key == 8 || key == 9 || key == 13 ||
+								// Home and End
+									 key == 35 || key == 36 ||
+								// left and right arrows
+									 key == 37 || key == 39 ||
+								// Del and Ins
+									 key == 46 || key == 45)
+										return true;
+
+								return false;
+						});
+				});
+		}
+</script>
 
 </div>
 </div>

@@ -35,9 +35,8 @@ $conexion->query("INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link) V
             <p>Nombre: <?php echo $usuario['0']['4'] ?></p>
             <p>Apellido: <?php echo $usuario['0']['5'] ?></p>
             <p>Email: <?php echo $usuario['0']['1'] ?></p>
-
+            <p>Telefono: <?php echo $usuario['0']['41'] ?></p>
         <!-- <a class="btn btn-primary" href= "single_view.php?id=<?php echo $id_gau ?>">Ver Gauchada</a> -->
-
       </div>
     </div>
   </div>
