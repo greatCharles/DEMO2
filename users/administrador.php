@@ -27,10 +27,10 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
 	<!-- Permissions Panel -->
 	<div class="col-xs-6 col-md-3">
 	<div class="panel panel-default">
-	<div class="panel-heading"><strong>Nivel de permisos</strong></div>
-	<div class="panel-body text-center"><div class="huge"> <i class='fa fa-lock fa-1x'></i></div></div>
+	<div class="panel-heading"><strong>Categorías de gauchadas</strong></div>
+	<div class="panel-body text-center"><div class="huge"> <i class='fa fa-file-text fa-1x'></i></div></div>
 	<div class="panel-footer">
-	<span class="pull-left"><a href="admin_permissions.php">Administrar</a></span>
+	<span class="pull-left"><a href="admin_categorias.php">Administrar</a></span>
 	<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 	<div class="clearfix"></div>
 	</div> <!-- /panel-footer -->

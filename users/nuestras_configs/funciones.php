@@ -181,9 +181,33 @@ function getReputacion($conex, $puntaje){
     }
   else{
       $consulta= mysqli_query($conex, "SELECT nombre FROM reputaciones ORDER BY minimo LIMIT 1");
-      $result= mysqli_fetch_all($consulta);         
-    } 
-  return $result['0']['0'];  
+      $result= mysqli_fetch_all($consulta);
+    }
+  return $result['0']['0'];
+}
+
+function getCategorias($conex){
+    $result=$conex->query("SELECT * FROM categoria");
+    $result= mysqli_fetch_all($result);
+    return $result;
+}
+
+function agregarCategoria($conex,$nombre){
+  $sql = "INSERT INTO categoria (nombre) VALUES ('$nombre')";
+  $test = mysqli_query($conex, $sql);
+  return $test;
+}
+
+function modificarCategoria($conex, $nombre, $id){
+  $consulta= "UPDATE categoria SET nombre= '$nombre' WHERE id_categoria= $id";
+  $test = mysqli_query($conex, $consulta);
+  return $test;
+}
+
+function eliminarCategoria($conex, $id){
+  $consulta= "DELETE FROM categoria WHERE id_categoria='$id'";
+  $test = mysqli_query($conex, $consulta);
+  return $test;
 }
 
 
