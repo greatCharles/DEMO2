@@ -98,8 +98,17 @@ function confirmarBajaGauchada(id_gau) {
        <!--Si sos el dueño de la gauchada-->
        <?php else: ?>
           <?php if($gauchada['11']): ?>
-            <p class="text-center">Ya se ha elegido un postulante para esta gauchada</p>
-          <?php endif; ?>
+            <?php $postulante_elegido= obtener_datos_usuario($conexion, $gauchada['11']); ?>
+            <p class="text-center">Ya elegiste un postulante para esta gauchada</p>
+            <h3>Datos de contacto</h3><br>
+              <h4>Nombre: <?php echo $postulante_elegido['0']['4'] ?></h4>
+              <h4>Apellido: <?php echo $postulante_elegido['0']['5'] ?></h4>
+              <h4>Email: <?php echo $postulante_elegido['0']['1'] ?></h4>
+              <?php $telefono= $postulante_elegido['0']['41']; ?>
+              <?php if($telefono != NULL): ?>
+                <h4>Telefono: <?php echo $telefono; ?></h4>
+              <?php endif; ?>
+          <?php endif; ?><br>
         <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmarBajaGauchada(<?php echo "$id_gau"; ?>);">Dar de baja la publicación</div><br>
       <?php endif; ?>
    <!--Si no iniciaste sesión-->
