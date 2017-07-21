@@ -77,6 +77,12 @@ function getMisGauchadas($conex, $id){
   return mysqli_fetch_all($result);
 }
 
+function getGauchadasParticipe($conex, $id){
+  $consulta = "SELECT * FROM gauchada WHERE id_elegido= $id";
+  $result= mysqli_query($conex, $consulta);
+  return mysqli_fetch_all($result);
+}
+
 function getComentarios($conex, $id){
   $consulta= "SELECT * FROM comentarios WHERE id_gauchada= $id ORDER BY id_comentario DESC";
   $result= mysqli_query($conex, $consulta);

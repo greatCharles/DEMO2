@@ -46,6 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	$conexion= conexion($bd_config); //Fetch user details
 	$mis_gauchadas= getMisGauchadas($conexion, $user->data()->id);
 	$notificaciones = getNotificaciones($conexion, $user->data()->id);
+  $gauchadas_participe= getGauchadasParticipe($conexion, $user->data()->id);
 ?>
 
 
@@ -54,6 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			    <ul class="nav nav-tabs">
 			        <li class="nav active"><a href="#A" data-toggle="tab">Perfil</a></li>
 			        <li class="nav"><a href="#B" data-toggle="tab">Mis gauchadas</a></li>
+              <li class="nav"><a href="#D" data-toggle="tab">Gauchadas en las que participé</a></li>
 			        <li class="nav"><a href="#C" data-toggle="tab">Notificaciones</a></li>
 			    </ul>
 			    <!-- Tab panes -->
@@ -101,20 +103,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                     	<a href="dejar_reputacion.php?id=<?php echo $gauchada['0']; ?>">Dejar reputacion</a><br>
                                     <?php elseif($gauchada['12'] == '1'): ?> <!-- Si la gauchada está completada, se lo hago saber al usuario -->
                                     	<p style="color: green">Ya calificaste a <?php echo obtener_usuario_por_id($conexion, $gauchada['11']); ?></p>
-                                    <?php endif ?>
+                                    <?php endif; ?>
                                     <?php if(tienePostulantes($conexion,$gauchada['0'])): ?>
                                       <a onclick="javascript:error_1()" href="#">Modificar</a>
                                     <?php else: ?>
                                       <a href="modificar_gauchada.php?id_gauchada=<?php echo $gauchada['0']; ?>">Modificar</a>
                                     <?php endif; ?>
                                   <br>
-    																<a href="javascript:confirmar()">Eliminar</a>
-
+                                  <?php if($gauchada['6'] == $user->data()->id): ?>
+    																 <a href="javascript:confirmar()">Eliminar</a>
+                                  <?php endif; ?>
     																<script type="text/javascript">
     														          function confirmar() {
     														          	swal({   title: "Estás seguro?",   text: "No vas a poder recuperar esta Gauchada!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero borrarla!",   closeOnConfirm: false }, function(){ window.location = 'baja_publicacion.php?id_gau=<?php echo $gauchada['0'] ?>'   });
     														          }
-
                                           function error_1(){
                                             sweetAlert("Oops...", "La gauchada posee postulantes por lo tanto no se puede modificar", "error");
                                           }
@@ -125,7 +127,55 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										</div>
 									</div>
                   <br>
-					</div>
+					  </div>
+            <!--Contenido de Gauchadas en las que participé como colaborador-->
+            <div class="tab-pane fade" id="D">
+              <div class="container-fluid">
+                  <div class="row">
+                        <?php foreach($gauchadas_participe as $gauchada_p): ?>
+                              <div class="col-md-12">
+                                <hr><div class="col-md-3">
+                                    <a href="single_view.php?id=<?php echo $gauchada_p['0']?>">
+                                      <?php if($gauchada_p['10']): ?>
+                                        <img class="img-responsive" src="<?php echo 'img_gauchadas/'. $gauchada_p['10']; ?>">
+                                      <?php else: ?>
+                                        <img class="img-responsive" src="img_gauchadas/sin_imagen.jpg">
+                                      <?php endif; ?>
+                                    </a>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="caption">
+                                      <h3>
+                                          <a href="single_view.php?id=<?php echo $gauchada_p['0']?>"><?php echo $gauchada_p['1']?></a>
+                                      </h3>
+                                      <p><?php echo substr($gauchada_p['2'],0, 200).'...'?></p>
+                                        <a href="single_view.php?id=<?php echo $gauchada_p['0']?>">Ver más...</a><br><br>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <br><br>
+                                  <a href="single_view.php?id=<?php echo $gauchada_p['0']; ?>#seccion-comments">Ver comentarios</a><br>
+                                  <?php if($gauchada_p['11'] && $gauchada_p['12'] == '0'): ?> <!-- Checkeo que la gauchada tenga colaborador y no esté ya calificada para mostrar el boton de calificar -->
+                                    <a href="dejar_reputacion.php?id=<?php echo $gauchada_p['0']; ?>">Dejar reputacion</a><br>
+                                  <?php elseif($gauchada_p['12'] == '1'): ?> <!-- Si la gauchada está completada, se lo hago saber al usuario -->
+                                    <p style="color: green">Ya calificaste a <?php echo obtener_usuario_por_id($conexion, $gauchada_p['11']); ?></p>
+                                  <?php endif ?>
+                                <br>
+                                  <script type="text/javascript">
+                                        function confirmar() {
+                                          swal({   title: "Estás seguro?",   text: "No vas a poder recuperar esta Gauchada!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Si, quiero borrarla!",   closeOnConfirm: false }, function(){ window.location = 'baja_publicacion.php?id_gau=<?php echo $gauchada['0'] ?>'   });
+                                        }
+                                        function error_1(){
+                                          sweetAlert("Oops...", "La gauchada posee postulantes por lo tanto no se puede modificar", "error");
+                                        }
+                                  </script>
+                                </div>
+                              </div>
+                        <?php endforeach; ?>
+                  </div>
+                </div>
+                <br>
+            </div>
 					   <div class="tab-pane fade" id="C">
 					   	  <div class="container-fluid">
 							<div class="row">
