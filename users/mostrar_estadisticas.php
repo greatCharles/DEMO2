@@ -15,11 +15,12 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
   <div class="row">
     <div class="col-xs-12">
       <div class="jumbotron">
-        <h4 style="text-align: center">Estadisticas de los <?php echo "$limite";?> usuarios con mas puntaje</h4>
+        
         <?php if ($limite > $cant_usuarios):?><br>
-          <p>No existen tantos usuarios, por favor regrese e ingrese un numero mas chico</p>
+          <p>No existen tantos usuarios, por favor regrese e ingrese un numero mas chico.</p>
         <?php else: ?>
           <table class='jumbotron table table-hover table-list-search'>
+          <h4 style="text-align: center">Estadisticas de los <?php echo "$limite";?> usuarios con mas puntaje</h4>
           <th>Usuario</th><th>Puntaje</th>
             <?php for ($i=0; $i < $limite; $i++):?>
               <tr>
