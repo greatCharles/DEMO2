@@ -210,5 +210,14 @@ function eliminarCategoria($conex, $id){
   return $test;
 }
 
+function getUsuarios($conex){
+  $consulta = "SELECT * FROM users ORDER BY puntos DESC";
+  $test = mysqli_query($conex, $consulta);
+  $usuarios = mysqli_fetch_all($test);
+  return $usuarios;
+}
+
+
+
 
 ?>
