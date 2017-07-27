@@ -11,9 +11,10 @@ $conexion= conexion($bd_config);
 $gauchada= obtener_gauchada_por_id($conexion, $id_gau);
 $postulantes= getPostulaciones($conexion, $id_gau);
 $cuerpo_notificacion= 'El dueño de la gauchada '.$gauchada['0']['1'].' ha decidido eliminarla, por lo tanto tu postulación se dio de baja también';
+$tipo_notificacion = 'negativo';
 foreach($postulantes as $postulacion){
   $id_postulante= $postulacion['1'];
-  $consulta_notificacion= "INSERT INTO notificaciones (id_usuario, cuerpo, fecha) VALUES ('$id_postulante', '$cuerpo_notificacion', NOW())";
+  $consulta_notificacion= "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, tipo) VALUES ('$id_postulante', '$cuerpo_notificacion', NOW(),'$tipo_notificacion')";
   $conexion->query($consulta_notificacion);
 }
 ?>

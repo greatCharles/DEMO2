@@ -19,7 +19,8 @@
 	$nombre_comentador = obtener_usuario_por_id(conexion($bd_config), $id_user);
 	$cuerpo_notificacion = 'El usuario ' . $nombre_comentador . ' ha dejado un comentario en tu gauchada ' .$gauchada['0']['1'];
 	$link_gauchada = 'single_view.php?id='.$id_gauchada.'#seccion-comments';
-	$consulta2 = "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link) VALUES ('$dueño', '$cuerpo_notificacion', NOW(), '$link_gauchada')";
+	$tipo_notificacion = 'positivo';
+	$consulta2 = "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link, tipo) VALUES ('$dueño', '$cuerpo_notificacion', NOW(), '$link_gauchada', '$tipo_notificacion')";
 	mysqli_query(conexion($bd_config), $consulta2);
  ?>
 

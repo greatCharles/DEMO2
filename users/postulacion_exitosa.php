@@ -17,7 +17,8 @@
 	$postulante = obtener_usuario_por_id(conexion($bd_config), $id_aplicante);
 	$cuerpo_notificacion = 'El usuario ' . $postulante . ' se ha postulado a tu gauchada ' . $gauchada['0']['1'];
 	$link_gauchada = 'single_view.php?id='.$id_gau.'#seccion-postu';
-	$consulta2 = "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link) VALUES ('$dueño', '$cuerpo_notificacion', NOW(), '$link_gauchada')";
+	$tipo_notificacion='positivo';
+	$consulta2 = "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link, tipo) VALUES ('$dueño', '$cuerpo_notificacion', NOW(), '$link_gauchada','$tipo_notificacion')";
 	mysqli_query(conexion($bd_config), $consulta2);
  ?>
 

@@ -175,6 +175,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   </div>
                 </div>
                 <br>
+                <!-- Notificaciones -->
             </div>
 					   <div class="tab-pane fade" id="C">
 					   	  <div class="container-fluid">
@@ -183,7 +184,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									<br>
 									<div class="col-md-12">
 
-											<?php if($notificacion['4'] == "No leida"): ?>
+											<?php if($notificacion['6'] == "negativo"): ?>
 
                         <div class="alert" onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>">
 

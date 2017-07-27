@@ -20,7 +20,8 @@ $array_consulta= mysqli_fetch_all($consulta_id_comentador);
 $id_usuario_comentador= $array_consulta['0']['0'];
 $cuerpo_notificacion = 'El usuario ' . $nombre_dueño . ' ha respondido tu comentario en la gauchada ' .$gauchada['0']['1'];
 $link_gauchada = 'single_view.php?id='.$id_gau.'#seccion-comments';
-$consulta2 = "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link) VALUES ('$id_usuario_comentador', '$cuerpo_notificacion', NOW(), '$link_gauchada')";
+$tipo_notificacion='positiva';
+$consulta2 = "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link, tipo) VALUES ('$id_usuario_comentador', '$cuerpo_notificacion', NOW(), '$link_gauchada', '$tipo_notificacion')";
 mysqli_query(conexion($bd_config), $consulta2);
 
 ?>

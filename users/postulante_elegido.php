@@ -18,10 +18,21 @@ $conexion->query("UPDATE postulacion SET estado= 'Elegido' WHERE id_gauchada= $i
 $gauchada = obtener_gauchada_por_id($conexion, $id_gau);
 $cuerpo_notificacion = "Has sido seleccionado como colaborador para realizar la gauchada: " . $gauchada['0']['1'];
 $link_gauchada = 'single_view.php?id=' . $id_gau;
-$conexion->query("INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link) VALUES ('$id_user', '$cuerpo_notificacion', NOW(), '$link_gauchada')");
+$tipo_notificacion='positivo';
+$conexion->query("INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link, tipo) VALUES ('$id_user', '$cuerpo_notificacion', NOW(), '$link_gauchada', '$tipo_notificacion')");
 $telefono= $usuario['0']['41'];
 
-// Mandar las notificaciones a los postulantes
+// Mandar las notificaciones a los postulantes rechazados
+$cuerpo_notificacion2="Lo sentimos, has sido rechazado como colaborador para la gauchada: " . $gauchada['0']['1'];
+$tipo_notificacion2="negativo";
+$postulantes=getPostulaciones($conexion, $id_gau);
+foreach($postulantes as $postulacion){
+  if($postulacion['1'] != $id_user){
+    $id_postulante= $postulacion['1'];
+    $consulta_notificacion= "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, tipo) VALUES ('$id_postulante', '$cuerpo_notificacion2', NOW(), '$link_gauchada', '$tipo_notificacion2')";
+    $conexion->query($consulta_notificacion);
+    }
+  }
 
 
 ?>
