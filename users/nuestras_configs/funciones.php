@@ -223,6 +223,17 @@ function getUsuarios($conex){
   return $usuarios;
 }
 
+function agregarTransaccion($conex, $monto){
+  $consulta = "INSERT INTO transacciones (monto, fecha) VALUES ('$monto', CURDATE())";
+  $sql= mysqli_query($conex, $consulta);
+}
+function getGanancias($conex, $fecha_desde, $fecha_hasta){
+  $consulta= "SELECT SUM(monto), COUNT(*) from transacciones WHERE fecha BETWEEN '$fecha_desde' and '$fecha_hasta'";
+  $sql = mysqli_query($conex, $consulta);
+  return mysqli_fetch_all($sql);
+
+}
+
 
 
 

@@ -193,6 +193,7 @@ if(!empty($_POST)) {
     $fname=$userdetails->fname;
     $lname=$userdetails->lname;
     $email=$userdetails->email;
+    $telefono=$userdetails->telefono;
 }
 ?>
 
@@ -273,7 +274,7 @@ if(!empty($_POST)) {
 
                         <div class="form-group">
                             <label>Teléfono</label>
-                            <input class='numberinput form-control' type='text' name='telefono' value='' />
+                            <input class='numberinput form-control' type='text' name='telefono' value='<?=$telefono?>' />
                         </div>
 
                         <div class="form-group">

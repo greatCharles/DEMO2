@@ -3,6 +3,17 @@
 <?php require_once 'init.php'; ?>
 <?php require_once $abs_us_root.$us_url_root.'users/includes/header.php'; ?>
 <?php require_once $abs_us_root.$us_url_root.'users/includes/navigation.php'; ?>
+<?php
+require $abs_us_root.$us_url_root.'users/nuestras_configs/funciones.php';
+require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
+?>
+
+<?php
+
+$conex= conexion($bd_config);
+agregarTransaccion($conex, $creditos_comprados * 10);
+
+?>
 <div id="page-wrapper">
 <div class="container">
 <div class="row">

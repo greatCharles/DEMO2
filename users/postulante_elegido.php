@@ -29,7 +29,7 @@ $postulantes=getPostulaciones($conexion, $id_gau);
 foreach($postulantes as $postulacion){
   if($postulacion['1'] != $id_user){
     $id_postulante= $postulacion['1'];
-    $consulta_notificacion= "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, tipo) VALUES ('$id_postulante', '$cuerpo_notificacion2', NOW(), '$link_gauchada', '$tipo_notificacion2')";
+    $consulta_notificacion= "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link, tipo) VALUES ('$id_postulante', '$cuerpo_notificacion2', NOW(), '$link_gauchada', '$tipo_notificacion2')";
     $conexion->query($consulta_notificacion);
     }
   }
