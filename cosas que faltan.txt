@@ -1,0 +1,19 @@
+marceMartinez
+Marcelo1436
+
+
+link para poder ver la calificación que te otorgaron.
+
+modificar la historia gauchadas en las que participé.
+
+Si la guachada ya tiene un colaborador elegido no hay que mostrar más "Te encuentras postulado" y decir si ya hay un colaborador elegido o si vos fuiste elegido.
+
+Agregar que puedas dejar un comentario al calificar (ambas partes) ya además se pueda ver esa información desde mis gauchadas o en el single view.
+
+Agregar el rango de reputacion entre parentesis en el comentario o postulacion de esa persona.
+
+Revisar lo del modificar perfil (Telefono).
+
+Hacer la historia Recuperar contraseña.
+
+Que el ranking de usuarios con mas puntos te permita mostrar usuarios aunque no haya tantos usuarios como ingresaste.

@@ -2,10 +2,10 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 08, 2017 at 11:57 PM
--- Server version: 10.1.24-MariaDB
--- PHP Version: 7.1.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 29-07-2017 a las 00:01:21
+-- Versión del servidor: 10.1.25-MariaDB
+-- Versión de PHP: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db`
+-- Base de datos: `db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `audit`
+-- Estructura de tabla para la tabla `audit`
 --
 
 CREATE TABLE `audit` (
@@ -38,16 +38,47 @@ CREATE TABLE `audit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `audit`
+-- Volcado de datos para la tabla `audit`
 --
 
 INSERT INTO `audit` (`id`, `user`, `page`, `timestamp`, `ip`, `viewed`) VALUES
-(1, 1, '42', '2017-02-20 17:31:13', '::1', 0);
+(1, 1, '42', '2017-02-20 17:31:13', '::1', 0),
+(2, 0, '12', '2017-07-18 14:29:45', '::1', 0),
+(3, 0, '12', '2017-07-18 14:29:49', '::1', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoria`
+-- Estructura de tabla para la tabla `calificaciones`
+--
+
+CREATE TABLE `calificaciones` (
+  `id_calificacion` int(11) NOT NULL,
+  `id_duenio` int(11) NOT NULL,
+  `id_colaborador` int(11) NOT NULL,
+  `calificacion` varchar(50) NOT NULL,
+  `mensaje` varchar(255) DEFAULT NULL,
+  `respuesta` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `calificaciones`
+--
+
+INSERT INTO `calificaciones` (`id_calificacion`, `id_duenio`, `id_colaborador`, `calificacion`, `mensaje`, `respuesta`) VALUES
+(1, 4, 5, 'neutral', 'sss', NULL),
+(2, 4, 5, 'positivo', '', NULL),
+(3, 4, 5, 'positivo', '', NULL),
+(4, 4, 5, 'positivo', 'Muy bueno', NULL),
+(5, 4, 5, 'positivo', 'Muy bueno', NULL),
+(6, 4, 5, 'positivo', 'Muy bueno', NULL),
+(7, 4, 5, 'positivo', 'asd', NULL),
+(8, 5, 1, 'positivo', '', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoria`
 --
 
 CREATE TABLE `categoria` (
@@ -56,19 +87,19 @@ CREATE TABLE `categoria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `categoria`
+-- Volcado de datos para la tabla `categoria`
 --
 
 INSERT INTO `categoria` (`id_categoria`, `nombre`) VALUES
-(1, 'Servicios Domesticos'),
-(2, 'Gastronomicos'),
+(8, 'Entretenimientos'),
 (3, 'Familiar'),
-(4, 'Entretenimiento');
+(7, 'Gastronomicos'),
+(1, 'Servicios Domesticos');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comentarios`
+-- Estructura de tabla para la tabla `comentarios`
 --
 
 CREATE TABLE `comentarios` (
@@ -82,7 +113,7 @@ CREATE TABLE `comentarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `comentarios`
+-- Volcado de datos para la tabla `comentarios`
 --
 
 INSERT INTO `comentarios` (`id_comentario`, `fecha`, `id_gauchada`, `id_user`, `cuerpo`, `cuerpo_respuesta`, `fecha_respuesta`) VALUES
@@ -91,7 +122,7 @@ INSERT INTO `comentarios` (`id_comentario`, `fecha`, `id_gauchada`, `id_user`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `email`
+-- Estructura de tabla para la tabla `email`
 --
 
 CREATE TABLE `email` (
@@ -109,16 +140,16 @@ CREATE TABLE `email` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `email`
+-- Volcado de datos para la tabla `email`
 --
 
 INSERT INTO `email` (`id`, `website_name`, `smtp_server`, `smtp_port`, `email_login`, `email_pass`, `from_name`, `from_email`, `transport`, `verify_url`, `email_act`) VALUES
-(1, 'User Spice', 'mail.userspice.com', 587, 'noreply@userspice.com', 'password', 'Your Name', 'noreply@userspice.com', 'tls', 'http://localhost/us4/', 0);
+(1, 'unaGauchada', '1and1.com', 587, 'unaGauchadaMailService@gmail.com', 'unaGauchada123456', 'unaGauchada', 'unaGauchadaMailService@gmail.com', 'tls', 'http://localhost/u2/', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gauchada`
+-- Estructura de tabla para la tabla `gauchada`
 --
 
 CREATE TABLE `gauchada` (
@@ -139,21 +170,17 @@ CREATE TABLE `gauchada` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `gauchada`
+-- Volcado de datos para la tabla `gauchada`
 --
 
 INSERT INTO `gauchada` (`id_gauchada`, `titulo`, `descripcion`, `fecha_desde`, `fecha_hasta`, `fecha_exacta`, `id_usuario`, `provincia`, `localidad`, `categoria`, `imagen`, `id_elegido`, `completada`, `estado`) VALUES
-(14, 'Un delantero para un futbol 5', 'Necesito de alguien que quiera jugar un fÃºtbol 5 y que juegue de delantero, porque el actual delantero estÃ¡ por jubilarse. \r\nNecesariamente que haya jugado varios partidos y que sepa atajar (Por si el arquero se aburre).\r\nSaludos.', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires', '3 de febrero', 'Entretenimiento', '470039.jpg', NULL, 0, 'activa'),
-(15, 'Obrero para mi casa  ', '  Se necesita un obrero que trabaje gratis en mi casa. Necesito terminar el paredÃ³n de afuera, pintar el techo y revocar la pared del sÃ³tano. Debe cumplir el horario perfectamente y no tolero faltas.  ', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires  ', 'A. Alsina', 'Familiar  ', 'obrero.jpg', NULL, 0, 'activa'),
-(17, 'asdasf', 'gdfgfgdf', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires', '25 de Mayo', 'Gastronomicos', '', NULL, 0, 'inactiva'),
-(20, 'asdas', 'sfdfgdf', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', '', NULL, 0, 'inactiva'),
-(21, 'Esta funca', 'seee', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', '', NULL, 0, 'inactiva'),
-(22, 'asdas', 'fdgfdfgd', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires', '25 de Mayo', 'Servicios Domesticos', '', NULL, 0, 'inactiva');
+(14, 'Un delantero para un futbol 5', 'Necesito de alguien que quiera jugar un fÃºtbol 5 y que juegue de delantero, porque el actual delantero estÃ¡ por jubilarse. \r\nNecesariamente que haya jugado varios partidos y que sepa atajar (Por si el arquero se aburre).\r\nSaludos.', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires', '3 de febrero', 'Entretenimiento', '470039.jpg', 4, 1, 'activa'),
+(15, 'Obrero para mi casa  ', '  Se necesita un obrero que trabaje gratis en mi casa. Necesito terminar el paredÃ³n de afuera, pintar el techo y revocar la pared del sÃ³tano. Debe cumplir el horario perfectamente y no tolero faltas.  ', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires  ', 'A. Alsina', 'Familiar  ', 'obrero.jpg', 4, 1, 'activa');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keys`
+-- Estructura de tabla para la tabla `keys`
 --
 
 CREATE TABLE `keys` (
@@ -169,7 +196,7 @@ CREATE TABLE `keys` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `localidades`
+-- Estructura de tabla para la tabla `localidades`
 --
 
 CREATE TABLE `localidades` (
@@ -180,7 +207,7 @@ CREATE TABLE `localidades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `localidades`
+-- Volcado de datos para la tabla `localidades`
 --
 
 INSERT INTO `localidades` (`id_localidad`, `id_provincia`, `localidad`, `provincia`) VALUES
@@ -2446,7 +2473,7 @@ INSERT INTO `localidades` (`id_localidad`, `id_provincia`, `localidad`, `provinc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Estructura de tabla para la tabla `messages`
 --
 
 CREATE TABLE `messages` (
@@ -2463,7 +2490,7 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message_threads`
+-- Estructura de tabla para la tabla `message_threads`
 --
 
 CREATE TABLE `message_threads` (
@@ -2478,7 +2505,7 @@ CREATE TABLE `message_threads` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notificaciones`
+-- Estructura de tabla para la tabla `notificaciones`
 --
 
 CREATE TABLE `notificaciones` (
@@ -2487,23 +2514,50 @@ CREATE TABLE `notificaciones` (
   `cuerpo` varchar(255) NOT NULL,
   `fecha` datetime NOT NULL,
   `estado` varchar(20) NOT NULL DEFAULT 'No leida',
-  `link` varchar(255) NOT NULL
+  `link` varchar(255) NOT NULL,
+  `tipo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `notificaciones`
+-- Volcado de datos para la tabla `notificaciones`
 --
 
-INSERT INTO `notificaciones` (`id_notificacion`, `id_usuario`, `cuerpo`, `fecha`, `estado`, `link`) VALUES
-(1, 5, 'El usuario admin ha dejado un comentario en tu gauchada Un delantero para un futbol 5', '2017-06-29 19:28:17', 'Leida', 'single_view.php?id=14#seccion-comments'),
-(2, 5, 'El usuario admin se ha postulado a tu gauchada asdasf', '2017-06-29 20:59:35', 'Leida', 'single_view.php?id=17#seccion-postu'),
-(3, 1, 'El dueÃ±o de la gauchada asdasf ha decidido eliminarla, por lo tanto tu postulaciÃ³n se dio de baja tambiÃ©n', '2017-06-29 21:00:00', 'Leida', ''),
-(4, 5, 'El usuario admin se ha postulado a tu gauchada Un delantero para un futbol 5', '2017-07-08 18:47:44', 'Leida', 'single_view.php?id=14#seccion-postu');
+INSERT INTO `notificaciones` (`id_notificacion`, `id_usuario`, `cuerpo`, `fecha`, `estado`, `link`, `tipo`) VALUES
+(1, 5, 'El usuario greatCharles se ha postulado a tu gauchada Un delantero para un futbol 5', '2017-07-28 14:53:48', 'Leida', 'single_view.php?id=14#seccion-postu', 'positivo'),
+(2, 5, 'El usuario admin se ha postulado a tu gauchada Un delantero para un futbol 5', '2017-07-28 14:54:25', 'No leida', 'single_view.php?id=14#seccion-postu', 'positivo'),
+(3, 4, 'Has sido seleccionado como colaborador para realizar la gauchada: Un delantero para un futbol 5', '2017-07-28 14:54:51', 'Leida', 'single_view.php?id=14', 'positivo'),
+(4, 1, 'Lo sentimos, has sido rechazado como colaborador para la gauchada: Un delantero para un futbol 5', '2017-07-28 14:54:51', 'Leida', 'single_view.php?id=14', 'negativo'),
+(5, 5, 'El usuario greatCharles se ha postulado a tu gauchada Gauchada 5', '2017-07-28 17:39:54', 'No leida', 'single_view.php?id=21#seccion-postu', 'positivo'),
+(6, 4, 'Has sido seleccionado como colaborador para realizar la gauchada: Gauchada 5', '2017-07-28 17:40:17', 'No leida', 'single_view.php?id=21', 'positivo'),
+(7, 5, 'El usuario admin se ha postulado a tu gauchada Gauchada 4', '2017-07-28 18:11:15', 'No leida', 'single_view.php?id=20#seccion-postu', 'positivo'),
+(8, 1, 'Has sido seleccionado como colaborador para realizar la gauchada: Gauchada 4', '2017-07-28 18:11:38', 'No leida', 'single_view.php?id=20', 'positivo'),
+(9, 5, 'El usuario greatCharles se ha postulado a tu gauchada Gauchada 3', '2017-07-28 18:15:46', 'No leida', 'single_view.php?id=17#seccion-postu', 'positivo'),
+(10, 4, 'Has sido seleccionado como colaborador para realizar la gauchada: Gauchada 3', '2017-07-28 18:16:07', 'No leida', 'single_view.php?id=17', 'positivo'),
+(11, 1, 'Lo sentimos, has sido rechazado como colaborador para la gauchada: Gauchada 3', '2017-07-28 18:16:07', 'Leida', 'single_view.php?id=17', 'negativo'),
+(12, 4, 'El usuario Matias se ha postulado a tu gauchada sadas', '2017-07-28 18:20:35', 'No leida', 'single_view.php?id=24#seccion-postu', 'positivo'),
+(13, 5, 'Has sido seleccionado como colaborador para realizar la gauchada: sadas', '2017-07-28 18:21:03', 'No leida', 'single_view.php?id=24', 'positivo'),
+(14, 4, 'El usuario Matias se ha postulado a tu gauchada sadas', '2017-07-28 18:22:44', 'No leida', 'single_view.php?id=25#seccion-postu', 'positivo'),
+(15, 5, 'Has sido seleccionado como colaborador para realizar la gauchada: sadas', '2017-07-28 18:23:03', 'No leida', 'single_view.php?id=25', 'positivo'),
+(16, 4, 'El usuario Matias se ha postulado a tu gauchada Tiene que andar', '2017-07-28 18:25:23', 'No leida', 'single_view.php?id=26#seccion-postu', 'positivo'),
+(17, 5, 'Has sido seleccionado como colaborador para realizar la gauchada: Tiene que andar', '2017-07-28 18:25:38', 'No leida', 'single_view.php?id=26', 'positivo'),
+(18, 4, 'El usuario Matias se ha postulado a tu gauchada asasd', '2017-07-28 18:29:10', 'No leida', 'single_view.php?id=27#seccion-postu', 'positivo'),
+(19, 5, 'Has sido seleccionado como colaborador para realizar la gauchada: asasd', '2017-07-28 18:29:27', 'No leida', 'single_view.php?id=27', 'positivo'),
+(20, 4, 'El usuario Matias se ha postulado a tu gauchada ASSDJDS', '2017-07-28 18:31:25', 'No leida', 'single_view.php?id=28#seccion-postu', 'positivo'),
+(21, 5, 'Has sido seleccionado como colaborador para realizar la gauchada: ASSDJDS', '2017-07-28 18:31:38', 'No leida', 'single_view.php?id=28', 'positivo'),
+(22, 4, 'El usuario Matias se ha postulado a tu gauchada asdfd', '2017-07-28 18:44:02', 'No leida', 'single_view.php?id=29#seccion-postu', 'positivo'),
+(23, 5, 'Has sido seleccionado como colaborador para realizar la gauchada: asdfd', '2017-07-28 18:44:26', 'No leida', 'single_view.php?id=29', 'positivo'),
+(25, 4, 'El usuario 4 te ha calificado por la gauchada asdfd', '2017-07-28 18:45:51', 'No leida', 'calificacion.php?id=29', 'positivo'),
+(26, 4, 'El usuario Matias se ha postulado a tu gauchada Otra mas', '2017-07-28 18:47:24', 'No leida', 'single_view.php?id=30#seccion-postu', 'positivo'),
+(27, 5, 'Has sido seleccionado como colaborador para realizar la gauchada: Otra mas', '2017-07-28 18:47:40', 'No leida', 'single_view.php?id=30', 'positivo'),
+(28, 4, 'El usuario 4 te ha calificado por la gauchada Otra mas', '2017-07-28 18:47:48', 'No leida', 'calificacion.php?id=30', 'positivo'),
+(29, 5, 'El usuario admin se ha postulado a tu gauchada Ultima', '2017-07-28 18:51:13', 'No leida', 'single_view.php?id=31#seccion-postu', 'positivo'),
+(30, 1, 'Has sido seleccionado como colaborador para realizar la gauchada: Ultima', '2017-07-28 18:51:30', 'No leida', 'single_view.php?id=31', 'positivo'),
+(31, 5, 'El usuario 5 te ha calificado por la gauchada Ultima', '2017-07-28 18:51:39', 'No leida', 'calificacion.php?id=31', 'positivo');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pages`
+-- Estructura de tabla para la tabla `pages`
 --
 
 CREATE TABLE `pages` (
@@ -2513,7 +2567,7 @@ CREATE TABLE `pages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `pages`
+-- Volcado de datos para la tabla `pages`
 --
 
 INSERT INTO `pages` (`id`, `page`, `private`) VALUES
@@ -2576,12 +2630,15 @@ INSERT INTO `pages` (`id`, `page`, `private`) VALUES
 (71, 'users/postulacion_exitosa.php', 0),
 (72, 'users/postulante_elegido.php', 0),
 (73, 'users/reputacion_creada.php', 0),
-(74, 'users/respuesta_enviada.php', 0);
+(74, 'users/respuesta_enviada.php', 0),
+(75, 'users/eliminar_reputacion.php', 0),
+(76, 'users/modificar_reputacion.php', 0),
+(77, 'users/reputacion_mod_exitosa.php', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permissions`
+-- Estructura de tabla para la tabla `permissions`
 --
 
 CREATE TABLE `permissions` (
@@ -2590,7 +2647,7 @@ CREATE TABLE `permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `permissions`
+-- Volcado de datos para la tabla `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `name`) VALUES
@@ -2600,7 +2657,7 @@ INSERT INTO `permissions` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permission_page_matches`
+-- Estructura de tabla para la tabla `permission_page_matches`
 --
 
 CREATE TABLE `permission_page_matches` (
@@ -2610,7 +2667,7 @@ CREATE TABLE `permission_page_matches` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `permission_page_matches`
+-- Volcado de datos para la tabla `permission_page_matches`
 --
 
 INSERT INTO `permission_page_matches` (`id`, `permission_id`, `page_id`) VALUES
@@ -2651,7 +2708,7 @@ INSERT INTO `permission_page_matches` (`id`, `permission_id`, `page_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `postulacion`
+-- Estructura de tabla para la tabla `postulacion`
 --
 
 CREATE TABLE `postulacion` (
@@ -2664,17 +2721,19 @@ CREATE TABLE `postulacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `postulacion`
+-- Volcado de datos para la tabla `postulacion`
 --
 
 INSERT INTO `postulacion` (`id_postulacion`, `id_user`, `id_gauchada`, `fecha`, `comentario`, `estado`) VALUES
-(1, 1, 17, '2017-06-29 20:59:35', 'aseee', 'En espera'),
-(2, 1, 14, '2017-07-08 18:47:44', 'Quiero postularme', 'En espera');
+(5, 1, 15, '2017-07-28 14:38:15', 'Hola que tal', 'Rechazado'),
+(6, 4, 15, '2017-07-28 14:38:37', 'Buenas', 'Elegido'),
+(7, 4, 14, '2017-07-28 14:53:48', 'Holis', 'Elegido'),
+(8, 1, 14, '2017-07-28 14:54:25', 'Hola', 'Rechazado');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profiles`
+-- Estructura de tabla para la tabla `profiles`
 --
 
 CREATE TABLE `profiles` (
@@ -2684,7 +2743,7 @@ CREATE TABLE `profiles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `profiles`
+-- Volcado de datos para la tabla `profiles`
 --
 
 INSERT INTO `profiles` (`id`, `user_id`, `bio`) VALUES
@@ -2695,12 +2754,18 @@ INSERT INTO `profiles` (`id`, `user_id`, `bio`) VALUES
 (5, 5, 'This is your bio'),
 (6, 6, 'This is your bio'),
 (7, 7, 'This is your bio'),
-(8, 8, 'This is your bio');
+(8, 8, 'This is your bio'),
+(9, 7, 'This is your bio'),
+(10, 8, 'This is your bio'),
+(11, 9, 'This is your bio'),
+(12, 10, 'This is your bio'),
+(13, 11, 'This is your bio'),
+(14, 12, 'This is your bio');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `provincias`
+-- Estructura de tabla para la tabla `provincias`
 --
 
 CREATE TABLE `provincias` (
@@ -2709,7 +2774,7 @@ CREATE TABLE `provincias` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `provincias`
+-- Volcado de datos para la tabla `provincias`
 --
 
 INSERT INTO `provincias` (`id_provincia`, `provincia`) VALUES
@@ -2742,7 +2807,7 @@ INSERT INTO `provincias` (`id_provincia`, `provincia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reputaciones`
+-- Estructura de tabla para la tabla `reputaciones`
 --
 
 CREATE TABLE `reputaciones` (
@@ -2752,18 +2817,17 @@ CREATE TABLE `reputaciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reputaciones`
+-- Volcado de datos para la tabla `reputaciones`
 --
 
 INSERT INTO `reputaciones` (`id_reputacion`, `nombre`, `minimo`) VALUES
 (10, 'Buen tipo', 50),
-(11, 'Un sorete', -10),
 (13, 'Neutral', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings`
+-- Estructura de tabla para la tabla `settings`
 --
 
 CREATE TABLE `settings` (
@@ -2813,7 +2877,7 @@ CREATE TABLE `settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `settings`
+-- Volcado de datos para la tabla `settings`
 --
 
 INSERT INTO `settings` (`id`, `recaptcha`, `force_ssl`, `login_type`, `css_sample`, `us_css1`, `us_css2`, `us_css3`, `css1`, `css2`, `css3`, `site_name`, `language`, `track_guest`, `site_offline`, `force_pr`, `reserved1`, `reserverd2`, `custom1`, `custom2`, `custom3`, `glogin`, `fblogin`, `gid`, `gsecret`, `gredirect`, `ghome`, `fbid`, `fbsecret`, `fbcallback`, `graph_ver`, `finalredir`, `req_cap`, `req_num`, `min_pw`, `max_pw`, `min_un`, `max_un`, `messaging`, `snooping`, `echouser`, `wys`, `change_un`) VALUES
@@ -2822,7 +2886,7 @@ INSERT INTO `settings` (`id`, `recaptcha`, `force_ssl`, `login_type`, `css_sampl
 -- --------------------------------------------------------
 
 --
--- Table structure for table `test`
+-- Estructura de tabla para la tabla `test`
 --
 
 CREATE TABLE `test` (
@@ -2831,7 +2895,7 @@ CREATE TABLE `test` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `test`
+-- Volcado de datos para la tabla `test`
 --
 
 INSERT INTO `test` (`titulo`, `descripcion`) VALUES
@@ -2842,7 +2906,27 @@ INSERT INTO `test` (`titulo`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `transacciones`
+--
+
+CREATE TABLE `transacciones` (
+  `id_transaccion` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `monto` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `transacciones`
+--
+
+INSERT INTO `transacciones` (`id_transaccion`, `fecha`, `monto`) VALUES
+(1, '2017-07-28', 20),
+(2, '2017-07-05', 200);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
@@ -2886,25 +2970,28 @@ CREATE TABLE `users` (
   `fb_uid` varchar(255) NOT NULL,
   `un_changed` int(1) NOT NULL,
   `creditos` int(11) NOT NULL DEFAULT '1',
-  `puntos` int(11) NOT NULL DEFAULT '0'
+  `puntos` int(11) NOT NULL DEFAULT '0',
+  `telefono` varchar(35) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `username`, `password`, `fname`, `lname`, `permissions`, `logins`, `account_owner`, `account_id`, `company`, `stripe_cust_id`, `billing_phone`, `billing_srt1`, `billing_srt2`, `billing_city`, `billing_state`, `billing_zip_code`, `join_date`, `last_login`, `email_verified`, `vericode`, `title`, `active`, `custom1`, `custom2`, `custom3`, `custom4`, `custom5`, `oauth_provider`, `oauth_uid`, `gender`, `locale`, `gpluslink`, `picture`, `created`, `modified`, `fb_uid`, `un_changed`, `creditos`, `puntos`) VALUES
-(1, 'sreguren@gmail.com', 'admin', '$2y$12$1v06jm2KMOXuuo3qP7erTuTIJFOnzhpds1Moa8BadnUUeX0RV3ex.', 'Sebasti&aacute;n', 'Eguren', 1, 115, 1, 0, 'UserSpice', '', '', '', '', '', '', '', '2016-01-01 00:00:00', '2017-07-08 17:34:43', 1, '322418', '', 0, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '1899-11-30 00:00:00', '', 0, 2, -10),
-(2, 'noreply@userspice.com', 'user', '$2y$12$HZa0/d7evKvuHO8I3U8Ff.pOjJqsGTZqlX8qURratzP./EvWetbkK', 'Sample', 'User', 1, 5, 1, 0, 'none', '', '', '', '', '', '', '', '2016-01-02 00:00:00', '2017-02-20 12:14:10', 1, '970748', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0),
-(3, 'poroto.acosta@gmail.com', 'Poroto', '$2y$12$sJST.wocDtg1/c9.G.RNmOOiZDDt9KZnMreRCbbCsxfQiHrKXKLl2', 'Alejoo', 'Acostaaa', 1, 11, 1, 0, '', '', '', '', '', '', '', '', '2017-05-23 21:38:58', '2017-07-08 17:20:32', 1, '984480', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0),
-(4, 'menendez_carlos@yahoo.com.ar', 'greatCharles', '$2y$12$EDpNT/NH1PRpfSS1JnDbkukXujFQdZy.XifXfCScGfrWM5rKqWNju', 'Carlos', 'Men&eacute;ndez', 1, 35, 1, 0, '', '', '', '', '', '', '', '', '2017-05-28 23:29:39', '2017-06-27 19:35:04', 1, '460960', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 114, 0),
-(5, 'maatias.p.97@gmail.com', 'Matias', '$2y$12$elb/nHsth6p11gCdZ3LL4uGSyfDjS1JBqSFHvwtOk23PFYX.jsYxe', 'Mat&iacute;as', 'Pompilio', 1, 20, 1, 0, '', '', '', '', '', '', '', '', '2017-06-01 23:50:26', '2017-07-08 21:48:06', 1, '764755', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 2, 3),
-(6, 'asdsdfd@gmail.com', 'Hola', '$2y$12$VKR7x7Z.vU.FlGBXCcsoee3pn8RDF7IWE5hN9D9TuOZGU88iMz.zW', 'Hola', 'Pompilio', 1, 0, 1, 0, '', '', '', '', '', '', '', '', '2017-06-11 19:32:28', '0000-00-00 00:00:00', 1, '661703', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0);
+INSERT INTO `users` (`id`, `email`, `username`, `password`, `fname`, `lname`, `permissions`, `logins`, `account_owner`, `account_id`, `company`, `stripe_cust_id`, `billing_phone`, `billing_srt1`, `billing_srt2`, `billing_city`, `billing_state`, `billing_zip_code`, `join_date`, `last_login`, `email_verified`, `vericode`, `title`, `active`, `custom1`, `custom2`, `custom3`, `custom4`, `custom5`, `oauth_provider`, `oauth_uid`, `gender`, `locale`, `gpluslink`, `picture`, `created`, `modified`, `fb_uid`, `un_changed`, `creditos`, `puntos`, `telefono`) VALUES
+(1, 'sreguren@gmail.com', 'admin', '$2y$12$1v06jm2KMOXuuo3qP7erTuTIJFOnzhpds1Moa8BadnUUeX0RV3ex.', 'Sebasti&aacute;n', 'Eguren', 1, 130, 1, 0, 'UserSpice', '', '', '', '', '', '', '', '2016-01-01 00:00:00', '2017-07-28 21:52:13', 1, '322418', '', 0, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '1899-11-30 00:00:00', '', 0, 4, -9, '2214351234'),
+(2, 'noreply@userspice.com', 'user', '$2y$12$HZa0/d7evKvuHO8I3U8Ff.pOjJqsGTZqlX8qURratzP./EvWetbkK', 'Sample', 'User', 1, 5, 1, 0, 'none', '', '', '', '', '', '', '', '2016-01-02 00:00:00', '2017-02-20 12:14:10', 1, '970748', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0, NULL),
+(3, 'poroto.acosta@gmail.com', 'Poroto', '$2y$12$sJST.wocDtg1/c9.G.RNmOOiZDDt9KZnMreRCbbCsxfQiHrKXKLl2', 'Alejoo', 'Acostaaa', 1, 11, 1, 0, '', '', '', '', '', '', '', '', '2017-05-23 21:38:58', '2017-07-08 17:20:32', 1, '984480', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0, NULL),
+(4, 'menendez_carlos@yahoo.com.ar', 'greatCharles', '$2y$12$EDpNT/NH1PRpfSS1JnDbkukXujFQdZy.XifXfCScGfrWM5rKqWNju', 'Carlos', 'Men&eacute;ndez', 1, 55, 1, 0, '', '', '', '', '', '', '', '', '2017-05-28 23:29:39', '2017-07-28 21:47:32', 1, '460960', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 106, 4, '2216439654'),
+(5, 'maatias.p.97@gmail.com', 'Matias', '$2y$12$elb/nHsth6p11gCdZ3LL4uGSyfDjS1JBqSFHvwtOk23PFYX.jsYxe', 'Mat&iacute;as', 'Pompilio', 1, 35, 1, 0, '', '', '', '', '', '', '', '', '2017-06-01 23:50:26', '2017-07-28 21:51:22', 1, '764755', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 1, 21, NULL),
+(6, 'asdsdfd@gmail.com', 'Hola', '$2y$12$VKR7x7Z.vU.FlGBXCcsoee3pn8RDF7IWE5hN9D9TuOZGU88iMz.zW', 'Hola', 'Pompilio', 1, 0, 1, 0, '', '', '', '', '', '', '', '', '2017-06-11 19:32:28', '0000-00-00 00:00:00', 1, '661703', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0, NULL),
+(9, 'pepito@gmail.com', 'pepitoGonzales', '$2y$12$QQBG8gd/Qg98iDsDgmleUuEeH8VUPkQ1Jeeg0b/MRHBCSxmsR9iKG', 'Pepe', 'Gonzales', 1, 0, 1, 0, '', '', '', '', '', '', '', '', '2017-07-16 16:14:43', '0000-00-00 00:00:00', 1, '416448', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 1, 0, '2215467898'),
+(12, 'marce@gmail.com', 'marceMartinez', '$2y$12$vf73p7Z4h9Mq1x0ZxPcMgOxBFL8Aj350Cv.0vVV.y//BkawN8zGkm', 'Marcelo', 'Martinez', 1, 0, 1, 0, '', '', '', '', '', '', '', '', '2017-07-18 14:44:14', '0000-00-00 00:00:00', 1, '591519', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_online`
+-- Estructura de tabla para la tabla `users_online`
 --
 
 CREATE TABLE `users_online` (
@@ -2916,18 +3003,18 @@ CREATE TABLE `users_online` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users_online`
+-- Volcado de datos para la tabla `users_online`
 --
 
 INSERT INTO `users_online` (`id`, `ip`, `timestamp`, `user_id`, `session`) VALUES
-(1, '::1', '1499550465', 1, ''),
-(2, '::1', '1499535278', 3, ''),
-(7, '::1', '1499550504', 5, '');
+(1, '::1', '1501278733', 1, ''),
+(9, '::1', '1501278468', 4, ''),
+(10, '::1', '1501278699', 5, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_session`
+-- Estructura de tabla para la tabla `users_session`
 --
 
 CREATE TABLE `users_session` (
@@ -2940,7 +3027,7 @@ CREATE TABLE `users_session` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_permission_matches`
+-- Estructura de tabla para la tabla `user_permission_matches`
 --
 
 CREATE TABLE `user_permission_matches` (
@@ -2950,7 +3037,7 @@ CREATE TABLE `user_permission_matches` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user_permission_matches`
+-- Volcado de datos para la tabla `user_permission_matches`
 --
 
 INSERT INTO `user_permission_matches` (`id`, `user_id`, `permission_id`) VALUES
@@ -2962,26 +3049,41 @@ INSERT INTO `user_permission_matches` (`id`, `user_id`, `permission_id`) VALUES
 (105, 5, 1),
 (106, 6, 1),
 (107, 7, 1),
-(108, 8, 1);
+(108, 8, 1),
+(109, 7, 1),
+(110, 8, 1),
+(111, 9, 1),
+(112, 10, 1),
+(113, 11, 1),
+(114, 12, 1);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `audit`
+-- Indices de la tabla `audit`
 --
 ALTER TABLE `audit`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `categoria`
+-- Indices de la tabla `calificaciones`
 --
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`id_categoria`);
+ALTER TABLE `calificaciones`
+  ADD PRIMARY KEY (`id_calificacion`),
+  ADD KEY `id_dueño` (`id_duenio`),
+  ADD KEY `id_colaborador` (`id_colaborador`);
 
 --
--- Indexes for table `comentarios`
+-- Indices de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`id_categoria`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
+
+--
+-- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
@@ -2989,69 +3091,69 @@ ALTER TABLE `comentarios`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `email`
+-- Indices de la tabla `email`
 --
 ALTER TABLE `email`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `gauchada`
+-- Indices de la tabla `gauchada`
 --
 ALTER TABLE `gauchada`
   ADD PRIMARY KEY (`id_gauchada`),
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indexes for table `keys`
+-- Indices de la tabla `keys`
 --
 ALTER TABLE `keys`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `localidades`
+-- Indices de la tabla `localidades`
 --
 ALTER TABLE `localidades`
   ADD PRIMARY KEY (`id_localidad`);
 
 --
--- Indexes for table `messages`
+-- Indices de la tabla `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `message_threads`
+-- Indices de la tabla `message_threads`
 --
 ALTER TABLE `message_threads`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `notificaciones`
+-- Indices de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
   ADD PRIMARY KEY (`id_notificacion`),
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indexes for table `pages`
+-- Indices de la tabla `pages`
 --
 ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `permissions`
+-- Indices de la tabla `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `permission_page_matches`
+-- Indices de la tabla `permission_page_matches`
 --
 ALTER TABLE `permission_page_matches`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `postulacion`
+-- Indices de la tabla `postulacion`
 --
 ALTER TABLE `postulacion`
   ADD PRIMARY KEY (`id_postulacion`),
@@ -3059,19 +3161,19 @@ ALTER TABLE `postulacion`
   ADD KEY `id_gauchada` (`id_gauchada`);
 
 --
--- Indexes for table `profiles`
+-- Indices de la tabla `profiles`
 --
 ALTER TABLE `profiles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `provincias`
+-- Indices de la tabla `provincias`
 --
 ALTER TABLE `provincias`
   ADD PRIMARY KEY (`id_provincia`);
 
 --
--- Indexes for table `reputaciones`
+-- Indices de la tabla `reputaciones`
 --
 ALTER TABLE `reputaciones`
   ADD PRIMARY KEY (`id_reputacion`),
@@ -3079,179 +3181,195 @@ ALTER TABLE `reputaciones`
   ADD UNIQUE KEY `minimo` (`minimo`);
 
 --
--- Indexes for table `settings`
+-- Indices de la tabla `settings`
 --
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indices de la tabla `transacciones`
+--
+ALTER TABLE `transacciones`
+  ADD PRIMARY KEY (`id_transaccion`);
+
+--
+-- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD KEY `EMAIL` (`email`) USING BTREE;
 
 --
--- Indexes for table `users_online`
+-- Indices de la tabla `users_online`
 --
 ALTER TABLE `users_online`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users_session`
+-- Indices de la tabla `users_session`
 --
 ALTER TABLE `users_session`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_permission_matches`
+-- Indices de la tabla `user_permission_matches`
 --
 ALTER TABLE `user_permission_matches`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `audit`
+-- AUTO_INCREMENT de la tabla `audit`
 --
 ALTER TABLE `audit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `categoria`
+-- AUTO_INCREMENT de la tabla `calificaciones`
+--
+ALTER TABLE `calificaciones`
+  MODIFY `id_calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `comentarios`
+-- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   MODIFY `id_comentario` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `email`
+-- AUTO_INCREMENT de la tabla `email`
 --
 ALTER TABLE `email`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `gauchada`
+-- AUTO_INCREMENT de la tabla `gauchada`
 --
 ALTER TABLE `gauchada`
-  MODIFY `id_gauchada` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_gauchada` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
--- AUTO_INCREMENT for table `keys`
+-- AUTO_INCREMENT de la tabla `keys`
 --
 ALTER TABLE `keys`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `localidades`
+-- AUTO_INCREMENT de la tabla `localidades`
 --
 ALTER TABLE `localidades`
   MODIFY `id_localidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2383;
 --
--- AUTO_INCREMENT for table `messages`
+-- AUTO_INCREMENT de la tabla `messages`
 --
 ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `message_threads`
+-- AUTO_INCREMENT de la tabla `message_threads`
 --
 ALTER TABLE `message_threads`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `notificaciones`
+-- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
--- AUTO_INCREMENT for table `pages`
+-- AUTO_INCREMENT de la tabla `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 --
--- AUTO_INCREMENT for table `permissions`
+-- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `permission_page_matches`
+-- AUTO_INCREMENT de la tabla `permission_page_matches`
 --
 ALTER TABLE `permission_page_matches`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
--- AUTO_INCREMENT for table `postulacion`
+-- AUTO_INCREMENT de la tabla `postulacion`
 --
 ALTER TABLE `postulacion`
-  MODIFY `id_postulacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_postulacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
--- AUTO_INCREMENT for table `profiles`
+-- AUTO_INCREMENT de la tabla `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
--- AUTO_INCREMENT for table `provincias`
+-- AUTO_INCREMENT de la tabla `provincias`
 --
 ALTER TABLE `provincias`
   MODIFY `id_provincia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
--- AUTO_INCREMENT for table `reputaciones`
+-- AUTO_INCREMENT de la tabla `reputaciones`
 --
 ALTER TABLE `reputaciones`
   MODIFY `id_reputacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT for table `settings`
+-- AUTO_INCREMENT de la tabla `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de la tabla `transacciones`
+--
+ALTER TABLE `transacciones`
+  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT for table `users_online`
+-- AUTO_INCREMENT de la tabla `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT for table `users_session`
+-- AUTO_INCREMENT de la tabla `users_session`
 --
 ALTER TABLE `users_session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `user_permission_matches`
+-- AUTO_INCREMENT de la tabla `user_permission_matches`
 --
 ALTER TABLE `user_permission_matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `comentarios`
+-- Filtros para la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_gauchada`) REFERENCES `gauchada` (`id_gauchada`),
   ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `gauchada`
+-- Filtros para la tabla `gauchada`
 --
 ALTER TABLE `gauchada`
   ADD CONSTRAINT `gauchada_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `notificaciones`
+-- Filtros para la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
   ADD CONSTRAINT `notificaciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `postulacion`
+-- Filtros para la tabla `postulacion`
 --
 ALTER TABLE `postulacion`
-  ADD CONSTRAINT `postulacion_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `postulacion_ibfk_3` FOREIGN KEY (`id_gauchada`) REFERENCES `gauchada` (`id_gauchada`);
+  ADD CONSTRAINT `postulacion_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `postulacion_ibfk_3` FOREIGN KEY (`id_gauchada`) REFERENCES `gauchada` (`id_gauchada`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
