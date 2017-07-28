@@ -18,20 +18,23 @@ $nombre_elegido = obtener_usuario_por_id($conexion, $id_elegido);
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
+      <h1 style="text-align:center">Reputacion</h1>
       <div class="jumbotron text-center">
-        <h1>Reputacion</h1>
-        <p>Por favor, contanos tu experiencia con <?php echo "$nombre_elegido"; ?> eligiendo una de las siguientes opciones</p>
+
+        <p>Por favor, califica a <?php echo "$nombre_elegido"; ?> eligiendo una de las siguientes opciones</p>
 
         <div class="radio">
-  			<label><input type="radio" name="feedback" value="positivo" checked>Todo salió de acuerdo a lo pactado y recomendaría a <?php echo "$nombre_elegido"; ?> sin dudarlo!</label>
-		</div>
-		<div class="radio">
- 			<label><input type="radio" name="feedback" value="neutral">Tengo una opinion neutra en cuanto a <?php echo "$nombre_elegido" . '.'; ?></label>
-		</div>
-		<div class="radio">
-  			<label><input type="radio" name="feedback" value="negativo">No recomendaria a <?php echo "$nombre_elegido" . '.'; ?></label>
-		</div><br><br>
-		
+  			  <label><input type="radio" name="feedback" value="positivo" checked>Positivo</label>
+    		</div>
+    		<div class="radio">
+     			<label><input type="radio" name="feedback" value="neutral">Neutral</label>
+    		</div>
+    		<div class="radio">
+      		<label><input type="radio" name="feedback" value="negativo">Negativo</label>
+    		</div><br>
+        <p>Deja tu opinión acerca de <?php echo "$nombre_elegido"; ?></p>
+        <textarea name="opinion" id="opinion" rows="6" cols="60"></textarea><br>
+
         <input type="submit" class= "btn btn-primary" value="Calificar">
       </div>
     </div>

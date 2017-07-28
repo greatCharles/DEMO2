@@ -33,7 +33,6 @@ if($_POST){
         <form action= "ganancias.php" method="post" name="" enctype="multipart/form-data" class="form_signup" >
           <p>Reporte de ganancias</p>
 
-
           <label style="text-align: left;">Fecha desde</label><br>
           <input type="date" class="form-control" style="width: 250px" name="fecha_desde" id="fecha_desde" required><br><br>
           <label style="text-align: left;">Fecha hasta</label><br>

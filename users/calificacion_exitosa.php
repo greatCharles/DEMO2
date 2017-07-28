@@ -8,25 +8,38 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
 ?>
 <?php
 	$conexion= conexion($bd_config);
-	$calificación = $_POST['feedback'];
-	setPuntos($conexion, $id_elegido, $id_gau, $calificación);
- ?>
+	$calificacion = $_POST['feedback'];
+	$mensaje= $_POST['opinion'];
+	setCalificacion($conexion, $user->data()->id, $id_elegido, $mensaje, $calificacion);
+	setPuntos($conexion, $id_elegido, $id_gau, $calificacion);
+	$duenio= $user->data()->id;
+	$gauchada = obtener_gauchada_por_id($conexion,$id_gau);
+	$cuerpo_notificacion = 'El usuario ' . $duenio . ' te ha calificado por la gauchada ' . $gauchada['0']['1'];
+	$link_calificacion = 'calificacion.php?id='.$id_gau;
+	if($calificacion == 'positivo' || $calificacion == 'neutral'){
+		$tipo_notificacion='positivo';
+	}
+	else{
+		$tipo_notificacion='negativo';
+	}
+	$consulta2 = "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link, tipo) VALUES ('$duenio', '$cuerpo_notificacion', NOW(), '$link_calificacion','$tipo_notificacion')";
+	mysqli_query($conexion, $consulta2);
+?>
 
 <div id="page-wrapper">
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
       <div class="jumbotron text-center">
-        <?php switch ($calificación) {
+        <?php switch ($calificacion) {
         	case 'positivo':
         		echo '<h1>Felicitaciones!</h1>';
         		echo '<p>Su calificación se registró con éxito. Gracias por ser usuario de unaGauchada!</p><br><br>';
         		break;
         	case 'negativo':
-        		echo '<h1>Oh, no!</h1>';
         		echo '<p>Su calificación se registró con éxito, deseamos que la proxima vez tenga una mejor experiencia!</p><br><br>';
         		break;
-        	
+
         	case 'neutral':
         		echo '<h1>Felicitaciones!</h1>';
         		echo '<p>Su calificación se registró con éxito!</p><br><br>';

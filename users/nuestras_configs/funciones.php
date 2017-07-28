@@ -118,7 +118,7 @@ function obtener_datos_usuario($conex, $id){
 }
 
 function setPuntos($conex, $id_elegido, $id_gau, $calificacion){
-  switch ($calificacion) {
+  switch ($calificacion){
     case 'positivo':
       $conex->query("UPDATE users SET puntos=puntos + 2 WHERE id=$id_elegido");
       $conex->query("UPDATE gauchada SET completada=1 WHERE id_gauchada=$id_gau");
@@ -131,6 +131,11 @@ function setPuntos($conex, $id_elegido, $id_gau, $calificacion){
       $conex->query("UPDATE gauchada SET completada=1 WHERE id_gauchada=$id_gau");
       break;
   }
+}
+
+function setCalificacion($conex, $id_duenio, $id_colaborador, $mensaje, $calificacion){
+  $conex->query("INSERT INTO calificaciones (id_duenio, id_colaborador, mensaje, calificacion) VALUES ('$id_duenio', '$id_colaborador', '$mensaje', '$calificacion')");
+
 }
 
 function getNotificaciones($conex, $id_usuario){
@@ -227,11 +232,11 @@ function agregarTransaccion($conex, $monto){
   $consulta = "INSERT INTO transacciones (monto, fecha) VALUES ('$monto', CURDATE())";
   $sql= mysqli_query($conex, $consulta);
 }
+
 function getGanancias($conex, $fecha_desde, $fecha_hasta){
   $consulta= "SELECT SUM(monto), COUNT(*) from transacciones WHERE fecha BETWEEN '$fecha_desde' and '$fecha_hasta'";
   $sql = mysqli_query($conex, $consulta);
   return mysqli_fetch_all($sql);
-
 }
 
 
