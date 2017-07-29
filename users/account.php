@@ -47,6 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	$mis_gauchadas= getMisGauchadas($conexion, $user->data()->id);
 	$notificaciones = getNotificaciones($conexion, $user->data()->id);
   $gauchadas_participe= getGauchadasParticipe($conexion, $user->data()->id);
+
 ?>
 
 
@@ -157,9 +158,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                   <a href="single_view.php?id=<?php echo $gauchada_p['0']; ?>#seccion-comments">Ver comentarios</a><br>
                                   <?php if($gauchada_p['11'] && $gauchada_p['12'] == '0'): ?> <!-- Checkeo que la gauchada tenga colaborador y no esté ya calificada para mostrar el boton de calificar -->
                                     <a href="dejar_reputacion.php?id=<?php echo $gauchada_p['0']; ?>">Dejar reputacion</a><br>
-                                  <?php elseif($gauchada_p['12'] == '1'): ?> <!-- Si la gauchada está completada, se lo hago saber al usuario -->
+                                  <?php elseif($gauchada_p['12'] == '1' && $gauchada_p['11'] != $user->data()->id ): ?> <!-- Si la gauchada está completada y fue completada por un usuario que no es el que esta logueado, se lo hago saber al usuario -->
                                     <p style="color: green">Ya calificaste a <?php echo obtener_usuario_por_id($conexion, $gauchada_p['11']); ?></p>
                                   <?php endif ?>
+                                  <?php if($gauchada_p['11'] && ) ?>
                                 <br>
                                   <script type="text/javascript">
                                         function confirmar() {

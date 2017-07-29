@@ -17,7 +17,17 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
       <div class="jumbotron">
         
         <?php if ($limite > $cant_usuarios):?><br>
-          <p>No existen tantos usuarios, por favor regrese e ingrese un numero mas chico.</p>
+          <table class='jumbotron table table-hover table-list-search'>
+          <h4 style="text-align: center">No existen tantos usuarios, a continuación se detallan todos los usuarios del sistema.</h4>
+          <hr>
+          <th>Usuario</th><th>Puntaje</th>
+            <?php for ($i=0; $i < $cant_usuarios; $i++):?>
+              <tr>
+                <td><?php echo $usuarios[$i]['2']; ?></td>
+                <td><?php echo $usuarios[$i]['40'] ?></td>
+              </tr>
+            <?php endfor; ?>
+          </table>
         <?php else: ?>
           <table class='jumbotron table table-hover table-list-search'>
           <h4 style="text-align: center">Estadisticas de los <?php echo "$limite";?> usuarios con mas puntaje</h4>

@@ -81,7 +81,12 @@ function confirmarBajaGauchada(id_gau) {
     <?php if($user->isLoggedIn()): ?>
         <!--Si no sos el dueño de la gauchada-->
         <?php if($gauchada['6'] != $user->data()->id): ?>
-            <?php if(estaPostulado($conexion, $id_gauchada, $user->data()->id)): ?>
+          <!-- Si ya hay  un colaborador elegido y ademas ese colaborador es el usuario logueado -->
+          <?php if($gauchada['11'] != NULL && $gauchada['11'] == $user->data()->id): ?>
+            <p class="text-center">Felicitaciones. Has sido seleccionado como colaborador en esta gauchada.</p><br>
+          <?php endif; ?>
+<!--       Si el usuario se encuentra postulado y todavia no hay un colaborador elegido  --> 
+           <?php if(estaPostulado($conexion, $id_gauchada, $user->data()->id) && ($gauchada['11'] == NULL)): ?>
               <?php $id_postulacion= obtener_id_postulacion($conexion, $id_gauchada, $user->data()->id)?>
               <p class="text-center">Te encuentras postulado para esta gauchada</p><br>
               <?php if(!$gauchada['11']): ?>
@@ -89,8 +94,9 @@ function confirmarBajaGauchada(id_gau) {
             <?php endif; ?>
             <?php elseif(!$gauchada['11']): ?>
               <div class="btn btn-danger btn-lg btn-block" role="button" onClick="confirmar_postulacion(<?php echo "$id_gau"; ?>, <?php echo "$id_user"; ?>);">Quiero Postularme</div><br>
-            <?php else: ?>
-              <p class="text-center">Ya se ha elegido un postulante para esta gauchada</p>
+              <!-- Si ya hay un colaborador elegido -->
+            <?php elseif($gauchada['11'] && $gauchada['11'] != $user->data()->id): ?>
+              <p class="text-center">Ya se ha elegido un colaborador para esta gauchada</p>
             <?php endif; ?>
             <?php if(!$gauchada['11']): ?>
               <div class="btn btn-success btn-lg btn-block" role="button" onClick="enviar_comentario(<?php echo "$id_gau";?>, <?php echo "$id_user"; ?>);">Enviar un comentario</div>
@@ -133,12 +139,19 @@ function confirmarBajaGauchada(id_gau) {
         </div>
       <?php else: ?>
           <?php foreach($postulaciones as $postulacion): ?>
-            <?php $nombre_user= obtener_usuario_por_id($conexion, $postulacion['1']); ?>
+            <?php $nombre_user= obtener_usuario_por_id($conexion, $postulacion['1']);?>
+            <!-- obtenemos todos los datos del usuario postulado -->
+            <?php $datos_usuario = obtener_datos_usuario($conexion, $postulacion['1']);?>
+            <!-- guardamos la cantidad de puntos, los puntos estan en la posicion 0,40 del arreglo de usuarios -->
+            <?php $cant_puntos_usuario = $datos_usuario['0']['40'];?>
+            <!-- guardamos la reputacion para despues imprimirla adentro del parentesis -->
+            <?php $reputacion_usuario = getReputacion($conexion, $cant_puntos_usuario); ?>
+
             <div class="col-md-12">
               <div class="panel panel-info">
                 <div class="panel-heading">
                   <?php $fecha_postu= strtotime($postulacion['3']); ?>
-                  <p style="display: inline;">El usuario <a class="link-usuario" href="perfil_usuario.php?id_user=<?php echo $postulacion['1']; ?>"><?php echo $nombre_user; ?></a> se postuló el <?php echo date('d', $fecha_postu)." de ".$meses[date('n', $fecha_postu)-1]. " del ".date('Y', $fecha_postu).
+                  <p style="display: inline;">El usuario <a class="link-usuario" href="perfil_usuario.php?id_user=<?php echo $postulacion['1']; ?>"><?php echo $nombre_user; ?></a> (<?php echo $reputacion_usuario ;?>) se postuló el <?php echo date('d', $fecha_postu)." de ".$meses[date('n', $fecha_postu)-1]. " del ".date('Y', $fecha_postu).
                             " a las ".date('H:i', $fecha_postu).' hs';?> y escribió:</p>
                 <div class="btn btn-primary btn-xs" role="button" onClick="confirmarPostulanteElegido(<?php echo $postulacion['1'] ?>, <?php echo $id_gauchada ?> );" style="width: 15%; position: absolute;right: 25px;">Elegir postulante</div><br>
                 </div>
@@ -166,15 +179,22 @@ function confirmarBajaGauchada(id_gau) {
 <?php else: ?>
         <?php foreach($comentarios as $comentario): ?>
           <?php $nombre_user= obtener_usuario_por_id($conexion, $comentario['3']); ?>
+          <!-- obtenemos todos los datos del usuario -->
+          <?php $datos_usuario=obtener_datos_usuario($conexion, $comentario['3']); ?>
+          <!-- guardamos la cantidad de puntos, los puntos estan en la posicion 0,40 del arreglo de usuarios -->
+          <?php $cant_puntos_usuario = $datos_usuario['0']['40']; ?>
+          <!-- guardamos la reputacion para despues imprimirla adentro del parentesis -->
+          <?php $reputacion_usuario = getReputacion($conexion, $cant_puntos_usuario); ?>
           <div class="col-md-12">
             <div class="panel panel-warning">
               <div class="panel-heading">
                 <!-- Aca va el nombre del usuario -->
+
                 <?php $fecha_coment= strtotime($comentario['1']);
                       echo "El día ".date('d', $fecha_coment)." de ".$meses[date('n', $fecha_coment)-1]. " del ".date('Y', $fecha_coment).
                       " a las ".date('H:i', $fecha_coment).' hs';
                 ?>
-                <a class="link-usuario" href="perfil_usuario.php?id_user=<?php echo $comentario['3']; ?>"><?php echo $nombre_user; ?></a> comentó:
+                <a class="link-usuario" href="perfil_usuario.php?id_user=<?php echo $comentario['3']; ?>"><?php echo $nombre_user;?></a> (<?php echo $reputacion_usuario ?>) comentó:
                 <!-- Chequea 3 cosas para habilitar el botón de Responder -->
                 <?php if ($user->isLoggedIn() && $user->data()->id == $gauchada['6'] && $comentario['5'] == NULL): ?>
                     <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta(<?php echo $comentario['0'].', '.$id_gau ?>)">Responder</a>
