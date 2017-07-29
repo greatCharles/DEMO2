@@ -44,7 +44,6 @@ function obtener_gauchada_por_id($conex, $id){
   $result=$conex->query("SELECT * FROM gauchada WHERE id_gauchada= $id LIMIT 1");
   $result= mysqli_fetch_all($result);
   return ($result) ? $result : false;
-
 }
 
 function obtener_usuario_por_id($conex, $id){
@@ -238,8 +237,5 @@ function getGanancias($conex, $fecha_desde, $fecha_hasta){
   $sql = mysqli_query($conex, $consulta);
   return mysqli_fetch_all($sql);
 }
-
-
-
 
 ?>

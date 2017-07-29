@@ -160,8 +160,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                     <a href="dejar_reputacion.php?id=<?php echo $gauchada_p['0']; ?>">Dejar reputacion</a><br>
                                   <?php elseif($gauchada_p['12'] == '1' && $gauchada_p['11'] != $user->data()->id ): ?> <!-- Si la gauchada está completada y fue completada por un usuario que no es el que esta logueado, se lo hago saber al usuario -->
                                     <p style="color: green">Ya calificaste a <?php echo obtener_usuario_por_id($conexion, $gauchada_p['11']); ?></p>
-                                  <?php endif ?>
-                                  <?php if($gauchada_p['11'] && ) ?>
+                                  <?php endif; ?>
                                 <br>
                                   <script type="text/javascript">
                                         function confirmar() {
