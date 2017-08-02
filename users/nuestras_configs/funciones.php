@@ -132,9 +132,8 @@ function setPuntos($conex, $id_elegido, $id_gau, $calificacion){
   }
 }
 
-function setCalificacion($conex, $id_duenio, $id_colaborador, $mensaje, $calificacion){
-  $conex->query("INSERT INTO calificaciones (id_duenio, id_colaborador, mensaje, calificacion) VALUES ('$id_duenio', '$id_colaborador', '$mensaje', '$calificacion')");
-
+function setCalificacion($conex, $id_duenio, $id_colaborador, $mensaje, $calificacion, $id_gau){
+  $conex->query("INSERT INTO calificaciones (id_duenio, id_colaborador, mensaje, calificacion, id_gauchada) VALUES ('$id_duenio', '$id_colaborador', '$mensaje', '$calificacion', '$id_gau')");
 }
 
 function getNotificaciones($conex, $id_usuario){
@@ -234,6 +233,24 @@ function agregarTransaccion($conex, $monto){
 
 function getGanancias($conex, $fecha_desde, $fecha_hasta){
   $consulta= "SELECT SUM(monto), COUNT(*) from transacciones WHERE fecha BETWEEN '$fecha_desde' and '$fecha_hasta'";
+  $sql = mysqli_query($conex, $consulta);
+  return mysqli_fetch_all($sql);
+}
+
+
+function emailExiste($conex, $email){
+  $consulta = "SELECT * FROM users WHERE email='$email'";
+  $sql = mysqli_query($conex, $consulta);
+  return mysqli_fetch_all($sql);
+}
+
+function modificarContrasenia($conex, $nueva_pass, $email){
+  $consulta = "UPDATE users SET password= '$nueva_pass' WHERE email= '$email'";
+  $sql = mysqli_query($conex, $consulta);
+}
+
+function getCalificacion($conex, $id_gau){
+  $consulta= "SELECT * FROM calificaciones WHERE id_gauchada=$id_gau";
   $sql = mysqli_query($conex, $consulta);
   return mysqli_fetch_all($sql);
 }

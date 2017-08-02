@@ -24,13 +24,13 @@ $nombre_elegido = obtener_usuario_por_id($conexion, $id_elegido);
         <p>Por favor, califica a <?php echo "$nombre_elegido"; ?> eligiendo una de las siguientes opciones</p>
 
         <div class="radio">
-  			  <label><input type="radio" name="feedback" value="positivo" checked>Positivo</label>
+  			  <label><input type="radio" name="feedback" id="feedback" value="positivo" checked>Positivo</label>
     		</div>
     		<div class="radio">
-     			<label><input type="radio" name="feedback" value="neutral">Neutral</label>
+     			<label><input type="radio" name="feedback" id="feedback" value="neutral">Neutral</label>
     		</div>
     		<div class="radio">
-      		<label><input type="radio" name="feedback" value="negativo">Negativo</label>
+      		<label><input type="radio" name="feedback" id="feedback" value="negativo">Negativo</label>
     		</div><br>
         <p>Deja tu opinión acerca de <?php echo "$nombre_elegido"; ?></p>
         <textarea name="opinion" id="opinion" rows="6" cols="60"></textarea><br>

@@ -147,9 +147,13 @@ require_once $abs_us_root.$us_url_root.'users/includes/facebook_oauth.php';
     </div>
     <?php } ?>
 
-    <div class="form-group">
+    <div class="form-group col-xs-4">
     <label for="remember">
-    <input type="checkbox" name="remember" id="remember" > Recuérdame</label>
+    <input type="checkbox" name="remember" id="remember">Recuérdame</label>
+    </div>
+
+    <div class="col-xs-8">
+        <a class="pull-left" href='forgot_password.php'><i class="fa fa-wrench"></i>Olvidé mi contraseña</a><br><br>
     </div>
 
     <input type="hidden" name="csrf" value="<?=Token::generate(); ?>">
@@ -159,9 +163,7 @@ require_once $abs_us_root.$us_url_root.'users/includes/facebook_oauth.php';
     </div>
 </div>
 <div class="row">
-    <!-- <div class="col-xs-6"><br>
-        <a class="pull-left" href='forgot_password.php'><i class="fa fa-wrench"></i> Olvidé mi contraseña</a><br><br>
-    </div> -->
+
     <div class="col-xs-6"><br>
         <a class="" href='join.php'>Si todavía no tiene una cuenta puede <?=lang("SIGNUP_TEXT","");?></a><br><br>
     </div>

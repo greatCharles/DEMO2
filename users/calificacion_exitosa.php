@@ -10,7 +10,7 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
 	$conexion= conexion($bd_config);
 	$calificacion = $_POST['feedback'];
 	$mensaje= $_POST['opinion'];
-	setCalificacion($conexion, $user->data()->id, $id_elegido, $mensaje, $calificacion);
+	setCalificacion($conexion, $user->data()->id, $id_elegido, $mensaje, $calificacion, $id_gau);
 	setPuntos($conexion, $id_elegido, $id_gau, $calificacion);
 	$duenio= $user->data()->id;
 	$gauchada = obtener_gauchada_por_id($conexion,$id_gau);
