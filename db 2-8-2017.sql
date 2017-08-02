@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-07-2017 a las 00:01:21
--- Versión del servidor: 10.1.25-MariaDB
--- Versión de PHP: 7.1.7
+-- Tiempo de generación: 03-08-2017 a las 00:13:46
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -58,22 +56,28 @@ CREATE TABLE `calificaciones` (
   `id_colaborador` int(11) NOT NULL,
   `calificacion` varchar(50) NOT NULL,
   `mensaje` varchar(255) DEFAULT NULL,
-  `respuesta` varchar(255) DEFAULT NULL
+  `respuesta` varchar(255) DEFAULT NULL,
+  `id_gauchada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `calificaciones`
 --
 
-INSERT INTO `calificaciones` (`id_calificacion`, `id_duenio`, `id_colaborador`, `calificacion`, `mensaje`, `respuesta`) VALUES
-(1, 4, 5, 'neutral', 'sss', NULL),
-(2, 4, 5, 'positivo', '', NULL),
-(3, 4, 5, 'positivo', '', NULL),
-(4, 4, 5, 'positivo', 'Muy bueno', NULL),
-(5, 4, 5, 'positivo', 'Muy bueno', NULL),
-(6, 4, 5, 'positivo', 'Muy bueno', NULL),
-(7, 4, 5, 'positivo', 'asd', NULL),
-(8, 5, 1, 'positivo', '', NULL);
+INSERT INTO `calificaciones` (`id_calificacion`, `id_duenio`, `id_colaborador`, `calificacion`, `mensaje`, `respuesta`, `id_gauchada`) VALUES
+(1, 4, 5, 'neutral', 'sss', NULL, 0),
+(2, 4, 5, 'positivo', '', NULL, 0),
+(3, 4, 5, 'positivo', '', NULL, 0),
+(4, 4, 5, 'positivo', 'Muy bueno', NULL, 0),
+(5, 4, 5, 'positivo', 'Muy bueno', NULL, 0),
+(6, 4, 5, 'positivo', 'Muy bueno', NULL, 0),
+(7, 4, 5, 'positivo', 'asd', NULL, 0),
+(8, 5, 1, 'positivo', '', NULL, 0),
+(9, 3, 1, 'neutral', 'Mas o menos', NULL, 0),
+(10, 1, 3, 'positivo', '', NULL, 0),
+(11, 1, 3, 'positivo', 'Muy bueno', NULL, 0),
+(12, 3, 1, 'positivo', 'Me pareciÃ³ excelente persona', NULL, 0),
+(13, 3, 1, 'positivo', 'Me pareciÃ³ excelente persona', 'probando respuesta', 19);
 
 -- --------------------------------------------------------
 
@@ -144,7 +148,7 @@ CREATE TABLE `email` (
 --
 
 INSERT INTO `email` (`id`, `website_name`, `smtp_server`, `smtp_port`, `email_login`, `email_pass`, `from_name`, `from_email`, `transport`, `verify_url`, `email_act`) VALUES
-(1, 'unaGauchada', '1and1.com', 587, 'unaGauchadaMailService@gmail.com', 'unaGauchada123456', 'unaGauchada', 'unaGauchadaMailService@gmail.com', 'tls', 'http://localhost/u2/', 0);
+(1, 'unaGauchada', 'smtp.gmail.com', 587, 'poroto.acosta@gmail.com', 'poroto2355320', 'unaGauchada', 'poroto.acosta@gmail.com', 'tls', 'http://localhost/demo2/', 0);
 
 -- --------------------------------------------------------
 
@@ -175,7 +179,11 @@ CREATE TABLE `gauchada` (
 
 INSERT INTO `gauchada` (`id_gauchada`, `titulo`, `descripcion`, `fecha_desde`, `fecha_hasta`, `fecha_exacta`, `id_usuario`, `provincia`, `localidad`, `categoria`, `imagen`, `id_elegido`, `completada`, `estado`) VALUES
 (14, 'Un delantero para un futbol 5', 'Necesito de alguien que quiera jugar un fÃºtbol 5 y que juegue de delantero, porque el actual delantero estÃ¡ por jubilarse. \r\nNecesariamente que haya jugado varios partidos y que sepa atajar (Por si el arquero se aburre).\r\nSaludos.', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires', '3 de febrero', 'Entretenimiento', '470039.jpg', 4, 1, 'activa'),
-(15, 'Obrero para mi casa  ', '  Se necesita un obrero que trabaje gratis en mi casa. Necesito terminar el paredÃ³n de afuera, pintar el techo y revocar la pared del sÃ³tano. Debe cumplir el horario perfectamente y no tolero faltas.  ', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires  ', 'A. Alsina', 'Familiar  ', 'obrero.jpg', 4, 1, 'activa');
+(15, 'Obrero para mi casa  ', '  Se necesita un obrero que trabaje gratis en mi casa. Necesito terminar el paredÃ³n de afuera, pintar el techo y revocar la pared del sÃ³tano. Debe cumplir el horario perfectamente y no tolero faltas.  ', '2017-06-29', '2017-08-28', '0000-00-00', 5, 'Buenos Aires  ', 'A. Alsina', 'Familiar  ', 'obrero.jpg', 4, 1, 'activa'),
+(16, 'Mi gauchada', 'asd', '2017-08-02', '2017-10-01', '0000-00-00', 3, 'Buenos Aires', '25 de Mayo', 'Entretenimientos', '', 1, 1, 'activa'),
+(17, 'Otra gauchada', '23', '2017-08-02', '2017-10-01', '0000-00-00', 1, 'Buenos Aires', '25 de Mayo', 'Entretenimientos', '', 3, 1, 'activa'),
+(18, 'Gauchada prueba', 'asddf', '2017-08-02', '2017-10-01', '0000-00-00', 1, 'Buenos Aires', '25 de Mayo', 'Entretenimientos', '', 3, 1, 'activa'),
+(19, 'sarasa', 'asasa', '2017-08-02', '2017-10-01', '0000-00-00', 3, 'Buenos Aires', '25 de Mayo', 'Entretenimientos', '', 1, 1, 'activa');
 
 -- --------------------------------------------------------
 
@@ -2552,7 +2560,21 @@ INSERT INTO `notificaciones` (`id_notificacion`, `id_usuario`, `cuerpo`, `fecha`
 (28, 4, 'El usuario 4 te ha calificado por la gauchada Otra mas', '2017-07-28 18:47:48', 'No leida', 'calificacion.php?id=30', 'positivo'),
 (29, 5, 'El usuario admin se ha postulado a tu gauchada Ultima', '2017-07-28 18:51:13', 'No leida', 'single_view.php?id=31#seccion-postu', 'positivo'),
 (30, 1, 'Has sido seleccionado como colaborador para realizar la gauchada: Ultima', '2017-07-28 18:51:30', 'No leida', 'single_view.php?id=31', 'positivo'),
-(31, 5, 'El usuario 5 te ha calificado por la gauchada Ultima', '2017-07-28 18:51:39', 'No leida', 'calificacion.php?id=31', 'positivo');
+(31, 5, 'El usuario 5 te ha calificado por la gauchada Ultima', '2017-07-28 18:51:39', 'No leida', 'calificacion.php?id=31', 'positivo'),
+(32, 3, 'El usuario admin se ha postulado a tu gauchada Mi gauchada', '2017-08-02 17:03:45', 'Leida', 'single_view.php?id=16#seccion-postu', 'positivo'),
+(33, 1, 'Has sido seleccionado como colaborador para realizar la gauchada: Mi gauchada', '2017-08-02 17:05:05', 'No leida', 'single_view.php?id=16', 'positivo'),
+(34, 3, 'El usuario 3 te ha calificado por la gauchada Mi gauchada', '2017-08-02 17:05:33', 'No leida', 'calificacion.php?id=16', 'positivo'),
+(35, 1, 'El usuario Poroto se ha postulado a tu gauchada Otra gauchada', '2017-08-02 17:16:45', 'No leida', 'single_view.php?id=17#seccion-postu', 'positivo'),
+(36, 3, 'Has sido seleccionado como colaborador para realizar la gauchada: Otra gauchada', '2017-08-02 17:17:06', 'No leida', 'single_view.php?id=17', 'positivo'),
+(37, 1, 'El usuario 1 te ha calificado por la gauchada Otra gauchada', '2017-08-02 17:17:16', 'No leida', 'calificacion.php?id=17', 'positivo'),
+(38, 1, 'El usuario Poroto se ha postulado a tu gauchada Gauchada prueba', '2017-08-02 17:23:54', 'No leida', 'single_view.php?id=18#seccion-postu', 'positivo'),
+(39, 3, 'Has sido seleccionado como colaborador para realizar la gauchada: Gauchada prueba', '2017-08-02 17:24:14', 'No leida', 'single_view.php?id=18', 'positivo'),
+(40, 1, 'El usuario 1 te ha calificado por la gauchada Gauchada prueba', '2017-08-02 17:24:32', 'No leida', 'calificacion.php?id=18', 'positivo'),
+(41, 3, 'El usuario admin se ha postulado a tu gauchada sarasa', '2017-08-02 17:59:26', 'No leida', 'single_view.php?id=19#seccion-postu', 'positivo'),
+(42, 1, 'Has sido seleccionado como colaborador para realizar la gauchada: sarasa', '2017-08-02 17:59:52', 'No leida', 'single_view.php?id=19', 'positivo'),
+(43, 3, 'El usuario 3 te ha calificado por la gauchada sarasa', '2017-08-02 18:00:10', 'No leida', 'calificacion.php?id=19', 'positivo'),
+(44, 3, 'El usuario 3 te ha calificado por la gauchada sarasa', '2017-08-02 18:03:05', 'No leida', 'calificacion.php?id=19', 'positivo'),
+(45, 3, 'El usuario 3 te ha calificado por la gauchada sarasa', '2017-08-02 18:03:25', 'No leida', 'calificacion.php?id=19', 'positivo');
 
 -- --------------------------------------------------------
 
@@ -2728,7 +2750,11 @@ INSERT INTO `postulacion` (`id_postulacion`, `id_user`, `id_gauchada`, `fecha`, 
 (5, 1, 15, '2017-07-28 14:38:15', 'Hola que tal', 'Rechazado'),
 (6, 4, 15, '2017-07-28 14:38:37', 'Buenas', 'Elegido'),
 (7, 4, 14, '2017-07-28 14:53:48', 'Holis', 'Elegido'),
-(8, 1, 14, '2017-07-28 14:54:25', 'Hola', 'Rechazado');
+(8, 1, 14, '2017-07-28 14:54:25', 'Hola', 'Rechazado'),
+(9, 1, 16, '2017-08-02 17:03:45', 'Me postulo', 'Elegido'),
+(10, 3, 17, '2017-08-02 17:16:44', 'asd', 'Elegido'),
+(11, 3, 18, '2017-08-02 17:23:53', 'asdd', 'Elegido'),
+(12, 1, 19, '2017-08-02 17:59:26', 'asdasd', 'Elegido');
 
 -- --------------------------------------------------------
 
@@ -2822,7 +2848,8 @@ CREATE TABLE `reputaciones` (
 
 INSERT INTO `reputaciones` (`id_reputacion`, `nombre`, `minimo`) VALUES
 (10, 'Buen tipo', 50),
-(13, 'Neutral', 0);
+(13, 'Neutral', 0),
+(14, 'Tremendo tipazo', 100);
 
 -- --------------------------------------------------------
 
@@ -2921,7 +2948,8 @@ CREATE TABLE `transacciones` (
 
 INSERT INTO `transacciones` (`id_transaccion`, `fecha`, `monto`) VALUES
 (1, '2017-07-28', 20),
-(2, '2017-07-05', 200);
+(2, '2017-07-05', 200),
+(3, '2017-08-02', 230);
 
 -- --------------------------------------------------------
 
@@ -2979,9 +3007,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `fname`, `lname`, `permissions`, `logins`, `account_owner`, `account_id`, `company`, `stripe_cust_id`, `billing_phone`, `billing_srt1`, `billing_srt2`, `billing_city`, `billing_state`, `billing_zip_code`, `join_date`, `last_login`, `email_verified`, `vericode`, `title`, `active`, `custom1`, `custom2`, `custom3`, `custom4`, `custom5`, `oauth_provider`, `oauth_uid`, `gender`, `locale`, `gpluslink`, `picture`, `created`, `modified`, `fb_uid`, `un_changed`, `creditos`, `puntos`, `telefono`) VALUES
-(1, 'sreguren@gmail.com', 'admin', '$2y$12$1v06jm2KMOXuuo3qP7erTuTIJFOnzhpds1Moa8BadnUUeX0RV3ex.', 'Sebasti&aacute;n', 'Eguren', 1, 130, 1, 0, 'UserSpice', '', '', '', '', '', '', '', '2016-01-01 00:00:00', '2017-07-28 21:52:13', 1, '322418', '', 0, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '1899-11-30 00:00:00', '', 0, 4, -9, '2214351234'),
+(1, 'sreguren@gmail.com', 'admin', '$2y$12$1v06jm2KMOXuuo3qP7erTuTIJFOnzhpds1Moa8BadnUUeX0RV3ex.', 'Sebasti&aacute;n', 'Eguren', 1, 139, 1, 0, 'UserSpice', '', '', '', '', '', '', '', '2016-01-01 00:00:00', '2017-08-02 21:27:52', 1, '322418', '', 0, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '1899-11-30 00:00:00', '', 0, 2, -3, '2214351234'),
 (2, 'noreply@userspice.com', 'user', '$2y$12$HZa0/d7evKvuHO8I3U8Ff.pOjJqsGTZqlX8qURratzP./EvWetbkK', 'Sample', 'User', 1, 5, 1, 0, 'none', '', '', '', '', '', '', '', '2016-01-02 00:00:00', '2017-02-20 12:14:10', 1, '970748', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0, NULL),
-(3, 'poroto.acosta@gmail.com', 'Poroto', '$2y$12$sJST.wocDtg1/c9.G.RNmOOiZDDt9KZnMreRCbbCsxfQiHrKXKLl2', 'Alejoo', 'Acostaaa', 1, 11, 1, 0, '', '', '', '', '', '', '', '', '2017-05-23 21:38:58', '2017-07-08 17:20:32', 1, '984480', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0, NULL),
+(3, 'poroto.acosta@gmail.com', 'Poroto', '$2y$12$0l6/soChWbs7KZxY7ViXeOPVKy4wgBdtc6oeCzVN33jbv9LahkpMa', 'Alejoo', 'Acostaaa', 1, 21, 1, 0, '', '', '', '', '', '', '', '', '2017-05-23 21:38:58', '2017-08-02 20:59:43', 1, '984480', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 21, 4, NULL),
 (4, 'menendez_carlos@yahoo.com.ar', 'greatCharles', '$2y$12$EDpNT/NH1PRpfSS1JnDbkukXujFQdZy.XifXfCScGfrWM5rKqWNju', 'Carlos', 'Men&eacute;ndez', 1, 55, 1, 0, '', '', '', '', '', '', '', '', '2017-05-28 23:29:39', '2017-07-28 21:47:32', 1, '460960', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 106, 4, '2216439654'),
 (5, 'maatias.p.97@gmail.com', 'Matias', '$2y$12$elb/nHsth6p11gCdZ3LL4uGSyfDjS1JBqSFHvwtOk23PFYX.jsYxe', 'Mat&iacute;as', 'Pompilio', 1, 35, 1, 0, '', '', '', '', '', '', '', '', '2017-06-01 23:50:26', '2017-07-28 21:51:22', 1, '764755', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 1, 21, NULL),
 (6, 'asdsdfd@gmail.com', 'Hola', '$2y$12$VKR7x7Z.vU.FlGBXCcsoee3pn8RDF7IWE5hN9D9TuOZGU88iMz.zW', 'Hola', 'Pompilio', 1, 0, 1, 0, '', '', '', '', '', '', '', '', '2017-06-11 19:32:28', '0000-00-00 00:00:00', 1, '661703', '', 1, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0, 0, 0, NULL),
@@ -3007,9 +3035,8 @@ CREATE TABLE `users_online` (
 --
 
 INSERT INTO `users_online` (`id`, `ip`, `timestamp`, `user_id`, `session`) VALUES
-(1, '::1', '1501278733', 1, ''),
-(9, '::1', '1501278468', 4, ''),
-(10, '::1', '1501278699', 5, '');
+(1, '::1', '1501711644', 1, ''),
+(11, '::1', '1501709261', 3, '');
 
 -- --------------------------------------------------------
 
@@ -3230,12 +3257,12 @@ ALTER TABLE `audit`
 -- AUTO_INCREMENT de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
-  MODIFY `id_calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
@@ -3250,7 +3277,7 @@ ALTER TABLE `email`
 -- AUTO_INCREMENT de la tabla `gauchada`
 --
 ALTER TABLE `gauchada`
-  MODIFY `id_gauchada` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_gauchada` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `keys`
 --
@@ -3275,7 +3302,7 @@ ALTER TABLE `message_threads`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT de la tabla `pages`
 --
@@ -3295,7 +3322,7 @@ ALTER TABLE `permission_page_matches`
 -- AUTO_INCREMENT de la tabla `postulacion`
 --
 ALTER TABLE `postulacion`
-  MODIFY `id_postulacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_postulacion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `profiles`
 --
@@ -3310,7 +3337,7 @@ ALTER TABLE `provincias`
 -- AUTO_INCREMENT de la tabla `reputaciones`
 --
 ALTER TABLE `reputaciones`
-  MODIFY `id_reputacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_reputacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `settings`
 --
@@ -3320,7 +3347,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT de la tabla `transacciones`
 --
 ALTER TABLE `transacciones`
-  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
@@ -3330,12 +3357,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `users_session`
 --
 ALTER TABLE `users_session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `user_permission_matches`
 --
@@ -3370,7 +3397,6 @@ ALTER TABLE `notificaciones`
 ALTER TABLE `postulacion`
   ADD CONSTRAINT `postulacion_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `postulacion_ibfk_3` FOREIGN KEY (`id_gauchada`) REFERENCES `gauchada` (`id_gauchada`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
