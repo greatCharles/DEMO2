@@ -48,8 +48,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	$notificaciones = getNotificaciones($conexion, $user->data()->id);
   $gauchadas_participe= getGauchadasParticipe($conexion, $user->data()->id);
   $calificaciones= getMisCalificaciones($conexion, $user->data()->id);
-  
-  
+  $puntaje= $user->data()->puntos;
+
+
 ?>
 
 
@@ -67,9 +68,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			        <div class="tab-pane fade in active" id="A">
 										<h1><?=ucfirst($user->data()->username)?></h1>
 										<p><?=ucfirst($user->data()->fname)." ".ucfirst($user->data()->lname)?></p>
+                    <p>Reputación: <?php echo getReputacion($conexion, $puntaje);?> </p>
 										<p>Miembro desde: <?=$signupdate?></p>
 										<!-- <p>Número de ingresos: <?=$user->data()->logins?></p> -->
-										<p>Créditos disponibles: <?php echo getCreditos($conexion, $user->data()->id) ?></p>
+										<p>Créditos disponibles: <?php echo getCreditos($conexion, $user->data()->id) ?> <a href="comprar_creditos.php">(Comprar más)</a></p>
 										<!-- <p><img src="<?=$grav; ?>" class="img-thumbnail" alt="Generic placeholder thumbnail"></p> -->
 										<p><a href="user_settings.php" class="btn btn-primary">Modificar Perfil</a></p>
                                         <p style="width: 300"><a href="javascript:confirmarBajaCuenta(<?php echo "$get_info_id"; ?>)" class="btn btn-danger">Eliminar cuenta</a></p>
@@ -137,7 +139,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <div class="container-fluid">
                   <div class="row">
                         <?php foreach($gauchadas_participe as $gauchada_p): ?>
-                          
+
                               <div class="col-md-12">
                                 <hr><div class="col-md-3">
                                     <a href="single_view.php?id=<?php echo $gauchada_p['0']?>">
