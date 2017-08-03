@@ -12,17 +12,19 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
 	$mensaje= $_POST['opinion'];
 	setCalificacion($conexion, $user->data()->id, $id_elegido, $mensaje, $calificacion, $id_gau);
 	setPuntos($conexion, $id_elegido, $id_gau, $calificacion);
-	$duenio= $user->data()->id;
+	$id_duenio= $user->data()->id;
+	$duenio =obtener_usuario_por_id($conexion,$id_duenio);
 	$gauchada = obtener_gauchada_por_id($conexion,$id_gau);
 	$cuerpo_notificacion = 'El usuario ' . $duenio . ' te ha calificado por la gauchada ' . $gauchada['0']['1'];
 	$link_calificacion = 'calificacion.php?id='.$id_gau;
+	echo $calificacion;
 	if($calificacion == 'positivo' || $calificacion == 'neutral'){
 		$tipo_notificacion='positivo';
 	}
 	else{
 		$tipo_notificacion='negativo';
 	}
-	$consulta2 = "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link, tipo) VALUES ('$duenio', '$cuerpo_notificacion', NOW(), '$link_calificacion','$tipo_notificacion')";
+	$consulta2 = "INSERT INTO notificaciones (id_usuario, cuerpo, fecha, link, tipo) VALUES ('$id_elegido', '$cuerpo_notificacion', NOW(), '$link_calificacion','$tipo_notificacion')";
 	mysqli_query($conexion, $consulta2);
 ?>
 
