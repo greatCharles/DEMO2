@@ -10,8 +10,10 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
 $id_gau= $_GET['id_gau'];
 $conexion= conexion($bd_config);
 $calificacion= getCalificacion($conexion, $id_gau);
-$duenio= obtener_usuario_por_id($conexion, $calificacion['0']['1']);
-$mensaje= $calificacion['0']['4'];
+
+
+$duenio = obtener_usuario_por_id($conexion, $calificacion['0']['1']);
+$mensaje = $calificacion['0']['4'];
 
 ?>
 
@@ -57,8 +59,15 @@ $mensaje= $calificacion['0']['4'];
                   <div class="panel panel-warning">
                     <div class="panel-heading">
                     	<?php if ($mensaje): ?>
-                    		<?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['0']['3'].' y dijo:' ;?>
+                        <!-- Si el usuario logeado es el dueño de la gauchada -->
+                        <?php if($calificacion['0']['1'] == $user->data()->id): ?>
+                          <?php echo 'Calificaste ' . $calificacion['0']['3'] . ' y dijiste:' ;?>
+                        <?php else: ?>
+                          <!-- Si hay mensaje -->
+                    		  <?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['0']['3'].' y dijo:' ;?>
+                        <?php endif; ?>
                     	<?php else: ?>
+                       <!--  Si no hay mensaje -->
                     		<?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['0']['3'] ; ?>
     					        <?php endif; ?>
     					        <?php if ($user->isLoggedIn() && $user->data()->id == $calificacion['0']['2'] && $calificacion['0']['5'] == NULL): ?>

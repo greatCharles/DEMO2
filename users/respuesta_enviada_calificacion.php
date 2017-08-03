@@ -2,6 +2,11 @@
 	$texto_respuesta = $_GET['respuesta'];
 	$id_calificacion = $_GET['id_calificacion'];
 	$id_gau = $_GET['id_gau'];
+	$voy_a_tab = False;
+	if ($_GET['voy_a_tab']) {
+		$voy_a_tab = True;
+	}
+	
  ?>
 <?php require_once 'init.php'; ?>
 <?php require_once $abs_us_root.$us_url_root.'users/includes/header.php'; ?>
@@ -24,7 +29,11 @@
   <div class="col-xs-12">
   	<div class="jumbotron text-center">
   		<h2>Tu respuesta se procesó satisfactoriamente!</h2><br><br>
-  		<a class="btn btn-primary" href= "calificacion.php?id_gau=<?php echo $id_gau ?>">Volver</a>
+  		<?php if($voy_a_tab): ?>
+  			<a class="btn btn-primary" href= "account.php#E">Volver</a>
+  		<?php else: ?>
+  			<a class="btn btn-primary" href= "calificacion.php?id_gau=<?php echo $id_gau ?>">Volver</a>
+  		<?php endif; ?>
   </div>
  </div>
 </div>

@@ -48,7 +48,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	$notificaciones = getNotificaciones($conexion, $user->data()->id);
   $gauchadas_participe= getGauchadasParticipe($conexion, $user->data()->id);
   $calificaciones= getMisCalificaciones($conexion, $user->data()->id);
-  var_dump($calificaciones);
+  
+  
 ?>
 
 
@@ -136,6 +137,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <div class="container-fluid">
                   <div class="row">
                         <?php foreach($gauchadas_participe as $gauchada_p): ?>
+                          
                               <div class="col-md-12">
                                 <hr><div class="col-md-3">
                                     <a href="single_view.php?id=<?php echo $gauchada_p['0']?>">
@@ -222,7 +224,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <!-- Mis calificaciones -->
             <script>
-            	function enviar_respuesta_calificacion(id_calificacion, id_gau) {
+            	function enviar_respuesta_calificacion2(id_calificacion, id_gau) {
               swal({
 
               title: "Respuesta",
@@ -240,28 +242,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     swal.showInputError("No te olvides de escribir algo!");
                     return false
                   }
-                  window.location = 'respuesta_enviada_calificacion.php?respuesta=' + inputValue + '&id_calificacion=' + id_calificacion + '&id_gau=' + id_gau;
+                  window.location = 'respuesta_enviada_calificacion.php?respuesta=' + inputValue + '&id_calificacion=' + id_calificacion + '&id_gau=' + id_gau + '&voy_a_tab=' + 'si';
                   // swal("Perfecto!", "You wrote: " + inputValue, "success");
                 });
             }
             </script>
+            <br>
             <div class="tab-pane fade" id="E">
                <div class="container-fluid">
                  <div class="row">
                    <?php foreach($calificaciones as $calificacion): ?>
-                     <?php $duenio= obtener_usuario_por_id($conexion, $calificacion['0']['1']); ?>
-                     <?php $mensaje= $calificacion['0']['4']; ?>
+                      <?php $duenio = obtener_usuario_por_id($conexion, $calificacion['1']); ?>
+                      <?php $mensaje = $calificacion['4']; ?>
                        <div class="col-md-12" style="position: relative; left:50px">
+                              <hr>
                               <!--Lo que dijo el dueño de la gauchada -->
                               <div class="panel panel-warning">
                                 <div class="panel-heading">
                                 	<?php if ($mensaje): ?>
-                                		<?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['0']['3'].' y dijo:' ;?>
+                                		<?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['3'].' y dijo:' ;?>
                                 	<?php else: ?>
-                                		<?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['0']['3'] ; ?>
+                                		<?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['3'] ; ?>
                 					        <?php endif; ?>
-                					        <?php if ($calificacion['0']['5'] == NULL): ?>
-                                    <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta_calificacion(<?php echo $calificacion['0']['0']?>, <?php echo $calificacion['0']['6'] ?>)">Responder</a>
+                					        <?php if ($calificacion['5'] == NULL): ?>
+                                    <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta_calificacion2(<?php echo $calificacion['0']?>, <?php echo $calificacion['6'] ?>)">Responder</a>
                                   <?php endif; ?>
                                 </div>
                 				        <?php if ($mensaje): ?>
@@ -272,7 +276,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 	        	    <?php endif; ?>
                               </div>
                               <!--Lo que responde el colaborador-->
-                              <?php if ($calificacion['0']['5'] != NULL):?>
+                              <?php if ($calificacion['5'] != NULL):?>
                   	        		 <div class="col-md-12" style="position: relative; left:50px">
                   		              <div class="panel panel-success">
                   		                <div class="panel-heading">
@@ -280,12 +284,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   		                </div>
                   		                <div class="panel-body">
                   		                  <!-- imprimimos la respuesta en pantalla -->
-                  		                  <p><?php echo $calificacion['0']['5'] ?></p>
+                  		                  <p><?php echo $calificacion['5'] ?></p>
                   		                </div>
                   		              </div>
                   		            </div>
+
                         		   <?php endif; ?>
                       </div>
+
                    <?php endforeach; ?>
                 </div>
               </div>
