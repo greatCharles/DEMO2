@@ -40,9 +40,9 @@ foreach($postulantes as $postulacion){
 <div class="container">
   <div class="row">
     <div class="col-xs-12 text-center">
-      <h1>Felicitaciones!</h1>
-      <p>Se ha elegido el postulante <?php echo $usuario['0']['2'] ?>.</p><br><br>
       <div class="jumbotron">
+        <h1>Felicitaciones!</h1>
+        <p>Se ha elegido el postulante <?php echo $usuario['0']['2'] ?>.</p><br><br>
           <h2>Datos de contacto:</h2> <br><br>
             <p>Nombre: <?php echo $usuario['0']['4'] ?></p>
             <p>Apellido: <?php echo $usuario['0']['5'] ?></p>

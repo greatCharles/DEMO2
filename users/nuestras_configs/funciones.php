@@ -255,4 +255,10 @@ function getCalificacion($conex, $id_gau){
   return mysqli_fetch_all($sql);
 }
 
+function getMisCalificaciones($conex, $id){
+  $consulta= "SELECT * FROM calificaciones WHERE id_colaborador='$id'";
+  $sql = mysqli_query($conex, $consulta);
+  return mysqli_fetch_all($sql);
+}
+
 ?>

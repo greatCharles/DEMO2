@@ -47,7 +47,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	$mis_gauchadas= getMisGauchadas($conexion, $user->data()->id);
 	$notificaciones = getNotificaciones($conexion, $user->data()->id);
   $gauchadas_participe= getGauchadasParticipe($conexion, $user->data()->id);
-
+  $calificaciones= getMisCalificaciones($conexion, $user->data()->id);
+  var_dump($calificaciones);
 ?>
 
 
@@ -58,6 +59,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			        <li class="nav"><a href="#B" data-toggle="tab">Mis gauchadas</a></li>
               <li class="nav"><a href="#D" data-toggle="tab">Gauchadas en las que participé</a></li>
 			        <li class="nav"><a href="#C" data-toggle="tab">Notificaciones</a></li>
+              <li class="nav"><a href="#E" data-toggle="tab">Mis calificaciones</a></li>
 			    </ul>
 			    <!-- Tab panes -->
 			    <div class="tab-content">
@@ -71,7 +73,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<p><a href="user_settings.php" class="btn btn-primary">Modificar Perfil</a></p>
                                         <p style="width: 300"><a href="javascript:confirmarBajaCuenta(<?php echo "$get_info_id"; ?>)" class="btn btn-danger">Eliminar cuenta</a></p>
 										<!-- <p><a class="btn btn-primary" href="profile.php?id=<?=$get_info_id;?>" role="button">Perfil público</a></p> -->
-					</div>
+					    </div>
 							<!--Contenido de Mis Gauchadas-->
 			        <div class="tab-pane fade" id="B">
 								<div class="container-fluid">
@@ -176,45 +178,121 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   </div>
                 </div>
                 <br>
-                <!-- Notificaciones -->
             </div>
+            <!--Hasta acá Contenido de Gauchadas en las que participé como colaborador-->
+
+
+             <!-- Notificaciones -->
 					   <div class="tab-pane fade" id="C">
 					   	  <div class="container-fluid">
-							<div class="row">
-								<?php foreach($notificaciones as $notificacion): ?>
-									<br>
-									<div class="col-md-12">
+    							<div class="row">
+    								<?php foreach($notificaciones as $notificacion): ?>
+    									<br>
+    									<div class="col-md-12">
 
-											<?php if($notificacion['6'] == "negativo"): ?>
+    											<?php if($notificacion['6'] == "negativo"): ?>
 
-                        <div class="alert" onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>">
+                            <div class="alert" onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>">
 
 
-                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-                            <a class="link-notifi" href=<?php echo $notificacion['5'] ?>><?php echo $notificacion['2'] ?></a>
-                        </div>
+                                <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                <a class="link-notifi" href=<?php echo $notificacion['5'] ?>><?php echo $notificacion['2'] ?></a>
+                            </div>
 
-                        <!-- <div onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>" class="alert alert-danger" role="alert">
-                           <?php echo $notificacion['2'] ?>
-                        </div>              -->
-										  <?php else: ?>
-                        <div class="alert alert-info">
-                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-                            <a class= "link-notifi" href=<?php echo $notificacion['5'] ?>><?php echo $notificacion['2'] ?></a>
-                        </div>
+                            <!-- <div onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>" class="alert alert-danger" role="alert">
+                               <?php echo $notificacion['2'] ?>
+                            </div>              -->
+    										  <?php else: ?>
+                            <div class="alert alert-info">
+                                <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                <a class= "link-notifi" href=<?php echo $notificacion['5'] ?>><?php echo $notificacion['2'] ?></a>
+                            </div>
 
-                        <!-- <div class="alert alert-info" role="alert">
-											     <?php echo $notificacion['2'] ?>
-											  </div> -->
-										  <?php endif; ?>
+                            <!-- <div class="alert alert-info" role="alert">
+    											     <?php echo $notificacion['2'] ?>
+    											  </div> -->
+    										  <?php endif; ?>
 
-									</div>
-								<?php endforeach; ?>
-							</div>
+    									</div>
+    								<?php endforeach; ?>
+    							</div>
 						 </div>
 					  </div>
+            <!-- Hasta acá Notificaciones -->
 
-		</div>
+            <!-- Mis calificaciones -->
+            <script>
+            	function enviar_respuesta_calificacion(id_calificacion, id_gau) {
+              swal({
+
+              title: "Respuesta",
+              text: "Escribí tu respuesta",
+              type: "input",
+              showCancelButton: true,
+              closeOnConfirm: false,
+              animation: "slide-from-top",
+              inputPlaceholder: "Ej: ¿Salio todo de acuerdo a lo pactado?"
+              },
+                function(inputValue){
+                  if (inputValue === false) return false;
+
+                  if (inputValue === "") {
+                    swal.showInputError("No te olvides de escribir algo!");
+                    return false
+                  }
+                  window.location = 'respuesta_enviada_calificacion.php?respuesta=' + inputValue + '&id_calificacion=' + id_calificacion + '&id_gau=' + id_gau;
+                  // swal("Perfecto!", "You wrote: " + inputValue, "success");
+                });
+            }
+            </script>
+            <div class="tab-pane fade" id="E">
+               <div class="container-fluid">
+                 <div class="row">
+                   <?php foreach($calificaciones as $calificacion): ?>
+                     <?php $duenio= obtener_usuario_por_id($conexion, $calificacion['0']['1']); ?>
+                     <?php $mensaje= $calificacion['0']['4']; ?>
+                       <div class="col-md-12" style="position: relative; left:50px">
+                              <!--Lo que dijo el dueño de la gauchada -->
+                              <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                	<?php if ($mensaje): ?>
+                                		<?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['0']['3'].' y dijo:' ;?>
+                                	<?php else: ?>
+                                		<?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['0']['3'] ; ?>
+                					        <?php endif; ?>
+                					        <?php if ($calificacion['0']['5'] == NULL): ?>
+                                    <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta_calificacion(<?php echo $calificacion['0']['0']?>, <?php echo $calificacion['0']['6'] ?>)">Responder</a>
+                                  <?php endif; ?>
+                                </div>
+                				        <?php if ($mensaje): ?>
+                	                 <div class="panel-body">
+                	                  <!-- imprimimos la calificacion en pantalla -->
+                	                    <p><?php echo $mensaje ;?></p>
+                	                 </div>
+                	        	    <?php endif; ?>
+                              </div>
+                              <!--Lo que responde el colaborador-->
+                              <?php if ($calificacion['0']['5'] != NULL):?>
+                  	        		 <div class="col-md-12" style="position: relative; left:50px">
+                  		              <div class="panel panel-success">
+                  		                <div class="panel-heading">
+                  		                  <?php echo "Vos le respondiste: "; ?>
+                  		                </div>
+                  		                <div class="panel-body">
+                  		                  <!-- imprimimos la respuesta en pantalla -->
+                  		                  <p><?php echo $calificacion['0']['5'] ?></p>
+                  		                </div>
+                  		              </div>
+                  		            </div>
+                        		   <?php endif; ?>
+                      </div>
+                   <?php endforeach; ?>
+                </div>
+              </div>
+            </div>
+           <!-- Hasta acá Mis calificaciones -->
+         </div>
+
 
 
 <!-- 			onclick="<?php marcarNotiComoLeida($conexion, $notificacion['0']); ?>"

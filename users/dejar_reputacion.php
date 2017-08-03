@@ -18,9 +18,9 @@ $nombre_elegido = obtener_usuario_por_id($conexion, $id_elegido);
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <h1 style="text-align:center">Reputacion</h1>
       <div class="jumbotron text-center">
 
+        <h1 style="text-align:center">Reputación</h1><br><br>
         <p>Por favor, califica a <?php echo "$nombre_elegido"; ?> eligiendo una de las siguientes opciones</p>
 
         <div class="radio">
@@ -33,7 +33,7 @@ $nombre_elegido = obtener_usuario_por_id($conexion, $id_elegido);
       		<label><input type="radio" name="feedback" id="feedback" value="negativo">Negativo</label>
     		</div><br>
         <p>Deja tu opinión acerca de <?php echo "$nombre_elegido"; ?></p>
-        <textarea name="opinion" id="opinion" rows="6" cols="60"></textarea><br>
+        <textarea name="opinion" id="opinion" rows="6" cols="60"></textarea><br><br>
 
         <input type="submit" class= "btn btn-primary" value="Calificar">
       </div>
