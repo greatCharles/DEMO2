@@ -6,5 +6,3 @@ Marcelo1436
 modificar la historia gauchadas en las que participé.
 
 Agregar que puedas dejar un comentario al calificar (ambas partes) ya además se pueda ver esa información desde mis gauchadas o en el single view.
-
-Revisar lo del modificar perfil (Telefono).

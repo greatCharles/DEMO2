@@ -45,6 +45,52 @@ if(!empty($_POST)) {
     if(!Token::check($token)){
         die('Token doesn\'t match!');
     }else {
+        // update telefono
+        if ($userdetails->telefono != $_POST['telefono']){
+            $telefono = Input::get("telefono");
+            $fields=array(
+                'telefono'=>$telefono,
+                'un_changed' => 1,
+            );
+            $validation->check($_POST,array(
+                'telefono' => array(
+                    'display' => 'telefono',
+                    'required' => true,
+                    'unique_update' => 'users,'.$userId,
+                    'min' => 1,
+                    'max' => 25
+                )
+            ));
+            if($validation->passed()){
+                if(($settings->change_un == 2) && ($user->data()->un_changed == 1)){
+                    Redirect::to('user_settings.php?err=Username+has+already+been+changed+once.');
+                }
+                $db->update('users',$userId,$fields);
+                $successes[]="Telefono actualizado.";
+            }else{
+                //validation did not pass
+                foreach ($validation->errors() as $error) {
+                    $errors[] = $error;
+                }
+            }
+        }else{
+            $telefono=$userdetails->telefono;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //Update display name
         if ($userdetails->username != $_POST['username']){
             $displayname = Input::get("username");
