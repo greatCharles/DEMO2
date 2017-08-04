@@ -21,8 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <div class="row">
 <div class="col-xs-12">
 <div class="jumbotron">
-<p>El link para resetear su contraseña ha sido enviado a su dirección de correo</p>
-<p>Haga click en el link que ha sido enviado a su email para resetear su contraseña. </p>
+<p>Se te envió un mail con el link de reseteo de contraseña.</p>
+<p>Ingresá en el link enviado a tu casilla de correo. En el caso de no encontrar el email, deberás fijarte en la carpeta "Spam"</p>
 </div>	
 </div><!-- /.col -->
 </div><!-- /.row -->

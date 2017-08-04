@@ -20,11 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ?>
 <div class="row">
 <div class="col-xs-12">
-<h1>Restablezca su contraseña.</h1>
+<h1>Reseteá tu  contraseña.</h1>
 <ol>
-	<li>Ingrese su email y presione "Reestablecer"</li>
-	<li>Revise su email y haga click en el link que se le envió por correo</li>
-	<li>Siga las instrucciones indicadas en pantalla</li>
+	<li>Ingresá tu email y hacé click en "Resetear"</li>
+	<li>Revisá tu casilla de correo y presioná en el link que se te ha enviado.</li>
+	<li>Seguí las instrucciones en pantalla</li>
 </ol>
 <span class="bg-danger"><?=display_errors($errors);?></span>
 <form action="forgot_password.php" method="post" class="form ">
@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</div>
 
 	<input type="hidden" name="csrf" value="<?=Token::generate();?>">
-	<p><input type="submit" name="forgotten_password" value="Reestablecer" class="btn btn-primary"></p>
+	<p><input type="submit" name="forgotten_password" value="Resetear" class="btn btn-primary"></p>
 </form>
 
 </div><!-- /.col -->

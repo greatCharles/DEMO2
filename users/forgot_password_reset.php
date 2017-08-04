@@ -47,12 +47,12 @@ if(Input::get('reset') == 1){ //$_GET['reset'] is set when clicking the link in 
 		$validate = new Validate();
 		$validation = $validate->check($_POST,array(
 		'password' => array(
-		  'display' => 'New Password',
+		  'display' => 'Nueva contraseña',
 		  'required' => true,
 		  'min' => 6,
 		),
 		'confirm' => array(
-		  'display' => 'Confirm Password',
+		  'display' => 'Confirmar contraseña',
 		  'required' => true,
 		  'matches' => 'password',
 		),

@@ -17,7 +17,6 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
 	$gauchada = obtener_gauchada_por_id($conexion,$id_gau);
 	$cuerpo_notificacion = 'El usuario ' . $duenio . ' te ha calificado por la gauchada ' . $gauchada['0']['1'];
 	$link_calificacion = 'calificacion.php?id_gau='.$id_gau;
-	echo $calificacion;
 	if($calificacion == 'positivo' || $calificacion == 'neutral'){
 		$tipo_notificacion='positivo';
 	}

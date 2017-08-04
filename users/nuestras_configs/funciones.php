@@ -256,7 +256,7 @@ function getCalificacion($conex, $id_gau){
 }
 
 function getMisCalificaciones($conex, $id){
-  $consulta= "SELECT * FROM calificaciones WHERE id_colaborador='$id'";
+  $consulta= "SELECT * FROM calificaciones WHERE id_colaborador='$id' ORDER BY id_calificacion DESC";
   $sql = mysqli_query($conex, $consulta);
   return mysqli_fetch_all($sql);
 }

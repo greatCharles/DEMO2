@@ -68,7 +68,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			        <div class="tab-pane fade in active" id="A">
 										<h1><?=ucfirst($user->data()->username)?></h1>
 										<p><?=ucfirst($user->data()->fname)." ".ucfirst($user->data()->lname)?></p>
-                    <p>Reputación: <?php echo getReputacion($conexion, $puntaje);?> </p>
+                    <p>Reputación: <?php echo getReputacion($conexion, $puntaje);?> con <?php echo $puntaje  ?> puntos </p>
 										<p>Miembro desde: <?=$signupdate?></p>
 										<!-- <p>Número de ingresos: <?=$user->data()->logins?></p> -->
 										<p>Créditos disponibles: <?php echo getCreditos($conexion, $user->data()->id) ?> <a href="comprar_creditos.php">(Comprar más)</a></p>
@@ -92,7 +92,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 												<?php endif; ?>
     																	</a>
     															</div>
-    															<div class="col-md-7">
+    															<div class="col-md-6">
     																	<div class="caption">
     																		<h3>
     																				<a href="single_view.php?id=<?php echo $gauchada['0']?>"><?php echo $gauchada['1']?></a>
@@ -101,14 +101,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     																			<a href="single_view.php?id=<?php echo $gauchada['0']?>">Ver más...</a><br><br>
     																	</div>
     															</div>
-    															<div class="col-md-2">
+    															<div class="col-md-3">
     																<br><br>
                                     <a href="single_view.php?id=<?php echo $gauchada['0']; ?>#seccion-postu">Ver postulantes</a><br>
                                     <a href="single_view.php?id=<?php echo $gauchada['0']; ?>#seccion-comments">Ver comentarios</a><br>
                                     <?php if($gauchada['11'] && $gauchada['12'] == '0'): ?> <!-- Checkeo que la gauchada tenga colaborador y no esté ya calificada para mostrar el boton de calificar -->
                                     	<a href="dejar_reputacion.php?id=<?php echo $gauchada['0']; ?>">Dejar reputacion</a><br>
                                     <?php elseif($gauchada['12'] == '1'): ?> <!-- Si la gauchada está completada, se lo hago saber al usuario -->
-                                    	<p style="color: green">Ya calificaste a <?php echo obtener_usuario_por_id($conexion, $gauchada['11']); ?></p><a href="calificacion.php?id_gau=<?php echo $gauchada['0']; ?>">( Ver )</a>
+                                    	<p style="color: green">Ya calificaste a <?php echo obtener_usuario_por_id($conexion, $gauchada['11']); ?> <a href="calificacion.php?id_gau=<?php echo $gauchada['0']; ?>">( Ver )</a></p>
                                     <?php endif; ?>
                                     <?php if(tienePostulantes($conexion,$gauchada['0'])): ?>
                                       <a onclick="javascript:error_1()" href="#">Modificar</a>
@@ -162,11 +162,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 <div class="col-md-2">
                                   <br><br>
                                   <a href="single_view.php?id=<?php echo $gauchada_p['0']; ?>#seccion-comments">Ver comentarios</a><br>
-                                  <?php if($gauchada_p['11'] && $gauchada_p['12'] == '0'): ?> <!-- Checkeo que la gauchada tenga colaborador y no esté ya calificada para mostrar el boton de calificar -->
-                                    <a href="dejar_reputacion.php?id=<?php echo $gauchada_p['0']; ?>">Dejar reputacion</a><br>
-                                  <?php elseif($gauchada_p['12'] == '1' && $gauchada_p['11'] != $user->data()->id ): ?> <!-- Si la gauchada está completada y fue completada por un usuario que no es el que esta logueado, se lo hago saber al usuario -->
-                                    <p style="color: green">Ya calificaste a <?php echo obtener_usuario_por_id($conexion, $gauchada_p['11']); ?></p>
-                                  <?php endif; ?>
+                                  
                                 <br>
                                   <script type="text/javascript">
                                         function confirmar() {
@@ -256,15 +252,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                    <?php foreach($calificaciones as $calificacion): ?>
                       <?php $duenio = obtener_usuario_por_id($conexion, $calificacion['1']); ?>
                       <?php $mensaje = $calificacion['4']; ?>
+                      <?php $gauchada = obtener_gauchada_por_id($conexion, $calificacion['6']); ?>
+                      <?php $titulo_gauchada = $gauchada['0']['1'];?>
                        <div class="col-md-12" style="position: relative; left:50px">
                               <hr>
                               <!--Lo que dijo el dueño de la gauchada -->
                               <div class="panel panel-warning">
                                 <div class="panel-heading">
                                 	<?php if ($mensaje): ?>
-                                		<?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['3'].' y dijo:' ;?>
+                                		<?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['3'] . ' en la gauchada '?><a href="single_view.php?id=<?php echo $gauchada['0']['0'] ?>"> <?php echo $titulo_gauchada ?></a> y dijo:
                                 	<?php else: ?>
-                                		<?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['3'] ; ?>
+                                		<?php echo 'El usuario '.$duenio.' te calificó '.$calificacion['3'] . ' en la gauchada '?><a href="single_view.php?id=<?php echo $gauchada['0']['0'] ?>"> <?php echo $titulo_gauchada ?></a> ;
                 					        <?php endif; ?>
                 					        <?php if ($calificacion['5'] == NULL): ?>
                                     <a style= "position:absolute; right:25px" href="javascript:enviar_respuesta_calificacion2(<?php echo $calificacion['0']?>, <?php echo $calificacion['6'] ?>)">Responder</a>

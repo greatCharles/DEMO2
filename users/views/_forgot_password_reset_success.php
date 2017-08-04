@@ -21,8 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <div class="row">
 <div class="col-xs-12">
 <div class="jumbotron text-center">
-<h2>Su contraseña ha sido reseteada!</h2>
-<p><a href="login.php" class="btn btn-primary">Ingresar</a></p>
+<h2>Tu contraseña ha sido reseteada!</h2>
+<p><a href="login.php" class="btn btn-primary">Iniciar sesión</a></p>
 </div>	
 </div><!-- /.col -->
 </div><!-- /.row -->
