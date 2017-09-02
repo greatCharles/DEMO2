@@ -37,31 +37,7 @@ require $abs_us_root.$us_url_root.'users/nuestras_configs/config.php';
 	</div><!-- /panel -->
 	</div> <!-- /.col -->
 
-	<!-- Pages Panel -->
-	<div class="col-xs-6 col-md-3">
-	<div class="panel panel-default">
-	<div class="panel-heading"><strong>Páginas</strong></div>
-	<div class="panel-body  text-center"><div class="huge"> <i class='fa fa-file-text fa-1x'></i> </div></div>
-	<div class="panel-footer">
-	<span class="pull-left"><a href="admin_pages.php">Administrar</a></span>
-	<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-	<div class="clearfix"></div>
-	</div> <!-- /panel-footer -->
-	</div><!-- /panel -->
-	</div><!-- /col -->
-
-	<!-- Email Settings Panel -->
-	<div class="col-xs-6 col-md-3">
-	<div class="panel panel-default">
-	<div class="panel-heading"><strong>Configuración de email</strong></div>
-	<div class="panel-body text-center"><div class="huge"> <i class='fa fa-paper-plane fa-1x'></i> 9</div></div>
-	<div class="panel-footer">
-	<span class="pull-left"><a href='email_settings.php'>Administrar</a></span>
-	<span class="pull-right"><i class='fa fa-arrow-circle-right'></i></span>
-	<div class="clearfix"></div>
-	</div> <!-- /panel-footer -->
-	</div> <!-- /panel -->
-	</div> <!-- /col -->
+	
 
 <!-- 	Estadisticas panel  -->
 	<div class="col-xs-6 col-md-3">

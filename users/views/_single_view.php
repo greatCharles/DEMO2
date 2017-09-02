@@ -84,6 +84,17 @@ function confirmarBajaGauchada(id_gau) {
           <!-- Si ya hay  un colaborador elegido y ademas ese colaborador es el usuario logueado -->
           <?php if($gauchada['11'] != NULL && $gauchada['11'] == $user->data()->id): ?>
             <p class="text-center">Felicitaciones. Has sido seleccionado como colaborador en esta gauchada.</p><br>
+            <?php if($gauchada['11'] && ($gauchada['11'] == $user->data()->id)): ?>
+            <?php $postulante_elegido= obtener_datos_usuario($conexion, $gauchada['6']); ?>
+            <h3>Datos de contacto</h3><br>
+              <h4>Nombre: <?php echo $postulante_elegido['0']['4'] ?></h4>
+              <h4>Apellido: <?php echo $postulante_elegido['0']['5'] ?></h4>
+              <h4>Email: <?php echo $postulante_elegido['0']['1'] ?></h4>
+              <?php $telefono= $postulante_elegido['0']['41']; ?>
+              <?php if($telefono != NULL): ?>
+                <h4>Telefono: <?php echo $telefono; ?></h4>
+              <?php endif; ?>
+          <?php endif; ?><br>
           <?php endif; ?>
 <!--       Si el usuario se encuentra postulado y todavia no hay un colaborador elegido  --> 
            <?php if(estaPostulado($conexion, $id_gauchada, $user->data()->id) && ($gauchada['11'] == NULL)): ?>
@@ -101,8 +112,22 @@ function confirmarBajaGauchada(id_gau) {
             <?php if(!$gauchada['11']): ?>
               <div class="btn btn-success btn-lg btn-block" role="button" onClick="enviar_comentario(<?php echo "$id_gau";?>, <?php echo "$id_user"; ?>);">Enviar un comentario</div>
             <?php endif; ?>
+<!--             si sos el colaborador
+ -->
+
+            
+
+
+
+
+
+
+
        <!--Si sos el dueño de la gauchada-->
        <?php else: ?>
+
+        
+
           <?php if($gauchada['11']): ?>
             <?php $postulante_elegido= obtener_datos_usuario($conexion, $gauchada['11']); ?>
             <p class="text-center">Ya elegiste un postulante para esta gauchada</p>
